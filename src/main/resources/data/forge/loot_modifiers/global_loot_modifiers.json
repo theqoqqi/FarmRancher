@@ -1,5 +1,6 @@
 {
   "replace": false,
   "entries": [
+    "farm_rancher:replace_plant_loot"
   ]
 }
