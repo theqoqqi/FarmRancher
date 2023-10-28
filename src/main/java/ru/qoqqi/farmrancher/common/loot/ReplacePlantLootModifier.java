@@ -34,9 +34,31 @@ public class ReplacePlantLootModifier extends LootModifier {
 	protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
 		if (shouldReplaceLoot(context)) {
 			generatedLoot.clear();
+
+			addPlantLoot(generatedLoot, context);
 		}
 
 		return generatedLoot;
+	}
+
+	private static void addPlantLoot(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
+		var blockState = context.getParamOrNull(LootContextParams.BLOCK_STATE);
+		var position = context.getParamOrNull(LootContextParams.ORIGIN);
+
+		if (blockState == null || position == null) {
+			return;
+		}
+
+		var serverLevel = context.getLevel();
+		var plant = Plants.get(blockState);
+
+		if (!plant.type.isMaxAge(blockState)) {
+			return;
+		}
+
+		var drops = plant.dropTable.getRandomDrops(serverLevel.random, 1f);
+
+		generatedLoot.addAll(drops);
 	}
 
 	private static boolean shouldReplaceLoot(LootContext context) {
