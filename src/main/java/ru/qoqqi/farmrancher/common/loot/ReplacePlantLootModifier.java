@@ -3,6 +3,7 @@ package ru.qoqqi.farmrancher.common.loot;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
@@ -13,6 +14,7 @@ import net.minecraftforge.common.loot.LootModifier;
 import javax.annotation.Nonnull;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import ru.qoqqi.farmrancher.common.blocks.entities.GardenBlockEntity;
 import ru.qoqqi.farmrancher.common.plants.Plants;
 
 public class ReplacePlantLootModifier extends LootModifier {
@@ -50,13 +52,22 @@ public class ReplacePlantLootModifier extends LootModifier {
 		}
 
 		var serverLevel = context.getLevel();
+		var blockPos = BlockPos.containing(position);
+		var garden = GardenBlockEntity.getPreferredByProfitability(serverLevel, blockPos);
+
+		if (garden == null) {
+			return;
+		}
+
 		var plant = Plants.get(blockState);
 
 		if (!plant.type.isMaxAge(blockState)) {
 			return;
 		}
 
-		var drops = plant.dropTable.getRandomDrops(serverLevel.random, 1f);
+		var gardenType = garden.getGardenType();
+		var profitability = gardenType.profitability;
+		var drops = plant.dropTable.getRandomDrops(serverLevel.random, profitability);
 
 		generatedLoot.addAll(drops);
 	}
