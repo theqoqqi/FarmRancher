@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "minecraft:block/oak_planks",
+    "east": "farm_rancher:block/gardens/netherite/side",
+    "north": "farm_rancher:block/gardens/netherite/front",
+    "particle": "farm_rancher:block/gardens/netherite/front",
+    "south": "farm_rancher:block/gardens/netherite/side",
+    "up": "farm_rancher:block/gardens/netherite/top",
+    "west": "farm_rancher:block/gardens/netherite/front"
+  }
+}

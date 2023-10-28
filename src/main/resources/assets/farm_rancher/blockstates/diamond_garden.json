@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "farm_rancher:block/gardens/diamond"
+    }
+  }
+}

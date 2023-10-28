@@ -21,7 +21,11 @@ public class ModBlockEntityTypes {
 	public static final RegistryObject<BlockEntityType<GardenBlockEntity>> GARDEN = register(
 			"garden",
 			GardenBlockEntity::new,
-			ModBlocks.WOODEN_GARDEN
+			ModBlocks.WOODEN_GARDEN,
+			ModBlocks.IRON_GARDEN,
+			ModBlocks.GOLDEN_GARDEN,
+			ModBlocks.DIAMOND_GARDEN,
+			ModBlocks.NETHERITE_GARDEN
 	);
 
 	@SuppressWarnings("SameParameterValue")

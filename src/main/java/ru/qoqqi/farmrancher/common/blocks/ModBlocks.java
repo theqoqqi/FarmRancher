@@ -28,6 +28,18 @@ public class ModBlocks {
 	@SuppressWarnings("unused")
 	public static final RegistryObject<Block> WOODEN_GARDEN = registerGarden("wooden_garden", GardenTypes.WOODEN_GARDEN);
 
+	@SuppressWarnings("unused")
+	public static final RegistryObject<Block> IRON_GARDEN = registerGarden("iron_garden", GardenTypes.IRON_GARDEN);
+
+	@SuppressWarnings("unused")
+	public static final RegistryObject<Block> GOLDEN_GARDEN = registerGarden("golden_garden", GardenTypes.GOLDEN_GARDEN);
+
+	@SuppressWarnings("unused")
+	public static final RegistryObject<Block> DIAMOND_GARDEN = registerGarden("diamond_garden", GardenTypes.DIAMOND_GARDEN);
+
+	@SuppressWarnings("unused")
+	public static final RegistryObject<Block> NETHERITE_GARDEN = registerGarden("netherite_garden", GardenTypes.NETHERITE_GARDEN);
+
 	public static void register(IEventBus eventBus) {
 		BLOCKS.register(eventBus);
 	}

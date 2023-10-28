@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "minecraft:block/oak_planks",
+    "east": "farm_rancher:block/gardens/diamond/side",
+    "north": "farm_rancher:block/gardens/diamond/front",
+    "particle": "farm_rancher:block/gardens/diamond/front",
+    "south": "farm_rancher:block/gardens/diamond/side",
+    "up": "farm_rancher:block/gardens/diamond/top",
+    "west": "farm_rancher:block/gardens/diamond/front"
+  }
+}

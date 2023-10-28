@@ -1,3 +1,7 @@
 {
+  "block.farm_rancher.diamond_garden": "Алмазный сад",
+  "block.farm_rancher.golden_garden": "Золотой сад",
+  "block.farm_rancher.iron_garden": "Железный сад",
+  "block.farm_rancher.netherite_garden": "Незеритовый сад",
   "block.farm_rancher.wooden_garden": "Деревянный сад"
 }
