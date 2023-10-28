@@ -11,11 +11,18 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.Arrays;
 
 import ru.qoqqi.farmrancher.FarmRancher;
+import ru.qoqqi.farmrancher.common.blocks.ModBlocks;
 
 public class ModBlockEntityTypes {
 
 	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES
 			= DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, FarmRancher.MOD_ID);
+
+	public static final RegistryObject<BlockEntityType<GardenBlockEntity>> GARDEN = register(
+			"garden",
+			GardenBlockEntity::new,
+			ModBlocks.WOODEN_GARDEN
+	);
 
 	@SuppressWarnings("SameParameterValue")
 	@SafeVarargs
