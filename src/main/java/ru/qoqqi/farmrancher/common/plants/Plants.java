@@ -2,6 +2,7 @@ package ru.qoqqi.farmrancher.common.plants;
 
 import com.mojang.logging.LogUtils;
 
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
@@ -21,15 +22,31 @@ public class Plants {
 	private static final Map<Block, Plant> plants = new HashMap<>();
 
 	static {
-		registerCropPlant(Blocks.WHEAT, secondsToGrowSpeed(10));
-		registerCropPlant(Blocks.CARROTS, secondsToGrowSpeed(20));
-		registerCropPlant(Blocks.POTATOES, secondsToGrowSpeed(20));
-		registerCropPlant(Blocks.BEETROOTS, secondsToGrowSpeed(30));
+		registerCropPlant(
+				Blocks.WHEAT,
+				secondsToGrowSpeed(10),
+				new PlantDropTable(Items.WHEAT_SEEDS, 1.1f, Items.WHEAT, 1.5f)
+		);
+		registerCropPlant(
+				Blocks.CARROTS,
+				secondsToGrowSpeed(20),
+				new PlantDropTable(Items.CARROT, 1.5f)
+		);
+		registerCropPlant(
+				Blocks.POTATOES,
+				secondsToGrowSpeed(20),
+				new PlantDropTable(Items.POTATO, 1.5f, Items.POISONOUS_POTATO, 0.02f)
+		);
+		registerCropPlant(
+				Blocks.BEETROOTS,
+				secondsToGrowSpeed(30),
+				new PlantDropTable(Items.BEETROOT_SEEDS, 1.2f, Items.BEETROOT, 1.5f)
+		);
 	}
 
-	private static void registerCropPlant(Block block, float growthSpeed) {
+	private static void registerCropPlant(Block block, float growthSpeed, PlantDropTable plantDropTable) {
 		var type = new CropPlantType((CropBlock) block);
-		var plant = new Plant(type, growthSpeed);
+		var plant = new Plant(type, growthSpeed, plantDropTable);
 
 		plants.put(type.block, plant);
 	}

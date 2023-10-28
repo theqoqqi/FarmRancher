@@ -11,9 +11,12 @@ public class Plant {
 
 	public final float growthSpeed;
 
-	public Plant(IPlantType type, float growthSpeed) {
+	public final PlantDropTable dropTable;
+
+	public Plant(IPlantType type, float growthSpeed, PlantDropTable dropTable) {
 		this.type = type;
 		this.growthSpeed = growthSpeed;
+		this.dropTable = dropTable;
 	}
 
 	public float getGrowthSpeed(BlockGetter level, BlockPos pos) {
