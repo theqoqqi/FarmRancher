@@ -14,6 +14,7 @@ import ru.qoqqi.farmrancher.common.Config;
 import ru.qoqqi.farmrancher.common.blocks.ModBlocks;
 import ru.qoqqi.farmrancher.common.blocks.entities.ModBlockEntityTypes;
 import ru.qoqqi.farmrancher.common.items.ModItems;
+import ru.qoqqi.farmrancher.common.loot.GlobalLootModifiers;
 
 @Mod(FarmRancher.MOD_ID)
 public class FarmRancher {
@@ -28,6 +29,8 @@ public class FarmRancher {
 		ModBlocks.register(eventBus);
 		ModBlockEntityTypes.register(eventBus);
 		ModItems.register(eventBus);
+
+		GlobalLootModifiers.register(eventBus);
 
 		MinecraftForge.EVENT_BUS.register(this);
 
