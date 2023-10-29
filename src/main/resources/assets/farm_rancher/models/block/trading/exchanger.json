@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "farm_rancher:block/trading/exchanger/front",
+    "side": "farm_rancher:block/trading/exchanger/side",
+    "top": "farm_rancher:block/trading/exchanger/top"
+  }
+}

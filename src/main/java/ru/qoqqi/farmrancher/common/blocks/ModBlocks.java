@@ -1,5 +1,6 @@
 package ru.qoqqi.farmrancher.common.blocks;
 
+import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -10,12 +11,14 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Locale;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import ru.qoqqi.farmrancher.FarmRancher;
 import ru.qoqqi.farmrancher.common.gardens.GardenType;
 import ru.qoqqi.farmrancher.common.gardens.GardenTypes;
 import ru.qoqqi.farmrancher.common.items.ModItems;
+import ru.qoqqi.farmrancher.common.trading.ExchangerTrades;
 
 public class ModBlocks {
 
@@ -37,8 +40,24 @@ public class ModBlocks {
 	@SuppressWarnings("unused")
 	public static final RegistryObject<Block> NETHERITE_GARDEN = registerGarden("netherite_garden", GardenTypes.NETHERITE_GARDEN);
 
+	@SuppressWarnings("unused")
+	public static final RegistryObject<Block> EXCHANGER = registerTradingBlock("exchanger", ExchangerTrades::addOffers);
+
 	public static void register(IEventBus eventBus) {
 		BLOCKS.register(eventBus);
+	}
+
+	@SuppressWarnings("SameParameterValue")
+	private static RegistryObject<Block> registerTradingBlock(
+			String name,
+			Consumer<MerchantOffers> offerListGenerator
+	) {
+		var properties = BlockBehaviour.Properties.of()
+				.strength(1.0f, 5.0f)
+				.sound(SoundType.WOOD)
+				.mapColor(MapColor.WOOD);
+
+		return register(name, () -> new TradingBlock(offerListGenerator, properties));
 	}
 
 	@SuppressWarnings("SameParameterValue")

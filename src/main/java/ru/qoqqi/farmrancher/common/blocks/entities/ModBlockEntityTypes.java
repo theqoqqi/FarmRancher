@@ -28,6 +28,12 @@ public class ModBlockEntityTypes {
 			ModBlocks.NETHERITE_GARDEN
 	);
 
+	public static final RegistryObject<BlockEntityType<TradingBlockEntity>> MERCHANT = register(
+			"merchant",
+			TradingBlockEntity::new,
+			ModBlocks.EXCHANGER
+	);
+
 	@SuppressWarnings("SameParameterValue")
 	@SafeVarargs
 	private static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> register(
