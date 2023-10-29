@@ -5,6 +5,8 @@ import com.google.common.math.IntMath;
 import net.minecraft.world.item.Item;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -31,6 +33,12 @@ public class CoinItem extends Item {
 
 	public static Stream<CoinItem> fromLowToHigh() {
 		return Arrays.stream(Tier.values()).map(CoinItem::byTier);
+	}
+
+	public static Stream<CoinItem> fromHighToLow() {
+		return Arrays.stream(Tier.values())
+				.sorted(Collections.reverseOrder(Comparator.comparingInt(Enum::ordinal)))
+				.map(CoinItem::byTier);
 	}
 
 	public enum Tier {
