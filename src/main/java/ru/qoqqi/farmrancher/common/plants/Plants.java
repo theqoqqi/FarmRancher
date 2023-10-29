@@ -2,6 +2,7 @@ package ru.qoqqi.farmrancher.common.plants;
 
 import com.mojang.logging.LogUtils;
 
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -10,10 +11,12 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import org.slf4j.Logger;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 import ru.qoqqi.farmrancher.common.plants.types.CropPlantType;
+import ru.qoqqi.farmrancher.common.util.IntRange;
 
 public class Plants {
 
@@ -24,29 +27,43 @@ public class Plants {
 	static {
 		registerCropPlant(
 				Blocks.WHEAT,
+				Items.WHEAT,
 				secondsToGrowSpeed(10),
+				IntRange.of(1, 5),
 				new PlantDropTable(Items.WHEAT_SEEDS, 1.1f, Items.WHEAT, 1.5f)
 		);
 		registerCropPlant(
 				Blocks.CARROTS,
+				Items.CARROT,
 				secondsToGrowSpeed(20),
+				IntRange.of(2, 8),
 				new PlantDropTable(Items.CARROT, 1.5f)
 		);
 		registerCropPlant(
 				Blocks.POTATOES,
+				Items.POTATO,
 				secondsToGrowSpeed(20),
+				IntRange.of(2, 8),
 				new PlantDropTable(Items.POTATO, 1.5f, Items.POISONOUS_POTATO, 0.02f)
 		);
 		registerCropPlant(
 				Blocks.BEETROOTS,
+				Items.BEETROOT,
 				secondsToGrowSpeed(30),
+				IntRange.of(3, 9),
 				new PlantDropTable(Items.BEETROOT_SEEDS, 1.2f, Items.BEETROOT, 1.5f)
 		);
 	}
 
-	private static void registerCropPlant(Block block, float growthSpeed, PlantDropTable plantDropTable) {
+	private static void registerCropPlant(
+			Block block,
+			Item fruitItem,
+			float growthSpeed,
+			IntRange stackPrice,
+			PlantDropTable plantDropTable
+	) {
 		var type = new CropPlantType((CropBlock) block);
-		var plant = new Plant(type, growthSpeed, plantDropTable);
+		var plant = new Plant(type, fruitItem, growthSpeed, stackPrice, plantDropTable);
 
 		plants.put(type.block, plant);
 	}
@@ -75,5 +92,9 @@ public class Plants {
 
 	public static Plant get(Block block) {
 		return plants.get(block);
+	}
+
+	public static Collection<Plant> getAll() {
+		return plants.values();
 	}
 }
