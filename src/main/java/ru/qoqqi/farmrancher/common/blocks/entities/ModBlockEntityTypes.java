@@ -31,7 +31,8 @@ public class ModBlockEntityTypes {
 	public static final RegistryObject<BlockEntityType<TradingBlockEntity>> MERCHANT = register(
 			"merchant",
 			TradingBlockEntity::new,
-			ModBlocks.EXCHANGER
+			ModBlocks.EXCHANGER,
+			ModBlocks.MARKET
 	);
 
 	@SuppressWarnings("SameParameterValue")

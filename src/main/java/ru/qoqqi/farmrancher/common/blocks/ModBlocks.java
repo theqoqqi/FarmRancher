@@ -19,6 +19,7 @@ import ru.qoqqi.farmrancher.common.gardens.GardenType;
 import ru.qoqqi.farmrancher.common.gardens.GardenTypes;
 import ru.qoqqi.farmrancher.common.items.ModItems;
 import ru.qoqqi.farmrancher.common.trading.ExchangerTrades;
+import ru.qoqqi.farmrancher.common.trading.MarketTrades;
 
 public class ModBlocks {
 
@@ -42,6 +43,9 @@ public class ModBlocks {
 
 	@SuppressWarnings("unused")
 	public static final RegistryObject<Block> EXCHANGER = registerTradingBlock("exchanger", ExchangerTrades::addOffers);
+
+	@SuppressWarnings("unused")
+	public static final RegistryObject<Block> MARKET = registerTradingBlock("market", MarketTrades::addOffers);
 
 	public static void register(IEventBus eventBus) {
 		BLOCKS.register(eventBus);
