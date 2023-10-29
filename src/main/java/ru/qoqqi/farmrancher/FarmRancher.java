@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import ru.qoqqi.farmrancher.common.Config;
 import ru.qoqqi.farmrancher.common.blocks.ModBlocks;
 import ru.qoqqi.farmrancher.common.blocks.entities.ModBlockEntityTypes;
+import ru.qoqqi.farmrancher.common.creative.tabs.ModCreativeTabs;
 import ru.qoqqi.farmrancher.common.items.ModItems;
 import ru.qoqqi.farmrancher.common.loot.GlobalLootModifiers;
 
@@ -29,6 +30,7 @@ public class FarmRancher {
 		ModBlocks.register(eventBus);
 		ModBlockEntityTypes.register(eventBus);
 		ModItems.register(eventBus);
+		ModCreativeTabs.register(eventBus);
 
 		GlobalLootModifiers.register(eventBus);
 

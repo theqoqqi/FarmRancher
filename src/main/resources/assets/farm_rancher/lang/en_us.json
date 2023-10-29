@@ -1,4 +1,6 @@
 {
+  "itemGroup.farm_rancher": "Farm Rancher",
+
   "block.farm_rancher.diamond_garden": "Diamond Garden",
   "block.farm_rancher.golden_garden": "Golden Garden",
   "block.farm_rancher.iron_garden": "Iron Garden",

@@ -1,4 +1,6 @@
 {
+  "itemGroup.farm_rancher": "Farm Rancher",
+
   "block.farm_rancher.diamond_garden": "Алмазный сад",
   "block.farm_rancher.golden_garden": "Золотой сад",
   "block.farm_rancher.iron_garden": "Железный сад",
