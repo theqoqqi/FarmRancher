@@ -22,8 +22,18 @@ public class ModItems {
 	public static final DeferredRegister<Item> ITEMS
 			= DeferredRegister.create(ForgeRegistries.ITEMS, FarmRancher.MOD_ID);
 
+	public static final RegistryObject<Item> COPPER_COIN = registerCoin("copper_coin", CoinItem.Tier.COPPER);
+
+	public static final RegistryObject<Item> SILVER_COIN = registerCoin("silver_coin", CoinItem.Tier.SILVER);
+
+	public static final RegistryObject<Item> GOLDEN_COIN = registerCoin("golden_coin", CoinItem.Tier.GOLDEN);
+
 	public static void register(IEventBus eventBus) {
 		ITEMS.register(eventBus);
+	}
+
+	private static RegistryObject<Item> registerCoin(String name, CoinItem.Tier tier) {
+		return register(name, () -> new CoinItem(tier, new Item.Properties()));
 	}
 
 	public static void registerBlockItem(String actualName, Supplier<? extends Block> blockSupplier) {
@@ -32,9 +42,11 @@ public class ModItems {
 		register(actualName, () -> new BlockItem(blockSupplier.get(), properties));
 	}
 
-	public static void register(String actualName, Supplier<Item> itemSupplier) {
+	public static RegistryObject<Item> register(String actualName, Supplier<Item> itemSupplier) {
 		var item = ITEMS.register(actualName, itemSupplier);
 
 		CREATIVE_TAB_ITEMS.add(item);
+
+		return item;
 	}
 }
