@@ -10,6 +10,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.Collection;
 import java.util.Locale;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -18,8 +19,10 @@ import ru.qoqqi.farmrancher.FarmRancher;
 import ru.qoqqi.farmrancher.common.gardens.GardenType;
 import ru.qoqqi.farmrancher.common.gardens.GardenTypes;
 import ru.qoqqi.farmrancher.common.items.ModItems;
+import ru.qoqqi.farmrancher.common.plants.Plants;
 import ru.qoqqi.farmrancher.common.trading.ExchangerTrades;
-import ru.qoqqi.farmrancher.common.trading.MarketTrades;
+import ru.qoqqi.farmrancher.common.trading.ISellable;
+import ru.qoqqi.farmrancher.common.trading.MerchantOffersGenerator;
 
 public class ModBlocks {
 
@@ -45,7 +48,7 @@ public class ModBlocks {
 	public static final RegistryObject<Block> EXCHANGER = registerTradingBlock("exchanger", ExchangerTrades::addOffers);
 
 	@SuppressWarnings("unused")
-	public static final RegistryObject<Block> MARKET = registerTradingBlock("market", MarketTrades::addOffers);
+	public static final RegistryObject<Block> MARKET = registerTradingBlock("market", Plants::getAll);
 
 	public static void register(IEventBus eventBus) {
 		BLOCKS.register(eventBus);
@@ -60,6 +63,22 @@ public class ModBlocks {
 				.strength(1.0f, 5.0f)
 				.sound(SoundType.WOOD)
 				.mapColor(MapColor.WOOD);
+
+		return register(name, () -> new TradingBlock(offerListGenerator, properties));
+	}
+
+	@SuppressWarnings("SameParameterValue")
+	private static RegistryObject<Block> registerTradingBlock(
+			String name,
+			Supplier<Collection<? extends ISellable>> sellables
+	) {
+		var properties = BlockBehaviour.Properties.of()
+				.strength(1.0f, 5.0f)
+				.sound(SoundType.WOOD)
+				.mapColor(MapColor.WOOD);
+		Consumer<MerchantOffers> offerListGenerator = (MerchantOffers offers) -> {
+			MerchantOffersGenerator.generateOffers(offers, sellables.get());
+		};
 
 		return register(name, () -> new TradingBlock(offerListGenerator, properties));
 	}

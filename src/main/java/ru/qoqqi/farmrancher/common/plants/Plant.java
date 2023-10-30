@@ -5,10 +5,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 
 import ru.qoqqi.farmrancher.common.plants.types.IPlantType;
+import ru.qoqqi.farmrancher.common.trading.ISellable;
 import ru.qoqqi.farmrancher.common.trading.Price;
 import ru.qoqqi.farmrancher.common.util.IntRange;
 
-public class Plant {
+public class Plant implements ISellable {
 
 	public final IPlantType type;
 
@@ -38,6 +39,12 @@ public class Plant {
 		return type.getGrowthSpeed(level, pos) * growthSpeed;
 	}
 
+	@Override
+	public Item getItem() {
+		return fruitItem;
+	}
+
+	@Override
 	public Price getInitialPrice() {
 		return new Price(stackPrice.getLowerAverage());
 	}
