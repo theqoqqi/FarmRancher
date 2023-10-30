@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "farm_rancher:block/trading/restaurant",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "farm_rancher:block/trading/restaurant"
+    },
+    "facing=south": {
+      "model": "farm_rancher:block/trading/restaurant",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "farm_rancher:block/trading/restaurant",
+      "y": 270
+    }
+  }
+}

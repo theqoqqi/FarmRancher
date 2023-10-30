@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "farm_rancher:block/trading/restaurant/front",
+    "side": "farm_rancher:block/trading/restaurant/side",
+    "top": "farm_rancher:block/trading/restaurant/top"
+  }
+}

@@ -16,6 +16,7 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import ru.qoqqi.farmrancher.FarmRancher;
+import ru.qoqqi.farmrancher.common.dishes.Dishes;
 import ru.qoqqi.farmrancher.common.gardens.GardenType;
 import ru.qoqqi.farmrancher.common.gardens.GardenTypes;
 import ru.qoqqi.farmrancher.common.items.ModItems;
@@ -49,6 +50,9 @@ public class ModBlocks {
 
 	@SuppressWarnings("unused")
 	public static final RegistryObject<Block> MARKET = registerTradingBlock("market", Plants::getAll);
+
+	@SuppressWarnings("unused")
+	public static final RegistryObject<Block> RESTAURANT = registerTradingBlock("restaurant", Dishes::getAll);
 
 	public static void register(IEventBus eventBus) {
 		BLOCKS.register(eventBus);

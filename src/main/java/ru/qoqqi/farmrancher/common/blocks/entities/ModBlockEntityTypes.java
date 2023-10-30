@@ -32,7 +32,8 @@ public class ModBlockEntityTypes {
 			"merchant",
 			TradingBlockEntity::new,
 			ModBlocks.EXCHANGER,
-			ModBlocks.MARKET
+			ModBlocks.MARKET,
+			ModBlocks.RESTAURANT
 	);
 
 	@SuppressWarnings("SameParameterValue")
