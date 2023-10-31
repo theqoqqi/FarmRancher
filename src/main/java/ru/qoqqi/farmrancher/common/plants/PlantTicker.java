@@ -1,5 +1,8 @@
 package ru.qoqqi.farmrancher.common.plants;
 
+import com.mojang.logging.LogUtils;
+
+import net.minecraft.SharedConstants;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
@@ -8,10 +11,23 @@ import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import org.slf4j.Logger;
+
+import java.util.Objects;
+import java.util.Random;
+
+import it.unimi.dsi.fastutil.ints.Int2FloatMap;
+import it.unimi.dsi.fastutil.ints.Int2FloatOpenHashMap;
 import ru.qoqqi.farmrancher.FarmRancher;
 import ru.qoqqi.farmrancher.common.level.data.PlantGrowSavedData;
 
 public class PlantTicker {
+
+	private static final Logger LOGGER = LogUtils.getLogger();
+
+	private static final float MAX_RANDOM_DEVIATION = 0.05f;
+
+	private static final Int2FloatMap deviations = new Int2FloatOpenHashMap();
 
 	public static void tick(ServerLevel level, BlockPos blockPos, BlockState blockState, float growthSpeed) {
 		var plant = Plants.get(blockState);
@@ -20,8 +36,7 @@ public class PlantTicker {
 			return;
 		}
 
-		var plantGrowthSpeed = plant.getGrowthSpeed(level, blockPos);
-		var combinedGrowthSpeed = plantGrowthSpeed * growthSpeed;
+		var combinedGrowthSpeed = getGrowthSpeed(level, blockPos, plant, growthSpeed);
 		var progressToGrow = plant.type.getProgressToGrow();
 
 		modifyProgress(level, blockPos, combinedGrowthSpeed);
@@ -35,6 +50,31 @@ public class PlantTicker {
 				modifyProgress(level, blockPos, -progressToGrow);
 			}
 		}
+	}
+
+	private static float getGrowthSpeed(ServerLevel level, BlockPos blockPos, Plant plant, float multiplier) {
+		var plantGrowthSpeed = plant.getGrowthSpeed(level, blockPos);
+		var randomMultiplier = getDeviation(level, blockPos);
+
+		return plantGrowthSpeed * randomMultiplier * multiplier;
+	}
+
+	private static float getDeviation(ServerLevel level, BlockPos blockPos) {
+		var dayNumber = level.getGameTime() / SharedConstants.TICKS_PER_GAME_DAY;
+		var positionHashCode = blockPos.hashCode();
+		var seed = Objects.hash(positionHashCode, dayNumber);
+
+		return deviations.computeIfAbsent(seed, PlantTicker::getRandomDeviation);
+	}
+
+	private static float getRandomDeviation(int seed) {
+		var random = new Random(seed);
+
+		// Skip first value to increase entropy.
+		// Otherwise, the values will greatly depend on nearby seeds.
+		random.nextInt();
+
+		return random.nextFloat(1 - MAX_RANDOM_DEVIATION, 1 + MAX_RANDOM_DEVIATION);
 	}
 
 	private static boolean hasProgress(ServerLevel level, BlockPos blockPos, float required) {
