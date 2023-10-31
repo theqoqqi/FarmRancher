@@ -28,6 +28,8 @@ public class ModItems {
 
 	public static final RegistryObject<Item> GOLDEN_COIN = registerCoin("golden_coin", CoinItem.Tier.GOLDEN);
 
+	public static final RegistryObject<Item> ANCIENT_SEED = register("ancient_seed", new Item.Properties());
+
 	public static void register(IEventBus eventBus) {
 		ITEMS.register(eventBus);
 	}
@@ -40,6 +42,10 @@ public class ModItems {
 		var properties = new Item.Properties();
 
 		register(actualName, () -> new BlockItem(blockSupplier.get(), properties));
+	}
+
+	public static RegistryObject<Item> register(String actualName, Item.Properties properties) {
+		return register(actualName, () -> new Item(properties));
 	}
 
 	public static RegistryObject<Item> register(String actualName, Supplier<Item> itemSupplier) {

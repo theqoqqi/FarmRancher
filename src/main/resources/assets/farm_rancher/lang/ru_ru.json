@@ -15,5 +15,7 @@
 
   "item.farm_rancher.copper_coin": "Медная монета",
   "item.farm_rancher.silver_coin": "Серебряная монета",
-  "item.farm_rancher.golden_coin": "Золотая монета"
+  "item.farm_rancher.golden_coin": "Золотая монета",
+
+  "item.farm_rancher.ancient_seed": "Древнее семя"
 }
