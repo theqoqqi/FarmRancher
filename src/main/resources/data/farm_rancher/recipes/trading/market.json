@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "WWW",
+    "XYX",
+    "WWW"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:fences/wooden"
+    },
+    "Y": {
+      "tag": "minecraft:wooden_trapdoors"
+    },
+    "W": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "farm_rancher:market"
+  },
+  "show_notification": true
+}

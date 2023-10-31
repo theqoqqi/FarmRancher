@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "III",
+    "XYX",
+    "WWW"
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/iron"
+    },
+    "X": {
+      "item": "minecraft:bowl"
+    },
+    "Y": {
+      "item": "minecraft:glass_bottle"
+    },
+    "W": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "farm_rancher:cafeteria"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "SSS",
+    "XYZ",
+    "WWW"
+  ],
+  "key": {
+    "S": {
+      "tag": "minecraft:stone_crafting_materials"
+    },
+    "X": {
+      "item": "minecraft:wooden_shovel"
+    },
+    "Y": {
+      "item": "minecraft:wooden_hoe"
+    },
+    "Z": {
+      "item": "minecraft:wooden_axe"
+    },
+    "W": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "farm_rancher:workshop"
+  },
+  "show_notification": true
+}
