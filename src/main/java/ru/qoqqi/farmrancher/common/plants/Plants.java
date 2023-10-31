@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import ru.qoqqi.farmrancher.common.plants.types.CropPlantType;
-import ru.qoqqi.farmrancher.common.util.IntRange;
 
 public class Plants {
 
@@ -29,28 +28,24 @@ public class Plants {
 				Blocks.WHEAT,
 				Items.WHEAT,
 				secondsToGrowSpeed(10),
-				IntRange.of(1, 5),
 				new PlantDropTable(Items.WHEAT_SEEDS, 1.1f, Items.WHEAT, 1.5f)
 		);
 		registerCropPlant(
 				Blocks.CARROTS,
 				Items.CARROT,
 				secondsToGrowSpeed(20),
-				IntRange.of(2, 8),
 				new PlantDropTable(Items.CARROT, 1.5f)
 		);
 		registerCropPlant(
 				Blocks.POTATOES,
 				Items.POTATO,
 				secondsToGrowSpeed(20),
-				IntRange.of(2, 8),
 				new PlantDropTable(Items.POTATO, 1.5f, Items.POISONOUS_POTATO, 0.02f)
 		);
 		registerCropPlant(
 				Blocks.BEETROOTS,
 				Items.BEETROOT,
 				secondsToGrowSpeed(30),
-				IntRange.of(3, 9),
 				new PlantDropTable(Items.BEETROOT_SEEDS, 1.2f, Items.BEETROOT, 1.5f)
 		);
 	}
@@ -59,11 +54,10 @@ public class Plants {
 			Block block,
 			Item fruitItem,
 			float growthSpeed,
-			IntRange stackPrice,
 			PlantDropTable plantDropTable
 	) {
 		var type = new CropPlantType((CropBlock) block);
-		var plant = new Plant(type, fruitItem, growthSpeed, stackPrice, plantDropTable);
+		var plant = new Plant(type, fruitItem, growthSpeed, plantDropTable);
 
 		plants.put(type.block, plant);
 	}

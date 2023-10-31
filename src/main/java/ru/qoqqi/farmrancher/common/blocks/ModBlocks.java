@@ -17,10 +17,10 @@ import java.util.function.Supplier;
 
 import ru.qoqqi.farmrancher.FarmRancher;
 import ru.qoqqi.farmrancher.common.dishes.Dishes;
+import ru.qoqqi.farmrancher.common.fruits.Fruits;
 import ru.qoqqi.farmrancher.common.gardens.GardenType;
 import ru.qoqqi.farmrancher.common.gardens.GardenTypes;
 import ru.qoqqi.farmrancher.common.items.ModItems;
-import ru.qoqqi.farmrancher.common.plants.Plants;
 import ru.qoqqi.farmrancher.common.trading.ExchangerTrades;
 import ru.qoqqi.farmrancher.common.trading.ISellable;
 import ru.qoqqi.farmrancher.common.trading.MerchantOffersGenerator;
@@ -49,7 +49,7 @@ public class ModBlocks {
 	public static final RegistryObject<Block> EXCHANGER = registerTradingBlock("exchanger", ExchangerTrades::addOffers);
 
 	@SuppressWarnings("unused")
-	public static final RegistryObject<Block> MARKET = registerTradingBlock("market", Plants::getAll);
+	public static final RegistryObject<Block> MARKET = registerTradingBlock("market", Fruits::getAll);
 
 	@SuppressWarnings("unused")
 	public static final RegistryObject<Block> RESTAURANT = registerTradingBlock("restaurant", Dishes::getAll);
