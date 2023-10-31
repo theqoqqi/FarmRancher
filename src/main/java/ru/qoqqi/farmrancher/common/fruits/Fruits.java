@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import ru.qoqqi.farmrancher.common.util.IntRange;
+import vectorwing.farmersdelight.common.registry.ModItems;
 
 public class Fruits {
 
@@ -29,6 +30,24 @@ public class Fruits {
 		registerFruit(
 				Items.BEETROOT,
 				IntRange.of(3, 9)
+		);
+
+		// Farmer's Delight
+		registerFruit(
+				ModItems.CABBAGE.get(),
+				IntRange.of(10, 20)
+		);
+		registerFruit(
+				ModItems.TOMATO.get(),
+				IntRange.of(10, 20)
+		);
+		registerFruit(
+				ModItems.ONION.get(),
+				IntRange.of(10, 20)
+		);
+		registerFruit(
+				ModItems.RICE.get(),
+				IntRange.of(10, 20)
 		);
 	}
 

@@ -16,6 +16,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import ru.qoqqi.farmrancher.common.plants.types.CropPlantType;
+import vectorwing.farmersdelight.common.registry.ModBlocks;
+import vectorwing.farmersdelight.common.registry.ModItems;
 
 public class Plants {
 
@@ -47,6 +49,44 @@ public class Plants {
 				Items.BEETROOT,
 				secondsToGrowSpeed(30),
 				new PlantDropTable(Items.BEETROOT_SEEDS, 1.2f, Items.BEETROOT, 1.5f)
+		);
+
+		// Farmer's Delight
+		registerCropPlant(
+				ModBlocks.CABBAGE_CROP.get(),
+				ModItems.CABBAGE.get(),
+				secondsToGrowSpeed(5),
+				new PlantDropTable(ModItems.CABBAGE_SEEDS.get(), 1.2f, ModItems.CABBAGE.get(), 1.5f)
+		);
+		registerCropPlant(
+				ModBlocks.TOMATO_CROP.get(),
+				ModItems.TOMATO.get(),
+				secondsToGrowSpeed(5),
+				new PlantDropTable(ModItems.CABBAGE_SEEDS.get(), 1.2f, ModItems.CABBAGE.get(), 1.5f)
+		);
+//		registerCropPlant(
+//				ModBlocks.BUDDING_TOMATO_CROP.get(), // Это не CropBlock
+//				ModItems.TOMATO.get(),
+//				secondsToGrowSpeed(5),
+//				new PlantDropTable(ModItems.CABBAGE_SEEDS.get(), 1.2f, ModItems.CABBAGE.get(), 1.5f)
+//		);
+		registerCropPlant(
+				ModBlocks.ONION_CROP.get(),
+				ModItems.ONION.get(),
+				secondsToGrowSpeed(5),
+				new PlantDropTable(ModItems.CABBAGE_SEEDS.get(), 1.2f, ModItems.CABBAGE.get(), 1.5f)
+		);
+//		registerCropPlant(
+//				ModBlocks.RICE_CROP.get(), // Это не CropBlock
+//				ModItems.RICE.get(),
+//				secondsToGrowSpeed(5),
+//				new PlantDropTable(ModItems.CABBAGE_SEEDS.get(), 1.2f, ModItems.CABBAGE.get(), 1.5f)
+//		);
+		registerCropPlant(
+				ModBlocks.RICE_CROP_PANICLES.get(),
+				ModItems.RICE.get(),
+				secondsToGrowSpeed(5),
+				new PlantDropTable(ModItems.CABBAGE_SEEDS.get(), 1.2f, ModItems.CABBAGE.get(), 1.5f)
 		);
 	}
 
