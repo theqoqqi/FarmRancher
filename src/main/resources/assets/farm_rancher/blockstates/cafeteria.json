@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "farm_rancher:block/trading/cafeteria",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "farm_rancher:block/trading/cafeteria"
+    },
+    "facing=south": {
+      "model": "farm_rancher:block/trading/cafeteria",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "farm_rancher:block/trading/cafeteria",
+      "y": 270
+    }
+  }
+}

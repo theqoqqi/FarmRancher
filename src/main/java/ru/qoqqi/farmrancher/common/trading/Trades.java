@@ -15,6 +15,10 @@ public class Trades {
 		MerchantOffersGenerator.generateOffers(offers, Fruits.getAll());
 	};
 
+	public static final Consumer<MerchantOffers> CAFETERIA = offers -> {
+		MerchantOffersGenerator.generateOffers(offers, Dishes.getAll());
+	};
+
 	public static final Consumer<MerchantOffers> RESTAURANT = offers -> {
 		MerchantOffersGenerator.generateOffers(offers, Dishes.getAll());
 	};

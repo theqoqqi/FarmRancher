@@ -33,6 +33,7 @@ public class ModBlockEntityTypes {
 			TradingBlockEntity::new,
 			ModBlocks.EXCHANGER,
 			ModBlocks.MARKET,
+			ModBlocks.CAFETERIA,
 			ModBlocks.RESTAURANT
 	);
 
