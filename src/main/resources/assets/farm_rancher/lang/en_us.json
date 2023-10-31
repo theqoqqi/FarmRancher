@@ -17,5 +17,10 @@
   "item.farm_rancher.silver_coin": "Silver Coin",
   "item.farm_rancher.golden_coin": "Golden Coin",
 
-  "item.farm_rancher.ancient_seed": "Ancient Seed"
+  "item.farm_rancher.ancient_seed": "Ancient Seed",
+
+  "item.farm_rancher.stone_tier_blueprint": "Stone tool blueprint",
+  "item.farm_rancher.iron_tier_blueprint": "Iron tool blueprint",
+  "item.farm_rancher.golden_tier_blueprint": "Golden tool blueprint",
+  "item.farm_rancher.diamond_tier_blueprint": "Diamond tool blueprint"
 }

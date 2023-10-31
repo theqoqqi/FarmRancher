@@ -30,6 +30,14 @@ public class ModItems {
 
 	public static final RegistryObject<Item> ANCIENT_SEED = register("ancient_seed", new Item.Properties());
 
+	public static final RegistryObject<Item> STONE_TIER_BLUEPRINT = register("stone_tier_blueprint", new Item.Properties());
+
+	public static final RegistryObject<Item> IRON_TIER_BLUEPRINT = register("iron_tier_blueprint", new Item.Properties());
+
+	public static final RegistryObject<Item> GOLDEN_TIER_BLUEPRINT = register("golden_tier_blueprint", new Item.Properties());
+
+	public static final RegistryObject<Item> DIAMOND_TIER_BLUEPRINT = register("diamond_tier_blueprint", new Item.Properties());
+
 	public static void register(IEventBus eventBus) {
 		ITEMS.register(eventBus);
 	}
