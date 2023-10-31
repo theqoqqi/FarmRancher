@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "tag": "minecraft:stone_tool_materials"
+    },
+    "B": {
+      "item": "farm_rancher:stone_tier_blueprint"
+    }
+  },
+  "pattern": [
+    " X",
+    " X",
+    "B#"
+  ],
+  "result": {
+    "item": "minecraft:stone_sword"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "minecraft:diamond"
+    },
+    "B": {
+      "item": "farm_rancher:diamond_tier_blueprint"
+    }
+  },
+  "pattern": [
+    "XX",
+    " #",
+    "B#"
+  ],
+  "result": {
+    "item": "minecraft:diamond_hoe"
+  },
+  "show_notification": true
+}

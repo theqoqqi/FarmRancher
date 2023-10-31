@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "X": {
+      "item": "minecraft:diamond"
+    },
+    "B": {
+      "item": "farm_rancher:diamond_tier_blueprint"
+    }
+  },
+  "pattern": [
+    "X X",
+    "XBX"
+  ],
+  "result": {
+    "item": "minecraft:diamond_boots"
+  },
+  "show_notification": true
+}

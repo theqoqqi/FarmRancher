@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "minecraft:iron_ingot"
+    },
+    "B": {
+      "item": "farm_rancher:iron_tier_blueprint"
+    }
+  },
+  "pattern": [
+    "XXX",
+    " # ",
+    "B# "
+  ],
+  "result": {
+    "item": "minecraft:iron_pickaxe"
+  },
+  "show_notification": true
+}

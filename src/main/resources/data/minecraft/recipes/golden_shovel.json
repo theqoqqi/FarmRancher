@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "minecraft:gold_ingot"
+    },
+    "B": {
+      "item": "farm_rancher:golden_tier_blueprint"
+    }
+  },
+  "pattern": [
+    " X",
+    " #",
+    "B#"
+  ],
+  "result": {
+    "item": "minecraft:golden_shovel"
+  },
+  "show_notification": true
+}
