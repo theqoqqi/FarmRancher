@@ -34,7 +34,8 @@ public class ModBlockEntityTypes {
 			ModBlocks.EXCHANGER,
 			ModBlocks.MARKET,
 			ModBlocks.CAFETERIA,
-			ModBlocks.RESTAURANT
+			ModBlocks.RESTAURANT,
+			ModBlocks.WORKSHOP
 	);
 
 	@SuppressWarnings("SameParameterValue")

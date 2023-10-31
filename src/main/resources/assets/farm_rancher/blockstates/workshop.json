@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "farm_rancher:block/trading/workshop",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "farm_rancher:block/trading/workshop"
+    },
+    "facing=south": {
+      "model": "farm_rancher:block/trading/workshop",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "farm_rancher:block/trading/workshop",
+      "y": 270
+    }
+  }
+}

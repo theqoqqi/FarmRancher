@@ -22,4 +22,8 @@ public class Trades {
 	public static final Consumer<MerchantOffers> RESTAURANT = offers -> {
 		MerchantOffersGenerator.generateOffers(offers, Dishes.getAll());
 	};
+
+	public static final Consumer<MerchantOffers> WORKSHOP = offers -> {
+		// Пока пусто
+	};
 }
