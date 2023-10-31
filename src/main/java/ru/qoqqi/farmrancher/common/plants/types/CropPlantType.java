@@ -7,8 +7,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
-import org.jetbrains.annotations.NotNull;
-
 public class CropPlantType implements IPlantType {
 
 	public final CropBlock block;
@@ -43,7 +41,7 @@ public class CropPlantType implements IPlantType {
 	@Override
 	public float getGrowthSpeed(BlockGetter level, BlockPos pos) {
 		var maxVanillaGrowthSpeed = 10f;
-		var vanillaGrowthSpeed = GrowthSpeedAccessor.getGrowthSpeed(block, level, pos);
+		var vanillaGrowthSpeed = CropBlock.getGrowthSpeed(block, level, pos);
 		var alignmentMultiplier = getGrowthAlignmentMultiplier(level, pos);
 
 		return (vanillaGrowthSpeed / maxVanillaGrowthSpeed) * alignmentMultiplier;
@@ -73,17 +71,6 @@ public class CropPlantType implements IPlantType {
 		}
 
 		return multiplier;
-	}
-
-	private static class GrowthSpeedAccessor extends CropBlock {
-
-		public GrowthSpeedAccessor(Properties properties) {
-			super(properties);
-		}
-
-		public static float getGrowthSpeed(@NotNull Block block, BlockGetter level, BlockPos pos) {
-			return CropBlock.getGrowthSpeed(block, level, pos);
-		}
 	}
 
 	@Override
