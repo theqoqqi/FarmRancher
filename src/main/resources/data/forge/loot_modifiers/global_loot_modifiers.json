@@ -1,6 +1,7 @@
 {
   "replace": false,
   "entries": [
-    "farm_rancher:replace_plant_loot"
+    "farm_rancher:replace_plant_loot",
+    "farm_rancher:add_bonus_chest_loot"
   ]
 }

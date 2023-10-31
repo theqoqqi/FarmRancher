@@ -1,0 +1,14 @@
+{
+  "pools": [
+    {
+      "name": "loot_boxes",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "farm_rancher:ancient_seed"
+        }
+      ]
+    }
+  ]
+}
