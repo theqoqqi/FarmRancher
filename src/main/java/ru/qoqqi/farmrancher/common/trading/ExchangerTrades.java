@@ -7,7 +7,7 @@ import net.minecraft.world.item.trading.MerchantOffers;
 
 import ru.qoqqi.farmrancher.common.items.CoinItem;
 
-public class ExchangerTrades {
+class ExchangerTrades {
 
 	private static final ExchangerTrades INSTANCE = new ExchangerTrades();
 

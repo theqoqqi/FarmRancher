@@ -10,20 +10,15 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.Collection;
 import java.util.Locale;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import ru.qoqqi.farmrancher.FarmRancher;
-import ru.qoqqi.farmrancher.common.dishes.Dishes;
-import ru.qoqqi.farmrancher.common.fruits.Fruits;
 import ru.qoqqi.farmrancher.common.gardens.GardenType;
 import ru.qoqqi.farmrancher.common.gardens.GardenTypes;
 import ru.qoqqi.farmrancher.common.items.ModItems;
-import ru.qoqqi.farmrancher.common.trading.ExchangerTrades;
-import ru.qoqqi.farmrancher.common.trading.ISellable;
-import ru.qoqqi.farmrancher.common.trading.MerchantOffersGenerator;
+import ru.qoqqi.farmrancher.common.trading.Trades;
 
 public class ModBlocks {
 
@@ -46,13 +41,13 @@ public class ModBlocks {
 	public static final RegistryObject<Block> NETHERITE_GARDEN = registerGarden("netherite_garden", GardenTypes.NETHERITE_GARDEN);
 
 	@SuppressWarnings("unused")
-	public static final RegistryObject<Block> EXCHANGER = registerTradingBlock("exchanger", ExchangerTrades::addOffers);
+	public static final RegistryObject<Block> EXCHANGER = registerTradingBlock("exchanger", Trades.EXCHANGER);
 
 	@SuppressWarnings("unused")
-	public static final RegistryObject<Block> MARKET = registerTradingBlock("market", Fruits::getAll);
+	public static final RegistryObject<Block> MARKET = registerTradingBlock("market", Trades.MARKET);
 
 	@SuppressWarnings("unused")
-	public static final RegistryObject<Block> RESTAURANT = registerTradingBlock("restaurant", Dishes::getAll);
+	public static final RegistryObject<Block> RESTAURANT = registerTradingBlock("restaurant", Trades.RESTAURANT);
 
 	public static void register(IEventBus eventBus) {
 		BLOCKS.register(eventBus);
@@ -67,22 +62,6 @@ public class ModBlocks {
 				.strength(1.0f, 5.0f)
 				.sound(SoundType.WOOD)
 				.mapColor(MapColor.WOOD);
-
-		return register(name, () -> new TradingBlock(offerListGenerator, properties));
-	}
-
-	@SuppressWarnings("SameParameterValue")
-	private static RegistryObject<Block> registerTradingBlock(
-			String name,
-			Supplier<Collection<? extends ISellable>> sellables
-	) {
-		var properties = BlockBehaviour.Properties.of()
-				.strength(1.0f, 5.0f)
-				.sound(SoundType.WOOD)
-				.mapColor(MapColor.WOOD);
-		Consumer<MerchantOffers> offerListGenerator = (MerchantOffers offers) -> {
-			MerchantOffersGenerator.generateOffers(offers, sellables.get());
-		};
 
 		return register(name, () -> new TradingBlock(offerListGenerator, properties));
 	}
