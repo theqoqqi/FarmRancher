@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "###",
+    "#G#",
+    "#S#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:iron_ingot"
+    },
+    "G": {
+      "item": "farm_rancher:wooden_garden"
+    },
+    "S": {
+      "item": "farm_rancher:ancient_seed"
+    }
+  },
+  "result": {
+    "item": "farm_rancher:iron_garden"
+  },
+  "show_notification": true
+}

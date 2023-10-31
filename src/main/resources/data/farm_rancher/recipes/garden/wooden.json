@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "###",
+    "#S#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    },
+    "S": {
+      "item": "farm_rancher:ancient_seed"
+    }
+  },
+  "result": {
+    "item": "farm_rancher:wooden_garden"
+  },
+  "show_notification": true
+}
