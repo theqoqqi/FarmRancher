@@ -7,6 +7,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.StemBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import ru.qoqqi.farmrancher.common.plants.types.CropPlantType;
+import ru.qoqqi.farmrancher.common.plants.types.StemPlantType;
 import vectorwing.farmersdelight.common.registry.ModBlocks;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
@@ -49,6 +51,21 @@ public class Plants {
 				Items.BEETROOT,
 				secondsToGrowSpeed(30),
 				new PlantDropTable(Items.BEETROOT_SEEDS, 1.2f, Items.BEETROOT, 1.5f)
+		);
+
+		registerStemPlant(
+				Blocks.PUMPKIN_STEM,
+				Items.PUMPKIN,
+				secondsToGrowSpeed(30),
+				secondsToGrowSpeed(3),
+				new PlantDropTable(Items.PUMPKIN_SEEDS, 1.2f)
+		);
+		registerStemPlant(
+				Blocks.MELON_STEM,
+				Items.MELON,
+				secondsToGrowSpeed(30),
+				secondsToGrowSpeed(3),
+				new PlantDropTable(Items.MELON_SEEDS, 1.2f)
 		);
 
 		// Farmer's Delight
@@ -100,6 +117,21 @@ public class Plants {
 		var plant = new Plant(type, fruitItem, growthSpeed, plantDropTable);
 
 		plants.put(type.block, plant);
+	}
+
+	private static void registerStemPlant(
+			Block block,
+			Item fruitItem,
+			float stemGrowthSpeed,
+			float fruitGrowthSpeed,
+			PlantDropTable plantDropTable
+	) {
+		var progressToSpawnFruit = stemGrowthSpeed / fruitGrowthSpeed;
+		var type = new StemPlantType((StemBlock) block, progressToSpawnFruit);
+		var plant = new Plant(type, fruitItem, stemGrowthSpeed, plantDropTable);
+
+		plants.put(type.block, plant);
+		plants.put(type.block.getFruit().getAttachedStem(), plant);
 	}
 
 	private static float minutesToGrowSpeed(float minutes) {

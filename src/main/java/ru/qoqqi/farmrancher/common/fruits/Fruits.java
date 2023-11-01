@@ -31,6 +31,14 @@ public class Fruits {
 				Items.BEETROOT,
 				IntRange.of(3, 9)
 		);
+		registerFruit(
+				Items.PUMPKIN,
+				IntRange.of(10, 30)
+		);
+		registerFruit(
+				Items.MELON,
+				IntRange.of(16, 48)
+		);
 
 		// Farmer's Delight
 		registerFruit(
