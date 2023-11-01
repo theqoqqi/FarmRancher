@@ -1,6 +1,5 @@
 package ru.qoqqi.farmrancher.common.plants.types;
 
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -11,13 +10,8 @@ public class CropPlantType extends AgedPlantType<CropBlock> {
 	}
 
 	@Override
-	protected CropBlock tryCast(Block block) {
-		return block instanceof CropBlock cropBlock ? cropBlock : null;
-	}
-
-	@Override
 	public int getAge(BlockState state) {
-		return ((CropBlock) state.getBlock()).getAge(state);
+		return block.getAge(state);
 	}
 
 	@Override

@@ -3,16 +3,11 @@ package ru.qoqqi.farmrancher.common.plants.types;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 public interface IPlantType {
 
-	default boolean hasPlantAt(BlockGetter level, BlockPos pos) {
-		return getPlantAt(level, pos) != null;
-	}
-
-	Block getPlantAt(BlockGetter level, BlockPos pos);
+	boolean hasPlantAt(BlockGetter level, BlockPos pos);
 
 	default float getNormalizedAge(BlockGetter level, BlockPos pos) {
 		return (float) getAge(level, pos) / getMaxAge();
@@ -27,9 +22,7 @@ public interface IPlantType {
 	}
 
 	default int getAge(BlockGetter level, BlockPos pos) {
-		var block = getPlantAt(level, pos);
-
-		if (block == null) {
+		if (!hasPlantAt(level, pos)) {
 			return 0;
 		}
 

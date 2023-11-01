@@ -16,14 +16,11 @@ public abstract class AgedPlantType<T extends Block> implements IPlantType {
 	}
 
 	@Override
-	public T getPlantAt(BlockGetter level, BlockPos pos) {
+	public boolean hasPlantAt(BlockGetter level, BlockPos pos) {
 		var blockState = level.getBlockState(pos);
-		var block = blockState.getBlock();
 
-		return tryCast(block);
+		return block == blockState.getBlock();
 	}
-
-	protected abstract T tryCast(Block block);
 
 	@Override
 	public float getProgressToGrow() {
@@ -67,16 +64,10 @@ public abstract class AgedPlantType<T extends Block> implements IPlantType {
 
 	@Override
 	public void growCrops(Level level, BlockPos pos) {
-		var block = getPlantAt(level, pos);
-
-		if (block == null) {
+		if (!hasPlantAt(level, pos)) {
 			return;
 		}
 
-		growCrops(level, pos, block);
-	}
-
-	protected void growCrops(Level level, BlockPos pos, T block) {
 		if (isMaxAge(level, pos)) {
 			return;
 		}
