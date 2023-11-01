@@ -30,39 +30,33 @@ public class Plants {
 	static {
 		registerCropPlant(
 				Blocks.WHEAT,
-				Items.WHEAT,
 				secondsToGrowSpeed(10),
 				new PlantDropTable(Items.WHEAT_SEEDS, 1.1f, Items.WHEAT, 1.5f)
 		);
 		registerCropPlant(
 				Blocks.CARROTS,
-				Items.CARROT,
 				secondsToGrowSpeed(20),
 				new PlantDropTable(Items.CARROT, 1.5f)
 		);
 		registerCropPlant(
 				Blocks.POTATOES,
-				Items.POTATO,
 				secondsToGrowSpeed(20),
 				new PlantDropTable(Items.POTATO, 1.5f, Items.POISONOUS_POTATO, 0.02f)
 		);
 		registerCropPlant(
 				Blocks.BEETROOTS,
-				Items.BEETROOT,
 				secondsToGrowSpeed(30),
 				new PlantDropTable(Items.BEETROOT_SEEDS, 1.2f, Items.BEETROOT, 1.5f)
 		);
 
 		registerStemPlant(
 				Blocks.PUMPKIN_STEM,
-				Items.PUMPKIN,
 				secondsToGrowSpeed(30),
 				secondsToGrowSpeed(3),
 				new PlantDropTable(Items.PUMPKIN_SEEDS, 1.2f)
 		);
 		registerStemPlant(
 				Blocks.MELON_STEM,
-				Items.MELON,
 				secondsToGrowSpeed(30),
 				secondsToGrowSpeed(3),
 				new PlantDropTable(Items.MELON_SEEDS, 1.2f)
@@ -71,37 +65,31 @@ public class Plants {
 		// Farmer's Delight
 		registerCropPlant(
 				ModBlocks.CABBAGE_CROP.get(),
-				ModItems.CABBAGE.get(),
 				secondsToGrowSpeed(5),
 				new PlantDropTable(ModItems.CABBAGE_SEEDS.get(), 1.2f, ModItems.CABBAGE.get(), 1.5f)
 		);
 		registerCropPlant(
 				ModBlocks.TOMATO_CROP.get(),
-				ModItems.TOMATO.get(),
 				secondsToGrowSpeed(5),
 				new PlantDropTable(ModItems.CABBAGE_SEEDS.get(), 1.2f, ModItems.CABBAGE.get(), 1.5f)
 		);
 //		registerCropPlant(
 //				ModBlocks.BUDDING_TOMATO_CROP.get(), // Это не CropBlock
-//				ModItems.TOMATO.get(),
 //				secondsToGrowSpeed(5),
 //				new PlantDropTable(ModItems.CABBAGE_SEEDS.get(), 1.2f, ModItems.CABBAGE.get(), 1.5f)
 //		);
 		registerCropPlant(
 				ModBlocks.ONION_CROP.get(),
-				ModItems.ONION.get(),
 				secondsToGrowSpeed(5),
 				new PlantDropTable(ModItems.CABBAGE_SEEDS.get(), 1.2f, ModItems.CABBAGE.get(), 1.5f)
 		);
 //		registerCropPlant(
 //				ModBlocks.RICE_CROP.get(), // Это не CropBlock
-//				ModItems.RICE.get(),
 //				secondsToGrowSpeed(5),
 //				new PlantDropTable(ModItems.CABBAGE_SEEDS.get(), 1.2f, ModItems.CABBAGE.get(), 1.5f)
 //		);
 		registerCropPlant(
 				ModBlocks.RICE_CROP_PANICLES.get(),
-				ModItems.RICE.get(),
 				secondsToGrowSpeed(5),
 				new PlantDropTable(ModItems.CABBAGE_SEEDS.get(), 1.2f, ModItems.CABBAGE.get(), 1.5f)
 		);
@@ -109,26 +97,24 @@ public class Plants {
 
 	private static void registerCropPlant(
 			Block block,
-			Item fruitItem,
 			float growthSpeed,
 			PlantDropTable plantDropTable
 	) {
 		var type = new CropPlantType((CropBlock) block);
-		var plant = new Plant(type, fruitItem, growthSpeed, plantDropTable);
+		var plant = new Plant(type, growthSpeed, plantDropTable);
 
 		plants.put(type.block, plant);
 	}
 
 	private static void registerStemPlant(
 			Block block,
-			Item fruitItem,
 			float stemGrowthSpeed,
 			float fruitGrowthSpeed,
 			PlantDropTable plantDropTable
 	) {
 		var progressToSpawnFruit = stemGrowthSpeed / fruitGrowthSpeed;
 		var type = new StemPlantType((StemBlock) block, progressToSpawnFruit);
-		var plant = new Plant(type, fruitItem, stemGrowthSpeed, plantDropTable);
+		var plant = new Plant(type, stemGrowthSpeed, plantDropTable);
 
 		plants.put(type.block, plant);
 		plants.put(type.block.getFruit().getAttachedStem(), plant);

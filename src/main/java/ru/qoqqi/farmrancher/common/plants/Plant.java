@@ -10,20 +10,16 @@ public class Plant {
 
 	public final IPlantType type;
 
-	public final Item fruitItem;
-
 	public final float growthSpeed;
 
 	public final PlantDropTable dropTable;
 
 	public Plant(
 			IPlantType type,
-			Item fruitItem,
 			float growthSpeed,
 			PlantDropTable dropTable
 	) {
 		this.type = type;
-		this.fruitItem = fruitItem;
 		this.growthSpeed = growthSpeed;
 		this.dropTable = dropTable;
 	}
