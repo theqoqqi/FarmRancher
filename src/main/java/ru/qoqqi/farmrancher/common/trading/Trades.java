@@ -23,7 +23,5 @@ public class Trades {
 		MerchantOffersGenerator.generateOffers(offers, Dishes.getAll());
 	};
 
-	public static final Consumer<MerchantOffers> WORKSHOP = offers -> {
-		// Пока пусто
-	};
+	public static final Consumer<MerchantOffers> WORKSHOP = WorkshopTrades::addOffers;
 }
