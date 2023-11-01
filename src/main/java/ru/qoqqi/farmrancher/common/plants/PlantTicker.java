@@ -37,7 +37,7 @@ public class PlantTicker {
 		}
 
 		var combinedGrowthSpeed = getGrowthSpeed(level, blockPos, plant, growthSpeed);
-		var progressToGrow = plant.type.getProgressToGrow();
+		var progressToGrow = plant.type.getProgressToGrow(level, blockPos);
 
 		modifyProgress(level, blockPos, combinedGrowthSpeed);
 

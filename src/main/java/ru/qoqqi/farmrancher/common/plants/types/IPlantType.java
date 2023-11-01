@@ -33,7 +33,7 @@ public interface IPlantType {
 
 	int getMaxAge();
 
-	float getProgressToGrow();
+	float getProgressToGrow(BlockGetter level, BlockPos pos);
 
 	float getGrowthSpeed(BlockGetter level, BlockPos pos);
 

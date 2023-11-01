@@ -23,7 +23,7 @@ public abstract class AgedPlantType<T extends Block> implements IPlantType {
 	}
 
 	@Override
-	public float getProgressToGrow() {
+	public float getProgressToGrow(BlockGetter level, BlockPos pos) {
 		return 1f / getMaxAge();
 	}
 
