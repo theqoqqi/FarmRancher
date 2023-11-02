@@ -1,9 +1,12 @@
 package ru.qoqqi.farmrancher.common.trading;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
+
+import ru.qoqqi.farmrancher.common.blocks.entities.TradingBlockEntity;
 
 public class MerchantOffersGenerator {
 
@@ -11,10 +14,13 @@ public class MerchantOffersGenerator {
 
 	private static final int COINS_FOR_EXP = 8;
 
+	protected ServerLevel level;
+
 	protected MerchantOffers offers;
 
-	public MerchantOffersGenerator(MerchantOffers offers) {
-		this.offers = offers;
+	public MerchantOffersGenerator(ServerLevel level) {
+		this.level = level;
+		this.offers = new MerchantOffers();
 	}
 
 	protected void addSellOffers(ISellable tradable) {
@@ -58,9 +64,11 @@ public class MerchantOffersGenerator {
 		return rounded;
 	}
 
-	public static void generateOffers(MerchantOffers offers, Iterable<? extends ISellable> sellables) {
-		var trades = new MerchantOffersGenerator(offers);
+	public static MerchantOffers generateOffers(TradingBlockEntity blockEntity, Iterable<? extends ISellable> sellables) {
+		var trades = new MerchantOffersGenerator((ServerLevel) blockEntity.getLevel());
 
 		sellables.forEach(trades::addSellOffers);
+
+		return trades.offers;
 	}
 }

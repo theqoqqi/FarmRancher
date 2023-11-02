@@ -46,13 +46,15 @@ public abstract class BaseMerchantBlockEntity extends BlockEntity implements Mer
 	@Override
 	public MerchantOffers getOffers() {
 		if (offers == null) {
-			offers = new MerchantOffers();
-
-			updateOffers();
+			offers = createOffers();
 		}
+
+		updateOffers();
 
 		return offers;
 	}
+
+	protected abstract MerchantOffers createOffers();
 
 	protected abstract void updateOffers();
 

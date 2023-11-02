@@ -23,22 +23,21 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.function.Consumer;
-
 import javax.annotation.Nonnull;
 
 import ru.qoqqi.farmrancher.common.blocks.entities.TradingBlockEntity;
+import ru.qoqqi.farmrancher.common.trading.OfferListFactory;
 
 public class TradingBlock extends BaseEntityBlock {
 
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
-	private final Consumer<MerchantOffers> offerListFiller;
+	private final OfferListFactory offerListFactory;
 
-	public TradingBlock(Consumer<MerchantOffers> offerListFiller, Properties properties) {
+	public TradingBlock(OfferListFactory offerListFactory, Properties properties) {
 		super(properties);
 
-		this.offerListFiller = offerListFiller;
+		this.offerListFactory = offerListFactory;
 
 		registerDefaultState(
 				stateDefinition.any()
@@ -102,7 +101,7 @@ public class TradingBlock extends BaseEntityBlock {
 		return new TradingBlockEntity(pos, state);
 	}
 
-	public void addOffers(MerchantOffers offers) {
-		offerListFiller.accept(offers);
+	public OfferListFactory getOfferListFactory() {
+		return offerListFactory;
 	}
 }

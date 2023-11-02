@@ -1,27 +1,27 @@
 package ru.qoqqi.farmrancher.common.trading;
 
-import net.minecraft.world.item.trading.MerchantOffers;
-
-import java.util.function.Consumer;
-
 import ru.qoqqi.farmrancher.common.dishes.Dishes;
 import ru.qoqqi.farmrancher.common.fruits.Fruits;
 
 public class Trades {
 
-	public static final Consumer<MerchantOffers> EXCHANGER = ExchangerTrades::addOffers;
-
-	public static final Consumer<MerchantOffers> MARKET = offers -> {
-		MerchantOffersGenerator.generateOffers(offers, Fruits.getAll());
+	public static final OfferListFactory EXCHANGER = blockEntity -> {
+		return ExchangerTrades.createOffers();
 	};
 
-	public static final Consumer<MerchantOffers> CAFETERIA = offers -> {
-		MerchantOffersGenerator.generateOffers(offers, Dishes.getAll());
+	public static final OfferListFactory MARKET = blockEntity -> {
+		return MerchantOffersGenerator.generateOffers(blockEntity, Fruits.getAll());
 	};
 
-	public static final Consumer<MerchantOffers> RESTAURANT = offers -> {
-		MerchantOffersGenerator.generateOffers(offers, Dishes.getAll());
+	public static final OfferListFactory CAFETERIA = blockEntity -> {
+		return MerchantOffersGenerator.generateOffers(blockEntity, Dishes.getAll());
 	};
 
-	public static final Consumer<MerchantOffers> WORKSHOP = WorkshopTrades::addOffers;
+	public static final OfferListFactory RESTAURANT = blockEntity -> {
+		return MerchantOffersGenerator.generateOffers(blockEntity, Dishes.getAll());
+	};
+
+	public static final OfferListFactory WORKSHOP = blockEntity -> {
+		return WorkshopTrades.createOffers();
+	};
 }

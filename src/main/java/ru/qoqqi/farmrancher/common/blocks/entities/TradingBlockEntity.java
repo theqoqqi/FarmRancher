@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.trading.Merchant;
+import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -42,9 +43,14 @@ public class TradingBlockEntity extends BaseMerchantBlockEntity implements Merch
 	}
 
 	@Override
-	protected void updateOffers() {
+	protected MerchantOffers createOffers() {
 		var block = (TradingBlock) getBlockState().getBlock();
 
-		block.addOffers(offers);
+		return block.getOfferListFactory().createOffers(this);
+	}
+
+	@Override
+	protected void updateOffers() {
+
 	}
 }

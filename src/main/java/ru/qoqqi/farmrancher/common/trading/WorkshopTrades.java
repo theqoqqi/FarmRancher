@@ -16,9 +16,11 @@ class WorkshopTrades {
 
 	private MerchantOffers offers;
 
-	public static void addOffers(MerchantOffers offers) {
-		INSTANCE.offers = offers;
+	public static MerchantOffers createOffers() {
+		INSTANCE.offers = new MerchantOffers();
 		INSTANCE.addOffers();
+
+		return INSTANCE.offers;
 	}
 
 	public void addOffers() {

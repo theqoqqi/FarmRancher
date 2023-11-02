@@ -1,6 +1,5 @@
 package ru.qoqqi.farmrancher.common.blocks;
 
-import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -11,13 +10,13 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Locale;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import ru.qoqqi.farmrancher.FarmRancher;
 import ru.qoqqi.farmrancher.common.gardens.GardenType;
 import ru.qoqqi.farmrancher.common.gardens.GardenTypes;
 import ru.qoqqi.farmrancher.common.items.ModItems;
+import ru.qoqqi.farmrancher.common.trading.OfferListFactory;
 import ru.qoqqi.farmrancher.common.trading.Trades;
 
 public class ModBlocks {
@@ -62,14 +61,14 @@ public class ModBlocks {
 	@SuppressWarnings("SameParameterValue")
 	private static RegistryObject<Block> registerTradingBlock(
 			String name,
-			Consumer<MerchantOffers> offerListGenerator
+			OfferListFactory offerListFactory
 	) {
 		var properties = BlockBehaviour.Properties.of()
 				.strength(1.0f, 5.0f)
 				.sound(SoundType.WOOD)
 				.mapColor(MapColor.WOOD);
 
-		return register(name, () -> new TradingBlock(offerListGenerator, properties));
+		return register(name, () -> new TradingBlock(offerListFactory, properties));
 	}
 
 	@SuppressWarnings("SameParameterValue")
