@@ -1,5 +1,6 @@
 package ru.qoqqi.farmrancher.common.fruits;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.Item;
 
 import ru.qoqqi.farmrancher.common.trading.ISellable;
@@ -23,7 +24,7 @@ public class Fruit implements ISellable {
 	}
 
 	@Override
-	public Price getInitialPrice() {
+	public Price getInitialPrice(ServerLevel level) {
 		return new Price(stackPrice.getLowerAverage());
 	}
 }
