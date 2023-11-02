@@ -10,6 +10,10 @@ public class Trades {
 		return MerchantOffersGenerator.generateOffers(blockEntity, Sellables.FRUITS.values());
 	};
 
+	public static final OfferListFactory BUFFET = blockEntity -> {
+		return MerchantOffersGenerator.generateOffers(blockEntity, Sellables.DISHES.values());
+	};
+
 	public static final OfferListFactory CAFETERIA = blockEntity -> {
 		return MerchantOffersGenerator.generateOffers(blockEntity, Sellables.DISHES.values());
 	};
