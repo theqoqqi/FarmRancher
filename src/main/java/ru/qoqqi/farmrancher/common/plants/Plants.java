@@ -74,7 +74,7 @@ public class Plants {
 		registerCropPlant(
 				ModBlocks.TOMATO_CROP.get(),
 				secondsToGrowSpeed(5),
-				new PlantDropTable(ModItems.CABBAGE_SEEDS.get(), 1.2f, ModItems.CABBAGE.get(), 1.5f)
+				new PlantDropTable(ModItems.TOMATO_SEEDS.get(), 1.5f, ModItems.TOMATO.get(), 1.5f)
 		);
 //		registerCropPlant(
 //				ModBlocks.BUDDING_TOMATO_CROP.get(), // Это не CropBlock
@@ -84,7 +84,7 @@ public class Plants {
 		registerCropPlant(
 				ModBlocks.ONION_CROP.get(),
 				secondsToGrowSpeed(5),
-				new PlantDropTable(ModItems.CABBAGE_SEEDS.get(), 1.2f, ModItems.CABBAGE.get(), 1.5f)
+				new PlantDropTable(ModItems.ONION.get(), 1.5f)
 		);
 		registerRicePlant(
 				ModBlocks.RICE_CROP.get(),
@@ -95,7 +95,7 @@ public class Plants {
 		registerCropPlant(
 				ModBlocks.RICE_CROP_PANICLES.get(),
 				secondsToGrowSpeed(5),
-				new PlantDropTable(ModItems.CABBAGE_SEEDS.get(), 1.2f, ModItems.CABBAGE.get(), 1.5f)
+				new PlantDropTable(ModItems.RICE.get(), 1.5f)
 		);
 	}
 
