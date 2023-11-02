@@ -2,6 +2,7 @@ package ru.qoqqi.farmrancher.common.trading;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
@@ -29,30 +30,43 @@ public class MerchantOffersGenerator {
 			return;
 		}
 
-		var item = tradable.getItem();
-		//noinspection deprecation
-		var maxStackSize = item.getMaxStackSize();
-		var price = tradable.getInitialPrice(level);
+		var stackPrice = tradable.getInitialStackPrice(level);
 
-		if (!price.isValid()) {
+		if (!stackPrice.isValid()) {
 			return;
 		}
 
-		var priceStack = price.asSingleStack();
-		var countOfCoins = priceStack.getCount();
-		var minDishCount = Mth.ceil((float) maxStackSize / countOfCoins);
+		var item = tradable.getItem();
 
-		offers.add(new MerchantOffer(
-				new ItemStack(item, maxStackSize),
-				priceStack,
-				INFINITE_MAX_USES,
-				getExperienceForPrice(price.getValue()),
-				1f
-		));
+		addLargeOffer(item, stackPrice);
+		addSmallOffer(item, stackPrice);
+	}
 
+	private void addLargeOffer(Item item, Price stackPrice) {
+		//noinspection deprecation
+		var maxStackSize = item.getMaxStackSize();
+		var offerPrice = stackPrice.floor();
+		var priceRatio = (double) offerPrice.getValue() / stackPrice.getValue();
+		var stackSize = Mth.ceil(maxStackSize * priceRatio);
+
+		addOffer(item, stackSize, offerPrice);
+	}
+
+	private void addSmallOffer(Item item, Price stackPrice) {
+		//noinspection deprecation
+		var maxStackSize = item.getMaxStackSize();
+		var singleItemPrice = (double) stackPrice.getValue() / maxStackSize;
+		var decimalStackSize = singleItemPrice >= 1 ? 1 : 1 / singleItemPrice;
+		var stackSize = Mth.ceil(decimalStackSize);
+		var offerPrice = new Price(Mth.floor(singleItemPrice * decimalStackSize + 0.001));
+
+		addOffer(item, stackSize, offerPrice);
+	}
+
+	private void addOffer(Item item, int count, Price price) {
 		offers.add(new MerchantOffer(
-				new ItemStack(item, minDishCount),
-				new ItemStack(priceStack.getItem()),
+				new ItemStack(item, count),
+				price.asSingleStack(),
 				INFINITE_MAX_USES,
 				getExperienceForPrice(price.getValue()),
 				1f

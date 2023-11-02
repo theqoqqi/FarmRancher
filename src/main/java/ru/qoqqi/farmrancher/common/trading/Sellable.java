@@ -28,7 +28,7 @@ public class Sellable {
 		return getStackPrice(level).isValid();
 	}
 
-	public Price getInitialPrice(ServerLevel level) {
+	public Price getInitialStackPrice(ServerLevel level) {
 		//noinspection deprecation
 		var maxStackSize = item.getMaxStackSize();
 		var price = getStackPrice(level).getAverage();

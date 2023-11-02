@@ -36,6 +36,13 @@ public class Price {
 		return (value / coinTier.value) % CoinItem.EXCHANGE_RATE;
 	}
 
+	public Price floor() {
+		var priceStack = asSingleStack();
+		var coinItem = (CoinItem) priceStack.getItem();
+
+		return new Price(coinItem.tier, priceStack.getCount());
+	}
+
 	public ItemStack asSingleStack() {
 		return getStacks(1).findFirst().orElse(ItemStack.EMPTY);
 	}
