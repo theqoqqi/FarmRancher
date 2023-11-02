@@ -26,6 +26,12 @@ public class Sellable {
 		return priceFactory.apply(level);
 	}
 
+	public boolean hasValidPrice(ServerLevel level) {
+		var stackPrice = getStackPrice(level);
+
+		return stackPrice.min > 0 && stackPrice.max >= stackPrice.min;
+	}
+
 	public Price getInitialPrice(ServerLevel level) {
 		var price = getStackPrice(level).getLowerAverage();
 

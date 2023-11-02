@@ -24,6 +24,11 @@ public class MerchantOffersGenerator {
 	}
 
 	protected void addSellOffers(Sellable tradable) {
+
+		if (!tradable.hasValidPrice(level)) {
+			return;
+		}
+
 		var item = tradable.getItem();
 		//noinspection deprecation
 		var maxStackSize = item.getMaxStackSize();
