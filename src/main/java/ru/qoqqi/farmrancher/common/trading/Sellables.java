@@ -41,6 +41,7 @@ public class Sellables {
 	static {
 		register(
 				FRUITS,
+				1.0,
 				Items.WHEAT,
 				Items.CARROT,
 				Items.POTATO,
@@ -73,6 +74,7 @@ public class Sellables {
 
 		register(
 				BUFFET,
+				1.25,
 				Items.BEETROOT_SOUP,
 				Items.MUSHROOM_STEW,
 				Items.RABBIT_STEW,
@@ -92,6 +94,7 @@ public class Sellables {
 
 		register(
 				CAFETERIA,
+				1.6,
 
 				// Farmer's Delight
 				ModItems.MIXED_SALAD.get(),
@@ -112,6 +115,8 @@ public class Sellables {
 
 		register(
 				CONFECTIONERY,
+				2.0,
+
 				Items.COOKIE,
 				Items.CAKE,
 
@@ -128,6 +133,7 @@ public class Sellables {
 
 		register(
 				RESTAURANT,
+				2.5,
 
 				// Farmer's Delight
 				ModItems.BACON_AND_EGGS.get(),
@@ -151,16 +157,16 @@ public class Sellables {
 //				ModItems.RICE_ROLL_MEDLEY_BLOCK.get(),
 	}
 
-	private static void register(Map<Item, Sellable> registry, Item... items) {
+	private static void register(Map<Item, Sellable> registry, double priceBonus, Item... items) {
 		for (Item item : items) {
-			var sellable = new Sellable(item, level -> getPriceRange(item, level));
+			var sellable = new Sellable(item, level -> getPriceRange(item, level, priceBonus));
 
 			registry.put(item, sellable);
 		}
 	}
 
 	@NotNull
-	private static PriceRange getPriceRange(Item item, ServerLevel level) {
+	private static PriceRange getPriceRange(Item item, ServerLevel level, double priceBonus) {
 		var priceCalculator = new PriceCalculator(level, SimpleIngredients.PRICES, RECIPE_PRICE_BONUSES);
 		var price = priceCalculator.getPrice(item);
 
@@ -168,8 +174,9 @@ public class Sellables {
 			return PriceRange.invalid();
 		}
 
-		var minPrice = price.getAsDouble() * (1 - PRICE_RANGE_DEVIATION);
-		var maxPrice = price.getAsDouble() * (1 + PRICE_RANGE_DEVIATION);
+		var priceWithBonus = price.getAsDouble() * priceBonus;
+		var minPrice = priceWithBonus * (1 - PRICE_RANGE_DEVIATION);
+		var maxPrice = priceWithBonus * (1 + PRICE_RANGE_DEVIATION);
 
 		return PriceRange.of(minPrice, maxPrice);
 	}
