@@ -108,7 +108,7 @@ public class PriceCalculator {
 		var recipePriceBonus = getRecipePriceBonus(recipe);
 		var priceWithBonuses = priceOfSingleResult * recipePriceBonus;
 
-//		logRecipePrice(recipe, priceOfSingleResult, priceOfIngredients, resultStack);
+//		logRecipePrice(recipe, priceWithBonuses, priceOfIngredients, priceOfSingleResult, recipePriceBonus, resultStack);
 
 		recipePrices.put(recipe, OptionalDouble.of(priceWithBonuses));
 
@@ -117,21 +117,31 @@ public class PriceCalculator {
 
 	private void logRecipePrice(
 			Recipe<?> recipe,
-			double priceOfSingleResult,
+			double priceWithBonuses,
 			double priceOfIngredients,
+			double priceOfSingleResult,
+			double recipePriceBonus,
 			ItemStack resultStack
 	) {
 		LOGGER.info(
-				"PUT {} ({} / {}) for: {} ({})",
-				priceOfSingleResult,
+				"PUT {} ({} / {} * {} * {}) for: {} ({}, {})",
+				priceWithBonuses,
 				priceOfIngredients,
+				priceOfSingleResult,
+				recipePriceBonus,
 				resultStack.getCount(),
 				resultStack,
 				recipe.getIngredients()
 						.stream()
 						.map(Ingredient::getItems)
+						.filter(itemStacks -> itemStacks.length > 0)
+						.collect(Collectors.toList()),
+				recipe.getIngredients()
+						.stream()
+						.map(Ingredient::getItems)
+						.filter(itemStacks -> itemStacks.length > 0)
 						.map(this::getCheapestStack)
-						.filter(OptionalDouble::isPresent)
+						.map(value -> value.orElse(Double.MAX_VALUE))
 						.collect(Collectors.toList())
 		);
 	}
