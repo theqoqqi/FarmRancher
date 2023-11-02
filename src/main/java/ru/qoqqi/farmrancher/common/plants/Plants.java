@@ -17,7 +17,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import ru.qoqqi.farmrancher.common.plants.types.CropPlantType;
+import ru.qoqqi.farmrancher.common.plants.types.RicePlantType;
 import ru.qoqqi.farmrancher.common.plants.types.StemPlantType;
+import vectorwing.farmersdelight.common.block.RiceBlock;
+import vectorwing.farmersdelight.common.block.RicePaniclesBlock;
 import vectorwing.farmersdelight.common.registry.ModBlocks;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
@@ -83,11 +86,12 @@ public class Plants {
 				secondsToGrowSpeed(5),
 				new PlantDropTable(ModItems.CABBAGE_SEEDS.get(), 1.2f, ModItems.CABBAGE.get(), 1.5f)
 		);
-//		registerCropPlant(
-//				ModBlocks.RICE_CROP.get(), // Это не CropBlock
-//				secondsToGrowSpeed(5),
-//				new PlantDropTable(ModItems.CABBAGE_SEEDS.get(), 1.2f, ModItems.CABBAGE.get(), 1.5f)
-//		);
+		registerRicePlant(
+				ModBlocks.RICE_CROP.get(),
+				ModBlocks.RICE_CROP_PANICLES.get(),
+				secondsToGrowSpeed(5),
+				new PlantDropTable(ModItems.RICE.get(), 1f)
+		);
 		registerCropPlant(
 				ModBlocks.RICE_CROP_PANICLES.get(),
 				secondsToGrowSpeed(5),
@@ -101,6 +105,18 @@ public class Plants {
 			PlantDropTable plantDropTable
 	) {
 		var type = new CropPlantType((CropBlock) block);
+		var plant = new Plant(type, growthSpeed, plantDropTable);
+
+		plants.put(type.block, plant);
+	}
+
+	private static void registerRicePlant(
+			Block block,
+			Block paniclesBlock,
+			float growthSpeed,
+			PlantDropTable plantDropTable
+	) {
+		var type = new RicePlantType((RiceBlock) block, (RicePaniclesBlock) paniclesBlock);
 		var plant = new Plant(type, growthSpeed, plantDropTable);
 
 		plants.put(type.block, plant);
