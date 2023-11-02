@@ -2,7 +2,6 @@ package ru.qoqqi.farmrancher.common.plants;
 
 import com.mojang.logging.LogUtils;
 
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -16,9 +15,11 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import ru.qoqqi.farmrancher.common.plants.types.BuddingBushPlantType;
 import ru.qoqqi.farmrancher.common.plants.types.CropPlantType;
 import ru.qoqqi.farmrancher.common.plants.types.RicePlantType;
 import ru.qoqqi.farmrancher.common.plants.types.StemPlantType;
+import vectorwing.farmersdelight.common.block.BuddingBushBlock;
 import vectorwing.farmersdelight.common.block.RiceBlock;
 import vectorwing.farmersdelight.common.block.RicePaniclesBlock;
 import vectorwing.farmersdelight.common.registry.ModBlocks;
@@ -71,16 +72,17 @@ public class Plants {
 				secondsToGrowSpeed(5),
 				new PlantDropTable(ModItems.CABBAGE_SEEDS.get(), 1.2f, ModItems.CABBAGE.get(), 1.5f)
 		);
+		registerBuddingBushPlant(
+				ModBlocks.BUDDING_TOMATO_CROP.get(),
+				ModBlocks.TOMATO_CROP.get(),
+				secondsToGrowSpeed(5),
+				new PlantDropTable(ModItems.TOMATO_SEEDS.get(), 1f)
+		);
 		registerCropPlant(
 				ModBlocks.TOMATO_CROP.get(),
 				secondsToGrowSpeed(5),
 				new PlantDropTable(ModItems.TOMATO_SEEDS.get(), 1.5f, ModItems.TOMATO.get(), 1.5f)
 		);
-//		registerCropPlant(
-//				ModBlocks.BUDDING_TOMATO_CROP.get(), // Это не CropBlock
-//				secondsToGrowSpeed(5),
-//				new PlantDropTable(ModItems.CABBAGE_SEEDS.get(), 1.2f, ModItems.CABBAGE.get(), 1.5f)
-//		);
 		registerCropPlant(
 				ModBlocks.ONION_CROP.get(),
 				secondsToGrowSpeed(5),
@@ -117,6 +119,18 @@ public class Plants {
 			PlantDropTable plantDropTable
 	) {
 		var type = new RicePlantType((RiceBlock) block, (RicePaniclesBlock) paniclesBlock);
+		var plant = new Plant(type, growthSpeed, plantDropTable);
+
+		plants.put(type.block, plant);
+	}
+
+	private static void registerBuddingBushPlant(
+			Block block,
+			Block buddedBlock,
+			float growthSpeed,
+			PlantDropTable plantDropTable
+	) {
+		var type = new BuddingBushPlantType((BuddingBushBlock) block, (CropBlock) buddedBlock);
 		var plant = new Plant(type, growthSpeed, plantDropTable);
 
 		plants.put(type.block, plant);
