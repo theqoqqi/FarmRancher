@@ -33,6 +33,11 @@ public class MerchantOffersGenerator {
 		//noinspection deprecation
 		var maxStackSize = item.getMaxStackSize();
 		var price = tradable.getInitialPrice(level);
+
+		if (!price.isValid()) {
+			return;
+		}
+
 		var priceStack = price.asSingleStack();
 		var countOfCoins = priceStack.getCount();
 		var minDishCount = Mth.ceil((float) maxStackSize / countOfCoins);

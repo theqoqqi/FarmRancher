@@ -28,6 +28,10 @@ public class Price {
 		return value;
 	}
 
+	public boolean isValid() {
+		return value > 0;
+	}
+
 	public int getCountOf(CoinItem.Tier coinTier) {
 		return (value / coinTier.value) % CoinItem.EXCHANGE_RATE;
 	}
