@@ -5,15 +5,13 @@ import net.minecraft.world.item.Item;
 
 import java.util.function.Function;
 
-import ru.qoqqi.farmrancher.common.util.IntRange;
-
 public class Sellable {
 
 	public final Item item;
 
-	private final Function<ServerLevel, IntRange> priceFactory;
+	private final Function<ServerLevel, PriceRange> priceFactory;
 
-	public Sellable(Item item, Function<ServerLevel, IntRange> priceFactory) {
+	public Sellable(Item item, Function<ServerLevel, PriceRange> priceFactory) {
 		this.item = item;
 		this.priceFactory = priceFactory;
 	}
@@ -22,19 +20,17 @@ public class Sellable {
 		return item;
 	}
 
-	public IntRange getStackPrice(ServerLevel level) {
+	public PriceRange getStackPrice(ServerLevel level) {
 		return priceFactory.apply(level);
 	}
 
 	public boolean hasValidPrice(ServerLevel level) {
-		var stackPrice = getStackPrice(level);
-
-		return stackPrice.min > 0 && stackPrice.max >= stackPrice.min;
+		return getStackPrice(level).isValid();
 	}
 
 	public Price getInitialPrice(ServerLevel level) {
-		var price = getStackPrice(level).getLowerAverage();
+		var price = getStackPrice(level).getAverage();
 
-		return new Price(price);
+		return new Price((int) Math.floor(price));
 	}
 }
