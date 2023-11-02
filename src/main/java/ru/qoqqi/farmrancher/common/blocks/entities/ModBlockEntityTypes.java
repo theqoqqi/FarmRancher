@@ -35,6 +35,7 @@ public class ModBlockEntityTypes {
 			ModBlocks.MARKET,
 			ModBlocks.BUFFET,
 			ModBlocks.CAFETERIA,
+			ModBlocks.CONFECTIONERY,
 			ModBlocks.RESTAURANT,
 			ModBlocks.WORKSHOP
 	);

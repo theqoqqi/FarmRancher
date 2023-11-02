@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "farm_rancher:block/trading/confectionery/front",
+    "side": "farm_rancher:block/trading/confectionery/side",
+    "top": "farm_rancher:block/trading/confectionery/top"
+  }
+}

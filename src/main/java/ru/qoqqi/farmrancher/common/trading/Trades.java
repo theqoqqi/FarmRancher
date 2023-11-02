@@ -18,6 +18,10 @@ public class Trades {
 		return MerchantOffersGenerator.generateOffers(blockEntity, Sellables.DISHES.values());
 	};
 
+	public static final OfferListFactory CONFECTIONERY = blockEntity -> {
+		return MerchantOffersGenerator.generateOffers(blockEntity, Sellables.DISHES.values());
+	};
+
 	public static final OfferListFactory RESTAURANT = blockEntity -> {
 		return MerchantOffersGenerator.generateOffers(blockEntity, Sellables.DISHES.values());
 	};

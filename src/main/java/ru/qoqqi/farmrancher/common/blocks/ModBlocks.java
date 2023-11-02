@@ -52,6 +52,9 @@ public class ModBlocks {
 	public static final RegistryObject<Block> CAFETERIA = registerTradingBlock("cafeteria", Trades.CAFETERIA);
 
 	@SuppressWarnings("unused")
+	public static final RegistryObject<Block> CONFECTIONERY = registerTradingBlock("confectionery", Trades.CONFECTIONERY);
+
+	@SuppressWarnings("unused")
 	public static final RegistryObject<Block> RESTAURANT = registerTradingBlock("restaurant", Trades.RESTAURANT);
 
 	@SuppressWarnings("unused")
