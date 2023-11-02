@@ -11,8 +11,6 @@ public class Sellable {
 
 	public final Item item;
 
-	private IntRange stackPrice;
-
 	private final Function<ServerLevel, IntRange> priceFactory;
 
 	public Sellable(Item item, Function<ServerLevel, IntRange> priceFactory) {
@@ -25,11 +23,7 @@ public class Sellable {
 	}
 
 	public IntRange getStackPrice(ServerLevel level) {
-		if (stackPrice == null) {
-			stackPrice = priceFactory.apply(level);
-		}
-
-		return stackPrice;
+		return priceFactory.apply(level);
 	}
 
 	public Price getInitialPrice(ServerLevel level) {
