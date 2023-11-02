@@ -12,10 +12,13 @@ import net.minecraftforge.fml.common.Mod;
 
 import org.slf4j.Logger;
 
+import java.util.Map;
+
 import ru.qoqqi.farmrancher.FarmRancher;
+import ru.qoqqi.farmrancher.common.trading.PriceCalculator;
+import ru.qoqqi.farmrancher.common.trading.Sellable;
 import ru.qoqqi.farmrancher.common.trading.Sellables;
 import ru.qoqqi.farmrancher.common.trading.SimpleIngredients;
-import ru.qoqqi.farmrancher.common.trading.PriceCalculator;
 
 @Mod.EventBusSubscriber(modid = FarmRancher.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class Start {
@@ -32,13 +35,16 @@ public class Start {
 		var calculator = new PriceCalculator(level, SimpleIngredients.PRICES, Sellables.RECIPE_PRICE_BONUSES);
 		var resolver = new IngredientListResolver(level, SimpleIngredients.PRICES, calculator);
 
-		LOGGER.info("FRUITS:");
-		Sellables.FRUITS.forEach((item, sellable) -> {
-			logPrice(item, calculator, resolver);
-		});
+		logPrices("FRUITS", Sellables.FRUITS, calculator, resolver);
+		logPrices("BUFFET", Sellables.BUFFET, calculator, resolver);
+		logPrices("CAFETERIA", Sellables.CAFETERIA, calculator, resolver);
+		logPrices("CONFECTIONERY", Sellables.CONFECTIONERY, calculator, resolver);
+		logPrices("RESTAURANT", Sellables.RESTAURANT, calculator, resolver);
+	}
 
-		LOGGER.info("DISHES:");
-		Sellables.DISHES.forEach((item, sellable) -> {
+	private static void logPrices(String title, Map<Item, Sellable> items, PriceCalculator calculator, IngredientListResolver resolver) {
+		LOGGER.info("{}:", title);
+		items.forEach((item, sellable) -> {
 			logPrice(item, calculator, resolver);
 		});
 	}
