@@ -7,12 +7,13 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import ru.qoqqi.farmrancher.common.trading.Sellable;
 import ru.qoqqi.farmrancher.common.util.IntRange;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
 public class Fruits {
 
-	private static final Map<Item, Fruit> fruits = new HashMap<>();
+	private static final Map<Item, Sellable> fruits = new HashMap<>();
 
 	static {
 		registerFruit(
@@ -60,7 +61,8 @@ public class Fruits {
 	}
 
 	private static void registerFruit(Item item, IntRange stackPrice) {
-		var fruit = new Fruit(item, stackPrice);
+		var fruit = new Sellable(item, stackPrice);
+
 		fruits.put(item, fruit);
 	}
 
@@ -68,11 +70,11 @@ public class Fruits {
 		return fruits.containsKey(item);
 	}
 
-	public static Fruit get(Item item) {
+	public static Sellable get(Item item) {
 		return fruits.get(item);
 	}
 
-	public static Collection<Fruit> getAll() {
+	public static Collection<Sellable> getAll() {
 		return fruits.values();
 	}
 }

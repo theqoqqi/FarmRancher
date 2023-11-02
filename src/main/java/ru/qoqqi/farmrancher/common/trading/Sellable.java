@@ -1,29 +1,25 @@
-package ru.qoqqi.farmrancher.common.dishes;
+package ru.qoqqi.farmrancher.common.trading;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.Item;
 
-import ru.qoqqi.farmrancher.common.trading.ISellable;
-import ru.qoqqi.farmrancher.common.trading.Price;
 import ru.qoqqi.farmrancher.common.util.IntRange;
 
-public class Dish implements ISellable {
+public class Sellable {
 
 	public final Item item;
 
 	public final IntRange stackPrice;
 
-	public Dish(Item item, IntRange stackPrice) {
+	public Sellable(Item item, IntRange stackPrice) {
 		this.item = item;
 		this.stackPrice = stackPrice;
 	}
 
-	@Override
 	public Item getItem() {
 		return item;
 	}
 
-	@Override
 	public Price getInitialPrice(ServerLevel level) {
 		return new Price(stackPrice.getLowerAverage());
 	}

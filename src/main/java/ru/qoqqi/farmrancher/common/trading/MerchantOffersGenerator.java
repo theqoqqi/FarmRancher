@@ -23,7 +23,7 @@ public class MerchantOffersGenerator {
 		this.offers = new MerchantOffers();
 	}
 
-	protected void addSellOffers(ISellable tradable) {
+	protected void addSellOffers(Sellable tradable) {
 		var item = tradable.getItem();
 		//noinspection deprecation
 		var maxStackSize = item.getMaxStackSize();
@@ -64,7 +64,7 @@ public class MerchantOffersGenerator {
 		return rounded;
 	}
 
-	public static MerchantOffers generateOffers(TradingBlockEntity blockEntity, Iterable<? extends ISellable> sellables) {
+	public static MerchantOffers generateOffers(TradingBlockEntity blockEntity, Iterable<? extends Sellable> sellables) {
 		var trades = new MerchantOffersGenerator((ServerLevel) blockEntity.getLevel());
 
 		sellables.forEach(trades::addSellOffers);

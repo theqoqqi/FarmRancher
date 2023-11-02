@@ -7,12 +7,13 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import ru.qoqqi.farmrancher.common.trading.Sellable;
 import ru.qoqqi.farmrancher.common.util.IntRange;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
 public class Dishes {
 
-	private static final Map<Item, Dish> dishes = new HashMap<>();
+	private static final Map<Item, Sellable> dishes = new HashMap<>();
 
 	static {
 		// В Farmer's Delight требует 3 свеклы вместо 6.
@@ -81,7 +82,8 @@ public class Dishes {
 	}
 
 	private static void registerDish(Item item, IntRange stackPrice) {
-		var dish = new Dish(item, stackPrice);
+		var dish = new Sellable(item, stackPrice);
+
 		dishes.put(item, dish);
 	}
 
@@ -89,11 +91,11 @@ public class Dishes {
 		return dishes.containsKey(item);
 	}
 
-	public static Dish get(Item item) {
+	public static Sellable get(Item item) {
 		return dishes.get(item);
 	}
 
-	public static Collection<Dish> getAll() {
+	public static Collection<Sellable> getAll() {
 		return dishes.values();
 	}
 }
