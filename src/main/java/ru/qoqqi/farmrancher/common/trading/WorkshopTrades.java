@@ -24,6 +24,7 @@ class WorkshopTrades {
 	}
 
 	public void addOffers() {
+		addOffer(ModItems.SILVER_COIN.get(), 1, ModItems.ANCIENT_SEED.get(), 1);
 		addOffer(ModItems.COPPER_COIN.get(), 1, ModItems.GOLDEN_TIER_BLUEPRINT.get(), 1);
 		addOffer(ModItems.COPPER_COIN.get(), 8, ModItems.STONE_TIER_BLUEPRINT.get(), 1);
 		addOffer(ModItems.SILVER_COIN.get(), 1, ModItems.IRON_TIER_BLUEPRINT.get(), 1);
