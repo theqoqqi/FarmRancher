@@ -3,24 +3,38 @@ package ru.qoqqi.farmrancher.common.trading;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.Item;
 
+import java.util.function.Function;
+
 import ru.qoqqi.farmrancher.common.util.IntRange;
 
 public class Sellable {
 
 	public final Item item;
 
-	public final IntRange stackPrice;
+	private IntRange stackPrice;
 
-	public Sellable(Item item, IntRange stackPrice) {
+	private final Function<ServerLevel, IntRange> priceFactory;
+
+	public Sellable(Item item, Function<ServerLevel, IntRange> priceFactory) {
 		this.item = item;
-		this.stackPrice = stackPrice;
+		this.priceFactory = priceFactory;
 	}
 
 	public Item getItem() {
 		return item;
 	}
 
+	public IntRange getStackPrice(ServerLevel level) {
+		if (stackPrice == null) {
+			stackPrice = priceFactory.apply(level);
+		}
+
+		return stackPrice;
+	}
+
 	public Price getInitialPrice(ServerLevel level) {
-		return new Price(stackPrice.getLowerAverage());
+		var price = getStackPrice(level).getLowerAverage();
+
+		return new Price(price);
 	}
 }

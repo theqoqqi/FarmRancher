@@ -61,7 +61,7 @@ public class Fruits {
 	}
 
 	private static void registerFruit(Item item, IntRange stackPrice) {
-		var fruit = new Sellable(item, stackPrice);
+		var fruit = new Sellable(item, level -> stackPrice);
 
 		fruits.put(item, fruit);
 	}

@@ -82,7 +82,7 @@ public class Dishes {
 	}
 
 	private static void registerDish(Item item, IntRange stackPrice) {
-		var dish = new Sellable(item, stackPrice);
+		var dish = new Sellable(item, level -> stackPrice);
 
 		dishes.put(item, dish);
 	}
