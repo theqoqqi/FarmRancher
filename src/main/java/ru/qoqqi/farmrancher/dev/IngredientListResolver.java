@@ -108,6 +108,7 @@ public class IngredientListResolver {
 		var price = recipe.getIngredients()
 				.stream()
 				.map(Ingredient::getItems)
+				.filter(itemStacks -> itemStacks.length > 0)
 				.map(this::getCheapestStack)
 				.filter(Optional::isPresent)
 				.map(Optional::get)

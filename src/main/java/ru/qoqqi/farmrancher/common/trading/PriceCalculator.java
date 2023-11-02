@@ -100,6 +100,7 @@ public class PriceCalculator {
 		var priceOfIngredients = recipe.getIngredients()
 				.stream()
 				.map(Ingredient::getItems)
+				.filter(itemStacks -> itemStacks.length > 0)
 				.map(this::getCheapestStack)
 				.mapToDouble(value -> value.orElse(Double.MAX_VALUE))
 				.sum();
