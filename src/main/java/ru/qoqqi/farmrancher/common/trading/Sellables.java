@@ -7,7 +7,9 @@ import net.minecraft.world.item.crafting.RecipeType;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import vectorwing.farmersdelight.common.registry.ModItems;
@@ -28,15 +30,15 @@ public class Sellables {
 		}
 	};
 
-	public static final Map<Item, Sellable> FRUITS = new HashMap<>();
+	public static final List<Sellable> FRUITS = new ArrayList<>();
 
-	public static final Map<Item, Sellable> BUFFET = new HashMap<>();
+	public static final List<Sellable> BUFFET = new ArrayList<>();
 
-	public static final Map<Item, Sellable> CAFETERIA = new HashMap<>();
+	public static final List<Sellable> CAFETERIA = new ArrayList<>();
 
-	public static final Map<Item, Sellable> CONFECTIONERY = new HashMap<>();
+	public static final List<Sellable> CONFECTIONERY = new ArrayList<>();
 
-	public static final Map<Item, Sellable> RESTAURANT = new HashMap<>();
+	public static final List<Sellable> RESTAURANT = new ArrayList<>();
 
 	static {
 		register(
@@ -157,11 +159,11 @@ public class Sellables {
 //				ModItems.RICE_ROLL_MEDLEY_BLOCK.get(),
 	}
 
-	private static void register(Map<Item, Sellable> registry, double priceBonus, Item... items) {
+	private static void register(List<Sellable> registry, double priceBonus, Item... items) {
 		for (Item item : items) {
 			var sellable = new Sellable(item, level -> getPriceRange(item, level, priceBonus));
 
-			registry.put(item, sellable);
+			registry.add(sellable);
 		}
 	}
 

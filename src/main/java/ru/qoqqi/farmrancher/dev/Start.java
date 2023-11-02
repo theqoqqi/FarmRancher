@@ -12,6 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 
 import org.slf4j.Logger;
 
+import java.util.List;
 import java.util.Map;
 
 import ru.qoqqi.farmrancher.FarmRancher;
@@ -42,10 +43,10 @@ public class Start {
 		logPrices("RESTAURANT", Sellables.RESTAURANT, calculator, resolver);
 	}
 
-	private static void logPrices(String title, Map<Item, Sellable> items, PriceCalculator calculator, IngredientListResolver resolver) {
+	private static void logPrices(String title, List<Sellable> sellables, PriceCalculator calculator, IngredientListResolver resolver) {
 		LOGGER.info("{}:", title);
-		items.forEach((item, sellable) -> {
-			logPrice(item, calculator, resolver);
+		sellables.forEach(sellable -> {
+			logPrice(sellable.item, calculator, resolver);
 		});
 	}
 
