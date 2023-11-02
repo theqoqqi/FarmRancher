@@ -1,19 +1,64 @@
-package ru.qoqqi.farmrancher.common.dishes;
+package ru.qoqqi.farmrancher.common.trading;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import ru.qoqqi.farmrancher.common.trading.Sellable;
 import ru.qoqqi.farmrancher.common.util.IntRange;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
-public class Dishes {
+public class Sellables {
 
-	private static final Map<Item, Sellable> dishes = new HashMap<>();
+	public static final Map<Item, Sellable> FRUITS = new HashMap<>();
+
+	public static final Map<Item, Sellable> DISHES = new HashMap<>();
+
+	static {
+		registerFruit(
+				Items.WHEAT,
+				IntRange.of(1, 5)
+		);
+		registerFruit(
+				Items.CARROT,
+				IntRange.of(2, 8)
+		);
+		registerFruit(
+				Items.POTATO,
+				IntRange.of(2, 8)
+		);
+		registerFruit(
+				Items.BEETROOT,
+				IntRange.of(3, 9)
+		);
+		registerFruit(
+				Items.PUMPKIN,
+				IntRange.of(10, 30)
+		);
+		registerFruit(
+				Items.MELON,
+				IntRange.of(16, 48)
+		);
+
+		// Farmer's Delight
+		registerFruit(
+				ModItems.CABBAGE.get(),
+				IntRange.of(10, 20)
+		);
+		registerFruit(
+				ModItems.TOMATO.get(),
+				IntRange.of(10, 20)
+		);
+		registerFruit(
+				ModItems.ONION.get(),
+				IntRange.of(10, 20)
+		);
+		registerFruit(
+				ModItems.RICE.get(),
+				IntRange.of(10, 20)
+		);
+	}
 
 	static {
 		// В Farmer's Delight требует 3 свеклы вместо 6.
@@ -81,21 +126,15 @@ public class Dishes {
 		);
 	}
 
+	private static void registerFruit(Item item, IntRange stackPrice) {
+		var fruit = new Sellable(item, level -> stackPrice);
+
+		FRUITS.put(item, fruit);
+	}
+
 	private static void registerDish(Item item, IntRange stackPrice) {
 		var dish = new Sellable(item, level -> stackPrice);
 
-		dishes.put(item, dish);
-	}
-
-	public static boolean isDish(Item item) {
-		return dishes.containsKey(item);
-	}
-
-	public static Sellable get(Item item) {
-		return dishes.get(item);
-	}
-
-	public static Collection<Sellable> getAll() {
-		return dishes.values();
+		DISHES.put(item, dish);
 	}
 }
