@@ -11,19 +11,19 @@ public class Trades {
 	};
 
 	public static final OfferListFactory BUFFET = blockEntity -> {
-		return MerchantOffersGenerator.generateOffers(blockEntity, Sellables.DISHES.values());
+		return MerchantOffersGenerator.generateOffers(blockEntity, Sellables.BUFFET.values());
 	};
 
 	public static final OfferListFactory CAFETERIA = blockEntity -> {
-		return MerchantOffersGenerator.generateOffers(blockEntity, Sellables.DISHES.values());
+		return MerchantOffersGenerator.generateOffers(blockEntity, Sellables.CAFETERIA.values());
 	};
 
 	public static final OfferListFactory CONFECTIONERY = blockEntity -> {
-		return MerchantOffersGenerator.generateOffers(blockEntity, Sellables.DISHES.values());
+		return MerchantOffersGenerator.generateOffers(blockEntity, Sellables.CONFECTIONERY.values());
 	};
 
 	public static final OfferListFactory RESTAURANT = blockEntity -> {
-		return MerchantOffersGenerator.generateOffers(blockEntity, Sellables.DISHES.values());
+		return MerchantOffersGenerator.generateOffers(blockEntity, Sellables.RESTAURANT.values());
 	};
 
 	public static final OfferListFactory WORKSHOP = blockEntity -> {

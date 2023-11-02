@@ -24,13 +24,19 @@ public class Sellables {
 			put(RecipeType.CAMPFIRE_COOKING, 1.1);
 			put(RecipeType.SMELTING, 1.1);
 			put(ModRecipeTypes.COOKING.get(), 1.5);
-			put(ModRecipeTypes.CUTTING.get(), 1.5);
+			put(ModRecipeTypes.CUTTING.get(), 1.0);
 		}
 	};
 
 	public static final Map<Item, Sellable> FRUITS = new HashMap<>();
 
-	public static final Map<Item, Sellable> DISHES = new HashMap<>();
+	public static final Map<Item, Sellable> BUFFET = new HashMap<>();
+
+	public static final Map<Item, Sellable> CAFETERIA = new HashMap<>();
+
+	public static final Map<Item, Sellable> CONFECTIONERY = new HashMap<>();
+
+	public static final Map<Item, Sellable> RESTAURANT = new HashMap<>();
 
 	static {
 		register(
@@ -41,18 +47,32 @@ public class Sellables {
 				Items.BEETROOT,
 				Items.PUMPKIN,
 				Items.MELON,
-
-				// Farmer's Delight
 				ModItems.CABBAGE.get(),
 				ModItems.TOMATO.get(),
 				ModItems.ONION.get(),
-				ModItems.RICE.get()
-		);
-	}
+				ModItems.RICE.get(),
 
-	static {
+				Items.RED_MUSHROOM,
+				Items.BROWN_MUSHROOM,
+				Items.KELP,
+				Items.APPLE,
+				Items.SUGAR,
+				Items.EGG,
+				Items.COCOA_BEANS,
+				ModItems.MILK_BOTTLE.get(),
+
+				Items.CHICKEN,
+				Items.BEEF,
+				Items.PORKCHOP,
+				Items.RABBIT,
+				Items.MUTTON,
+				Items.TROPICAL_FISH,
+				Items.COD,
+				Items.SALMON
+		);
+
 		register(
-				DISHES,
+				BUFFET,
 				Items.BEETROOT_SOUP,
 				Items.MUSHROOM_STEW,
 				Items.RABBIT_STEW,
@@ -69,6 +89,66 @@ public class Sellables {
 				ModItems.BAKED_COD_STEW.get(),
 				ModItems.NOODLE_SOUP.get()
 		);
+
+		register(
+				CAFETERIA,
+
+				// Farmer's Delight
+				ModItems.MIXED_SALAD.get(),
+				ModItems.BARBECUE_STICK.get(),
+				ModItems.EGG_SANDWICH.get(),
+				ModItems.CHICKEN_SANDWICH.get(),
+				ModItems.HAMBURGER.get(),
+				ModItems.BACON_SANDWICH.get(),
+				ModItems.MUTTON_WRAP.get(),
+				ModItems.DUMPLINGS.get(),
+				ModItems.STUFFED_POTATO.get(),
+				ModItems.CABBAGE_ROLLS.get(),
+				ModItems.SALMON_ROLL.get(),
+				ModItems.COD_ROLL.get(),
+				ModItems.KELP_ROLL.get(),
+				ModItems.APPLE_CIDER.get()
+		);
+
+		register(
+				CONFECTIONERY,
+				Items.COOKIE,
+				Items.CAKE,
+
+				// Farmer's Delight
+				ModItems.APPLE_PIE.get(),
+				ModItems.SWEET_BERRY_CHEESECAKE.get(),
+				ModItems.CHOCOLATE_PIE.get(),
+				ModItems.SWEET_BERRY_COOKIE.get(),
+				ModItems.HONEY_COOKIE.get(),
+				ModItems.MELON_POPSICLE.get(),
+				ModItems.FRUIT_SALAD.get(),
+				ModItems.GLOW_BERRY_CUSTARD.get()
+		);
+
+		register(
+				RESTAURANT,
+
+				// Farmer's Delight
+				ModItems.BACON_AND_EGGS.get(),
+				ModItems.PASTA_WITH_MEATBALLS.get(),
+				ModItems.PASTA_WITH_MUTTON_CHOP.get(),
+				ModItems.MUSHROOM_RICE.get(),
+				ModItems.ROASTED_MUTTON_CHOPS.get(),
+				ModItems.VEGETABLE_NOODLES.get(),
+				ModItems.STEAK_AND_POTATOES.get(),
+				ModItems.RATATOUILLE.get(),
+				ModItems.SQUID_INK_PASTA.get(),
+				ModItems.GRILLED_SALMON.get(),
+				ModItems.MELON_JUICE.get()
+		);
+
+		// Блочная еда, она не стакается. мб кусочками?
+//				ModItems.ROAST_CHICKEN_BLOCK.get(),
+//				ModItems.STUFFED_PUMPKIN_BLOCK.get(),
+//				ModItems.HONEY_GLAZED_HAM_BLOCK.get(),
+//				ModItems.SHEPHERDS_PIE_BLOCK.get(),
+//				ModItems.RICE_ROLL_MEDLEY_BLOCK.get(),
 	}
 
 	private static void register(Map<Item, Sellable> registry, Item... items) {
