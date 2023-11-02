@@ -34,69 +34,69 @@ public class Plants {
 	static {
 		registerCropPlant(
 				Blocks.WHEAT,
-				secondsToGrowSpeed(10),
+				minutesToGrowSpeed(11.5f),
 				new PlantDropTable(Items.WHEAT_SEEDS, 1.1f, Items.WHEAT, 1.5f)
 		);
 		registerCropPlant(
 				Blocks.CARROTS,
-				secondsToGrowSpeed(20),
+				minutesToGrowSpeed(18),
 				new PlantDropTable(Items.CARROT, 1.5f)
 		);
 		registerCropPlant(
 				Blocks.POTATOES,
-				secondsToGrowSpeed(20),
+				minutesToGrowSpeed(20),
 				new PlantDropTable(Items.POTATO, 1.5f, Items.POISONOUS_POTATO, 0.02f)
 		);
 		registerCropPlant(
 				Blocks.BEETROOTS,
-				secondsToGrowSpeed(30),
+				minutesToGrowSpeed(19f),
 				new PlantDropTable(Items.BEETROOT_SEEDS, 1.2f, Items.BEETROOT, 1.5f)
 		);
 
 		registerStemPlant(
 				Blocks.PUMPKIN_STEM,
-				secondsToGrowSpeed(30),
-				secondsToGrowSpeed(3),
+				minutesToGrowSpeed(42),
+				minutesToGrowSpeed(21),
 				new PlantDropTable(Items.PUMPKIN_SEEDS, 1.2f)
 		);
 		registerStemPlant(
 				Blocks.MELON_STEM,
-				secondsToGrowSpeed(30),
-				secondsToGrowSpeed(3),
+				minutesToGrowSpeed(25),
+				minutesToGrowSpeed(7),
 				new PlantDropTable(Items.MELON_SEEDS, 1.2f)
 		);
 
 		// Farmer's Delight
 		registerCropPlant(
 				ModBlocks.CABBAGE_CROP.get(),
-				secondsToGrowSpeed(5),
+				minutesToGrowSpeed(30),
 				new PlantDropTable(ModItems.CABBAGE_SEEDS.get(), 1.2f, ModItems.CABBAGE.get(), 1.5f)
 		);
 		registerBuddingBushPlant(
 				ModBlocks.BUDDING_TOMATO_CROP.get(),
 				ModBlocks.TOMATO_CROP.get(),
-				secondsToGrowSpeed(5),
+				minutesToGrowSpeed(12),
 				new PlantDropTable(ModItems.TOMATO_SEEDS.get(), 1f)
 		);
 		registerCropPlant(
 				ModBlocks.TOMATO_CROP.get(),
-				secondsToGrowSpeed(5),
+				minutesToGrowSpeed(10.5f),
 				new PlantDropTable(ModItems.TOMATO_SEEDS.get(), 1.5f, ModItems.TOMATO.get(), 1.5f)
 		);
 		registerCropPlant(
 				ModBlocks.ONION_CROP.get(),
-				secondsToGrowSpeed(5),
+				minutesToGrowSpeed(17),
 				new PlantDropTable(ModItems.ONION.get(), 1.5f)
 		);
 		registerRicePlant(
 				ModBlocks.RICE_CROP.get(),
 				ModBlocks.RICE_CROP_PANICLES.get(),
-				secondsToGrowSpeed(5),
+				minutesToGrowSpeed(27),
 				new PlantDropTable(ModItems.RICE.get(), 1f)
 		);
 		registerCropPlant(
 				ModBlocks.RICE_CROP_PANICLES.get(),
-				secondsToGrowSpeed(5),
+				minutesToGrowSpeed(18),
 				new PlantDropTable(ModItems.RICE.get(), 1.5f)
 		);
 	}
