@@ -19,7 +19,6 @@ import java.util.Random;
 import it.unimi.dsi.fastutil.ints.Int2FloatMap;
 import it.unimi.dsi.fastutil.ints.Int2FloatOpenHashMap;
 import ru.qoqqi.farmrancher.FarmRancher;
-import ru.qoqqi.farmrancher.common.level.data.PlantGrowSavedData;
 
 public class PlantTicker {
 

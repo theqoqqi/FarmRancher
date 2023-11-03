@@ -1,4 +1,4 @@
-package ru.qoqqi.farmrancher.common.level.data;
+package ru.qoqqi.farmrancher.common.plants;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
