@@ -19,9 +19,12 @@ public class MerchantOffersGenerator {
 
 	private final MerchantOffers offers;
 
+	private final Economics economics;
+
 	public MerchantOffersGenerator(ServerLevel level) {
 		this.level = level;
 		this.offers = new MerchantOffers();
+		this.economics = Economics.getInstance(level);
 	}
 
 	private void addSellOffers(Sellable tradable) {
@@ -30,7 +33,7 @@ public class MerchantOffersGenerator {
 			return;
 		}
 
-		var stackPrice = tradable.getInitialStackPrice(level);
+		var stackPrice = economics.getStackPrice(tradable);
 
 		if (!stackPrice.isValid()) {
 			return;
