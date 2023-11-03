@@ -8,6 +8,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.trading.Merchant;
 import net.minecraft.world.item.trading.MerchantOffer;
@@ -54,7 +55,9 @@ public abstract class BaseMerchantBlockEntity extends BlockEntity implements Mer
 
 	@SubscribeEvent
 	public void onPriceUpdated(EconomicsEvent.PriceUpdated event) {
-		onPricesUpdated();
+		if (hasOfferWith(event.getSellable().getItem())) {
+			onPricesUpdated();
+		}
 	}
 
 	@SubscribeEvent
@@ -69,6 +72,10 @@ public abstract class BaseMerchantBlockEntity extends BlockEntity implements Mer
 
 		updateOffers();
 		resendOffersToTradingPlayer();
+	}
+
+	private boolean hasOfferWith(Item item) {
+		return offers.stream().anyMatch(offer -> offer.getBaseCostA().getItem() == item);
 	}
 
 	@Override
