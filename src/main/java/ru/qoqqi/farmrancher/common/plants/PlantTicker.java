@@ -26,6 +26,8 @@ public class PlantTicker {
 
 	private static final float MAX_RANDOM_DEVIATION = 0.05f;
 
+	private static final float WILD_GROW_CHANCE = 0.01f;
+
 	private static final Int2FloatMap deviations = new Int2FloatOpenHashMap();
 
 	public static void tick(ServerLevel level, BlockPos blockPos, BlockState blockState, float growthSpeed) {
@@ -113,7 +115,14 @@ public class PlantTicker {
 
 		@SubscribeEvent
 		public static void onCropGrow(final BlockEvent.CropGrowEvent.Pre event) {
-			if (Plants.isPlant(event.getState().getBlock())) {
+			if (!Plants.isPlant(event.getState().getBlock())) {
+				return;
+			}
+
+			var randomValue = event.getLevel().getRandom().nextFloat();
+			var shouldGrow = randomValue < WILD_GROW_CHANCE;
+
+			if (!shouldGrow) {
 				event.setResult(Event.Result.DENY);
 			}
 		}
