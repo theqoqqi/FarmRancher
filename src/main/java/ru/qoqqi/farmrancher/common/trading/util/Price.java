@@ -2,6 +2,7 @@ package ru.qoqqi.farmrancher.common.trading.util;
 
 import net.minecraft.world.item.ItemStack;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import ru.qoqqi.farmrancher.common.items.CoinItem;
@@ -11,13 +12,7 @@ public class Price {
 	private final int value;
 
 	public Price(CoinItem.Tier coinTier, int count) {
-		this.value = coinTier.value * count;
-	}
-
-	public Price(int copper, int silver, int golden) {
-		this.value = copper
-				+ silver * CoinItem.Tier.SILVER.value
-				+ golden * CoinItem.Tier.GOLDEN.value;
+		this(coinTier.value * count);
 	}
 
 	public Price(int value) {
@@ -26,10 +21,6 @@ public class Price {
 
 	public int getValue() {
 		return value;
-	}
-
-	public boolean isValid() {
-		return value > 0;
 	}
 
 	public int getCountOf(CoinItem.Tier coinTier) {
