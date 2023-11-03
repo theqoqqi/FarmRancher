@@ -13,12 +13,14 @@ import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.MinecraftForge;
 
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
 import ru.qoqqi.farmrancher.client.menus.FixedMerchantMenu;
+import ru.qoqqi.farmrancher.common.events.TradeWithBlockEntityEvent;
 
 public abstract class BaseMerchantBlockEntity extends BlockEntity implements Merchant {
 
@@ -65,7 +67,7 @@ public abstract class BaseMerchantBlockEntity extends BlockEntity implements Mer
 
 	@Override
 	public void notifyTrade(@NotNull MerchantOffer offer) {
-		// Empty
+		MinecraftForge.EVENT_BUS.post(new TradeWithBlockEntityEvent(tradingPlayer, offer, this));
 	}
 
 	@Override
