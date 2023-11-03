@@ -46,11 +46,14 @@ public class MerchantOffersGenerator {
 		var stackPriceValue = economics.getStackPrice(tradable);
 		var item = tradable.getItem();
 
-		addLargeOffer(item, stackPriceValue);
-		addSmallOffer(item, stackPriceValue);
+		var largeOffer = addLargeOffer(item, stackPriceValue);
+
+		if (largeOffer.getResult().getCount() > 1) {
+			addSmallOffer(item, stackPriceValue);
+		}
 	}
 
-	private void addLargeOffer(Item item, double stackPriceValue) {
+	private MerchantOffer addLargeOffer(Item item, double stackPriceValue) {
 		//noinspection deprecation
 		var maxStackSize = item.getMaxStackSize();
 		var stackPrice = new Price(Mth.floor(stackPriceValue));
@@ -58,7 +61,7 @@ public class MerchantOffersGenerator {
 		var priceRatio = offerPrice.getValue() / stackPriceValue;
 		var stackSize = Mth.ceil(maxStackSize * priceRatio);
 
-		addOffer(item, stackSize, offerPrice);
+		return addOffer(item, stackSize, offerPrice);
 	}
 
 	private void addSmallOffer(Item item, double stackPriceValue) {
@@ -72,14 +75,18 @@ public class MerchantOffersGenerator {
 		addOffer(item, stackSize, offerPrice);
 	}
 
-	private void addOffer(Item item, int count, Price price) {
-		offers.add(new MerchantOffer(
+	private MerchantOffer addOffer(Item item, int count, Price price) {
+		var offer = new MerchantOffer(
 				new ItemStack(item, count),
 				price.asSingleStack(),
 				INFINITE_MAX_USES,
 				getExperienceForPrice(price.getValue()),
 				1f
-		));
+		);
+
+		offers.add(offer);
+
+		return offer;
 	}
 
 	private int getExperienceForPrice(int price) {
