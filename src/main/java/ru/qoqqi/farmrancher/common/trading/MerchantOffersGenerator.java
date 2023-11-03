@@ -15,16 +15,16 @@ public class MerchantOffersGenerator {
 
 	private static final int COINS_FOR_EXP = 8;
 
-	protected ServerLevel level;
+	private final ServerLevel level;
 
-	protected MerchantOffers offers;
+	private final MerchantOffers offers;
 
 	public MerchantOffersGenerator(ServerLevel level) {
 		this.level = level;
 		this.offers = new MerchantOffers();
 	}
 
-	protected void addSellOffers(Sellable tradable) {
+	private void addSellOffers(Sellable tradable) {
 
 		if (!tradable.hasValidPrice(level)) {
 			return;
@@ -73,11 +73,11 @@ public class MerchantOffersGenerator {
 		));
 	}
 
-	protected int getExperienceForPrice(int price) {
+	private int getExperienceForPrice(int price) {
 		return roundExperience((float) price / COINS_FOR_EXP);
 	}
 
-	protected static int roundExperience(float experience) {
+	private static int roundExperience(float experience) {
 		var rounded = Mth.floor(experience);
 		var fractional = Mth.frac(experience);
 
