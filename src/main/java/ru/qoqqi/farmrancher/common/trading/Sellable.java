@@ -20,18 +20,18 @@ public class Sellable {
 		return item;
 	}
 
-	public PriceRange getStackPrice(ServerLevel level) {
+	public PriceRange getPrice(ServerLevel level) {
 		return priceFactory.apply(level);
 	}
 
 	public boolean hasValidPrice(ServerLevel level) {
-		return getStackPrice(level).isValid();
+		return getPrice(level).isValid();
 	}
 
 	public Price getInitialStackPrice(ServerLevel level) {
 		//noinspection deprecation
 		var maxStackSize = item.getMaxStackSize();
-		var price = getStackPrice(level).getAverage();
+		var price = getPrice(level).getAverage();
 
 		return new Price((int) Math.round(price * maxStackSize));
 	}
