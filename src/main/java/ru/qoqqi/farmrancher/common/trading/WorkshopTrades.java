@@ -6,7 +6,9 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
 
+import ru.qoqqi.farmrancher.common.items.CoinItem;
 import ru.qoqqi.farmrancher.common.items.ModItems;
+import ru.qoqqi.farmrancher.common.trading.util.Price;
 
 class WorkshopTrades {
 
@@ -24,18 +26,55 @@ class WorkshopTrades {
 	}
 
 	public void addOffers() {
-		addOffer(ModItems.SILVER_COIN.get(), 1, ModItems.ANCIENT_SEED.get(), 1);
-		addOffer(ModItems.COPPER_COIN.get(), 1, ModItems.GOLDEN_TIER_BLUEPRINT.get(), 1);
-		addOffer(ModItems.COPPER_COIN.get(), 8, ModItems.STONE_TIER_BLUEPRINT.get(), 1);
-		addOffer(ModItems.SILVER_COIN.get(), 1, ModItems.IRON_TIER_BLUEPRINT.get(), 1);
-		addOffer(ModItems.SILVER_COIN.get(), 8, ModItems.DIAMOND_TIER_BLUEPRINT.get(), 1);
-		addOffer(ModItems.GOLDEN_COIN.get(), 1, Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, 1);
+		addAncientSeedOffer();
+		addTierBlueprintOffers();
 	}
 
-	public void addOffer(Item from, int fromCount, Item to, int toCount) {
+	public void addAncientSeedOffer() {
+		var price = getAncientSeedPrice();
+		var stacks = price.asTwoStacks();
+
 		offers.add(new MerchantOffer(
-				new ItemStack(from, fromCount),
-				new ItemStack(to, toCount),
+				stacks.get(0),
+				stacks.get(1),
+				new ItemStack(ModItems.ANCIENT_SEED.get()),
+				INFINITE_MAX_USES,
+				0,
+				1f
+		));
+	}
+
+	private Price getAncientSeedPrice() {
+		return new Price(CoinItem.Tier.SILVER, 1);
+	}
+
+	private void addTierBlueprintOffers() {
+		addOffer(
+				ModItems.GOLDEN_TIER_BLUEPRINT.get(),
+				new Price(CoinItem.Tier.COPPER, 1)
+		);
+		addOffer(
+				ModItems.STONE_TIER_BLUEPRINT.get(),
+				new Price(CoinItem.Tier.COPPER, 8)
+		);
+		addOffer(
+				ModItems.IRON_TIER_BLUEPRINT.get(),
+				new Price(CoinItem.Tier.SILVER, 1)
+		);
+		addOffer(
+				ModItems.DIAMOND_TIER_BLUEPRINT.get(),
+				new Price(CoinItem.Tier.SILVER, 8)
+		);
+		addOffer(
+				Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE,
+				new Price(CoinItem.Tier.GOLDEN, 1)
+		);
+	}
+
+	public void addOffer(Item tierBlueprintItem, Price price) {
+		offers.add(new MerchantOffer(
+				price.asSingleStack(),
+				new ItemStack(tierBlueprintItem),
 				INFINITE_MAX_USES,
 				0,
 				1f
