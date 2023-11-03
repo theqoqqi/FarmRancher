@@ -29,6 +29,6 @@ public class Trades {
 	};
 
 	public static final OfferListFactory WORKSHOP = blockEntity -> {
-		return WorkshopTrades.createOffers();
+		return WorkshopTrades.createOffers(blockEntity);
 	};
 }

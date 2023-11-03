@@ -1,13 +1,16 @@
 package ru.qoqqi.farmrancher.common.trading;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
 
+import ru.qoqqi.farmrancher.common.blocks.entities.TradingBlockEntity;
 import ru.qoqqi.farmrancher.common.items.CoinItem;
 import ru.qoqqi.farmrancher.common.items.ModItems;
+import ru.qoqqi.farmrancher.common.trading.economics.Economics;
 import ru.qoqqi.farmrancher.common.trading.util.Price;
 
 class WorkshopTrades {
@@ -18,8 +21,11 @@ class WorkshopTrades {
 
 	private MerchantOffers offers;
 
-	public static MerchantOffers createOffers() {
+	private ServerLevel level;
+
+	public static MerchantOffers createOffers(TradingBlockEntity blockEntity) {
 		INSTANCE.offers = new MerchantOffers();
+		INSTANCE.level = (ServerLevel) blockEntity.getLevel();
 		INSTANCE.addOffers();
 
 		return INSTANCE.offers;
@@ -45,7 +51,12 @@ class WorkshopTrades {
 	}
 
 	private Price getAncientSeedPrice() {
-		return new Price(CoinItem.Tier.SILVER, 1);
+		var economics = Economics.getInstance(level);
+		var boughtAncientSeeds = economics.getBoughtAncientSeeds();
+		var price = CoinItem.Tier.getValueOf(CoinItem.Tier.SILVER, boughtAncientSeeds + 1);
+		var maxPrice = CoinItem.Tier.getValueOf(0, 63, 64);
+
+		return new Price(Math.min(price, maxPrice));
 	}
 
 	private void addTierBlueprintOffers() {
