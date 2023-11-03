@@ -20,7 +20,7 @@ import javax.annotation.Nonnull;
 import it.unimi.dsi.fastutil.objects.Object2DoubleMap;
 import it.unimi.dsi.fastutil.objects.Object2DoubleOpenHashMap;
 
-public class ItemPricesSavedData extends SavedData {
+public class EconomicsSavedData extends SavedData {
 
 	private static final Logger LOGGER = LogUtils.getLogger();
 
@@ -30,13 +30,13 @@ public class ItemPricesSavedData extends SavedData {
 
 	private final ServerLevel level;
 
-	public ItemPricesSavedData(ServerLevel level) {
+	public EconomicsSavedData(ServerLevel level) {
 		super();
 
 		this.level = level;
 	}
 
-	public ItemPricesSavedData(ServerLevel level, @Nonnull CompoundTag nbt) {
+	public EconomicsSavedData(ServerLevel level, @Nonnull CompoundTag nbt) {
 		super();
 
 		this.level = level;
@@ -45,7 +45,6 @@ public class ItemPricesSavedData extends SavedData {
 	}
 
 	public void read(@Nonnull CompoundTag nbt) {
-		LOGGER.info("READ PRICES");
 		readPrices(nbt);
 	}
 
@@ -119,10 +118,10 @@ public class ItemPricesSavedData extends SavedData {
 		setDirty();
 	}
 
-	public static ItemPricesSavedData getInstance(ServerLevel level) {
+	public static EconomicsSavedData getInstance(ServerLevel level) {
 		return level.getDataStorage().computeIfAbsent(
-				nbt -> new ItemPricesSavedData(level, nbt),
-				() -> new ItemPricesSavedData(level),
+				nbt -> new EconomicsSavedData(level, nbt),
+				() -> new EconomicsSavedData(level),
 				NAME
 		);
 	}

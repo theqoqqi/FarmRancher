@@ -40,11 +40,11 @@ public class Economics {
 
 	private final ServerLevel level;
 
-	private final ItemPricesSavedData data;
+	private final EconomicsSavedData data;
 
 	private Economics(ServerLevel level) {
 		this.level = level;
-		this.data = ItemPricesSavedData.getInstance(level);
+		this.data = EconomicsSavedData.getInstance(level);
 	}
 
 	public boolean isInDemand(Sellable sellable) {
