@@ -11,10 +11,11 @@ import javax.annotation.Nonnull;
 
 import it.unimi.dsi.fastutil.objects.Object2FloatMap;
 import it.unimi.dsi.fastutil.objects.Object2FloatOpenHashMap;
+import ru.qoqqi.farmrancher.FarmRancher;
 
 public class PlantGrowSavedData extends SavedData {
 
-	public static final String NAME = "PlantGrow";
+	public static final String NAME = FarmRancher.MOD_ID + "_PlantGrow";
 
 	private final Object2FloatMap<BlockPos> progresses = new Object2FloatOpenHashMap<>();
 

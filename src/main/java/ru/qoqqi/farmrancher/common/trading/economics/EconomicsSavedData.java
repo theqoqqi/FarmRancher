@@ -19,12 +19,13 @@ import javax.annotation.Nonnull;
 
 import it.unimi.dsi.fastutil.objects.Object2DoubleMap;
 import it.unimi.dsi.fastutil.objects.Object2DoubleOpenHashMap;
+import ru.qoqqi.farmrancher.FarmRancher;
 
 public class EconomicsSavedData extends SavedData {
 
 	private static final Logger LOGGER = LogUtils.getLogger();
 
-	public static final String NAME = "ItemPrices";
+	public static final String NAME = FarmRancher.MOD_ID + "_Economics";
 
 	private final Object2DoubleMap<Item> prices = new Object2DoubleOpenHashMap<>();
 
