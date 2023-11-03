@@ -40,42 +40,6 @@ public abstract class BaseMerchantBlockEntity extends BlockEntity implements Mer
 
 	public BaseMerchantBlockEntity(BlockEntityType<?> pType, BlockPos pPos, BlockState pBlockState) {
 		super(pType, pPos, pBlockState);
-
-		MinecraftForge.EVENT_BUS.register(this);
-	}
-
-	@SubscribeEvent
-	public void onBreak(BlockEvent.BreakEvent event) {
-		if (!getBlockPos().equals(event.getPos())) {
-			return;
-		}
-
-		MinecraftForge.EVENT_BUS.unregister(this);
-	}
-
-	@SubscribeEvent
-	public void onPriceUpdated(EconomicsEvent.PriceUpdated event) {
-		if (hasOfferWith(event.getSellable().getItem())) {
-			onPricesUpdated();
-		}
-	}
-
-	@SubscribeEvent
-	public void onPricesUpdated(EconomicsEvent.PricesUpdated event) {
-		onPricesUpdated();
-	}
-
-	private void onPricesUpdated() {
-		if (isClientSide()) {
-			return;
-		}
-
-		updateOffers();
-		resendOffersToTradingPlayer();
-	}
-
-	private boolean hasOfferWith(Item item) {
-		return offers.stream().anyMatch(offer -> offer.getBaseCostA().getItem() == item);
 	}
 
 	@Override
@@ -172,7 +136,7 @@ public abstract class BaseMerchantBlockEntity extends BlockEntity implements Mer
 		return level == null || level.isClientSide;
 	}
 
-	private void resendOffersToTradingPlayer() {
+	protected void resendOffersToTradingPlayer() {
 		var offers = getOffers();
 		var player = getTradingPlayer();
 
