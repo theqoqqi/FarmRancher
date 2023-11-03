@@ -67,5 +67,15 @@ public class CoinItem extends Item {
 					? values[ordinal]
 					: null;
 		}
+
+		public static int getValueOf(Tier tier, int count) {
+			return tier.value * count;
+		}
+
+		public static int getValueOf(int copper, int silver, int golden) {
+			return copper * COPPER.value
+					+ silver * SILVER.value
+					+ golden * GOLDEN.value;
+		}
 	}
 }

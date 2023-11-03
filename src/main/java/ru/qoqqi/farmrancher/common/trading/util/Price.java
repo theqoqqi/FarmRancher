@@ -3,6 +3,7 @@ package ru.qoqqi.farmrancher.common.trading.util;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import ru.qoqqi.farmrancher.common.items.CoinItem;
@@ -36,6 +37,16 @@ public class Price {
 
 	public ItemStack asSingleStack() {
 		return getStacks(1).findFirst().orElse(ItemStack.EMPTY);
+	}
+
+	public List<ItemStack> asTwoStacks() {
+		var stacks = getStacks(2).collect(Collectors.toList());
+
+		while (stacks.size() < 2) {
+			stacks.add(ItemStack.EMPTY);
+		}
+
+		return stacks;
 	}
 
 	@SuppressWarnings("SameParameterValue")
