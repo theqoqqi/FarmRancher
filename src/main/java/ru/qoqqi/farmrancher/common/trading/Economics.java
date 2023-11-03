@@ -49,7 +49,7 @@ public class Economics {
 			var priceRange = sellable.getPrice(level);
 			var average = priceRange.getAverage();
 
-			data.setPrice(sellable.item, (float) average);
+			data.setPrice(sellable.item, average);
 			MinecraftForge.EVENT_BUS.post(new EconomicsEvent.PriceAdded(level, sellable, average));
 		}
 
@@ -62,7 +62,7 @@ public class Economics {
 		var currentPrice = data.getPrice(sellable.item);
 		var reducedPrice = priceRange.clamp(currentPrice * reductionFactor);
 
-		data.setPrice(sellable.item, (float) reducedPrice);
+		data.setPrice(sellable.item, reducedPrice);
 		MinecraftForge.EVENT_BUS.post(new EconomicsEvent.PriceUpdated(level, sellable, reducedPrice));
 	}
 

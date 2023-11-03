@@ -114,7 +114,7 @@ public class ItemPricesSavedData extends SavedData {
 		setDirty();
 	}
 
-	public void setPrice(Item item, float price) {
+	public void setPrice(Item item, double price) {
 		prices.put(item, price);
 		setDirty();
 	}
