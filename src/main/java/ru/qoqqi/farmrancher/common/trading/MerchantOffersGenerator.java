@@ -1,5 +1,7 @@
 package ru.qoqqi.farmrancher.common.trading;
 
+import com.mojang.logging.LogUtils;
+
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.Item;
@@ -7,9 +9,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
 
+import org.slf4j.Logger;
+
 import ru.qoqqi.farmrancher.common.blocks.entities.TradingBlockEntity;
 
 public class MerchantOffersGenerator {
+
+	private static final Logger LOGGER = LogUtils.getLogger();
 
 	private static final int INFINITE_MAX_USES = 999;
 
@@ -33,32 +39,32 @@ public class MerchantOffersGenerator {
 			return;
 		}
 
-		var stackPrice = economics.getStackPrice(tradable);
-
-		if (!stackPrice.isValid()) {
+		if (!economics.isInDemand(tradable)) {
 			return;
 		}
 
+		var stackPriceValue = economics.getStackPrice(tradable);
 		var item = tradable.getItem();
 
-		addLargeOffer(item, stackPrice);
-		addSmallOffer(item, stackPrice);
+		addLargeOffer(item, stackPriceValue);
+		addSmallOffer(item, stackPriceValue);
 	}
 
-	private void addLargeOffer(Item item, Price stackPrice) {
+	private void addLargeOffer(Item item, double stackPriceValue) {
 		//noinspection deprecation
 		var maxStackSize = item.getMaxStackSize();
+		var stackPrice = new Price(Mth.floor(stackPriceValue));
 		var offerPrice = stackPrice.floor();
-		var priceRatio = (double) offerPrice.getValue() / stackPrice.getValue();
+		var priceRatio = offerPrice.getValue() / stackPriceValue;
 		var stackSize = Mth.ceil(maxStackSize * priceRatio);
 
 		addOffer(item, stackSize, offerPrice);
 	}
 
-	private void addSmallOffer(Item item, Price stackPrice) {
+	private void addSmallOffer(Item item, double stackPriceValue) {
 		//noinspection deprecation
 		var maxStackSize = item.getMaxStackSize();
-		var singleItemPrice = (double) stackPrice.getValue() / maxStackSize;
+		var singleItemPrice = stackPriceValue / maxStackSize;
 		var decimalStackSize = singleItemPrice >= 1 ? 1 : 1 / singleItemPrice;
 		var stackSize = Mth.ceil(decimalStackSize);
 		var offerPrice = new Price(Mth.floor(singleItemPrice * decimalStackSize + 0.001));

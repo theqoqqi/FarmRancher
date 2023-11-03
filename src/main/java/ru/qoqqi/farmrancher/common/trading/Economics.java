@@ -28,12 +28,18 @@ public class Economics {
 		this.data = ItemPricesSavedData.getInstance(level);
 	}
 
-	public Price getStackPrice(Sellable sellable) {
+	public boolean isInDemand(Sellable sellable) {
+		var stackPrice = getStackPrice(sellable);
+
+		return stackPrice >= 1 && Double.isFinite(stackPrice);
+	}
+
+	public double getStackPrice(Sellable sellable) {
 		//noinspection deprecation
 		var maxStackSize = sellable.item.getMaxStackSize();
 		var price = getPrice(sellable);
 
-		return new Price((int) Math.round(price * maxStackSize));
+		return price * maxStackSize;
 	}
 
 	private double getPrice(Sellable sellable) {
