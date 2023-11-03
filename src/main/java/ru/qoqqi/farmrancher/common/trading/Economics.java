@@ -3,6 +3,7 @@ package ru.qoqqi.farmrancher.common.trading;
 import com.mojang.logging.LogUtils;
 
 import net.minecraft.server.level.ServerLevel;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -10,6 +11,7 @@ import org.slf4j.Logger;
 
 import ru.qoqqi.farmrancher.FarmRancher;
 import ru.qoqqi.farmrancher.common.blocks.entities.TradingBlockEntity;
+import ru.qoqqi.farmrancher.common.events.EconomicsEvent;
 import ru.qoqqi.farmrancher.common.events.TradeWithBlockEntityEvent;
 
 public class Economics {
@@ -48,6 +50,7 @@ public class Economics {
 			var average = priceRange.getAverage();
 
 			data.setPrice(sellable.item, (float) average);
+			MinecraftForge.EVENT_BUS.post(new EconomicsEvent.PriceAdded(level, sellable, average));
 		}
 
 		return data.getPrice(sellable.item);
@@ -60,6 +63,7 @@ public class Economics {
 		var reducedPrice = priceRange.clamp(currentPrice * reductionFactor);
 
 		data.setPrice(sellable.item, (float) reducedPrice);
+		MinecraftForge.EVENT_BUS.post(new EconomicsEvent.PriceUpdated(level, sellable, reducedPrice));
 	}
 
 	private double getReductionFactor(int itemCount) {
