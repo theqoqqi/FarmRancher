@@ -1,5 +1,7 @@
 package ru.qoqqi.farmrancher.common.blocks.entities;
 
+import com.mojang.logging.LogUtils;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
@@ -16,6 +18,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.MinecraftForge;
 
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
 
 import javax.annotation.Nullable;
 
@@ -23,6 +26,8 @@ import ru.qoqqi.farmrancher.client.menus.FixedMerchantMenu;
 import ru.qoqqi.farmrancher.common.events.TradeWithBlockEntityEvent;
 
 public abstract class BaseMerchantBlockEntity extends BlockEntity implements Merchant {
+
+	private static final Logger LOGGER = LogUtils.getLogger();
 
 	protected MerchantOffers offers;
 
@@ -68,6 +73,8 @@ public abstract class BaseMerchantBlockEntity extends BlockEntity implements Mer
 	@Override
 	public void notifyTrade(@NotNull MerchantOffer offer) {
 		MinecraftForge.EVENT_BUS.post(new TradeWithBlockEntityEvent(tradingPlayer, offer, this));
+		updateOffers();
+		resendOffersToTradingPlayer();
 	}
 
 	@Override
@@ -127,5 +134,25 @@ public abstract class BaseMerchantBlockEntity extends BlockEntity implements Mer
 	@Override
 	public boolean isClientSide() {
 		return level == null || level.isClientSide;
+	}
+
+	private void resendOffersToTradingPlayer() {
+		var offers = getOffers();
+		var player = getTradingPlayer();
+
+		if (player == null || offers.isEmpty()) {
+			return;
+		}
+
+		var level = 0;
+
+		player.sendMerchantOffers(
+				player.containerMenu.containerId,
+				offers,
+				level,
+				getVillagerXp(),
+				showProgressBar(),
+				canRestock()
+		);
 	}
 }

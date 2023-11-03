@@ -51,6 +51,6 @@ public class TradingBlockEntity extends BaseMerchantBlockEntity implements Merch
 
 	@Override
 	protected void updateOffers() {
-
+		offers = createOffers();
 	}
 }
