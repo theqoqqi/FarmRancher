@@ -16,6 +16,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.level.BlockEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -23,6 +25,7 @@ import org.slf4j.Logger;
 import javax.annotation.Nullable;
 
 import ru.qoqqi.farmrancher.client.menus.FixedMerchantMenu;
+import ru.qoqqi.farmrancher.common.events.EconomicsEvent;
 import ru.qoqqi.farmrancher.common.events.TradeWithBlockEntityEvent;
 
 public abstract class BaseMerchantBlockEntity extends BlockEntity implements Merchant {
@@ -36,6 +39,27 @@ public abstract class BaseMerchantBlockEntity extends BlockEntity implements Mer
 
 	public BaseMerchantBlockEntity(BlockEntityType<?> pType, BlockPos pPos, BlockState pBlockState) {
 		super(pType, pPos, pBlockState);
+
+		MinecraftForge.EVENT_BUS.register(this);
+	}
+
+	@SubscribeEvent
+	public void onBreak(BlockEvent.BreakEvent event) {
+		if (!getBlockPos().equals(event.getPos())) {
+			return;
+		}
+
+		MinecraftForge.EVENT_BUS.unregister(this);
+	}
+
+	@SubscribeEvent
+	public void onPriceUpdated(EconomicsEvent.PriceUpdated event) {
+		if (isClientSide()) {
+			return;
+		}
+
+		updateOffers();
+		resendOffersToTradingPlayer();
 	}
 
 	@Override
@@ -56,8 +80,6 @@ public abstract class BaseMerchantBlockEntity extends BlockEntity implements Mer
 			offers = createOffers();
 		}
 
-		updateOffers();
-
 		return offers;
 	}
 
@@ -73,8 +95,6 @@ public abstract class BaseMerchantBlockEntity extends BlockEntity implements Mer
 	@Override
 	public void notifyTrade(@NotNull MerchantOffer offer) {
 		MinecraftForge.EVENT_BUS.post(new TradeWithBlockEntityEvent(tradingPlayer, offer, this));
-		updateOffers();
-		resendOffersToTradingPlayer();
 	}
 
 	@Override
