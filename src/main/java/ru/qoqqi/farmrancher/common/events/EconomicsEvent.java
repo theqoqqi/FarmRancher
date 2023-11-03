@@ -46,4 +46,11 @@ public class EconomicsEvent extends LevelEvent {
 			super(level, sellable, price);
 		}
 	}
+
+	public static class PricesUpdated extends EconomicsEvent {
+
+		public PricesUpdated(Level level) {
+			super(level);
+		}
+	}
 }

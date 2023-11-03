@@ -54,6 +54,15 @@ public abstract class BaseMerchantBlockEntity extends BlockEntity implements Mer
 
 	@SubscribeEvent
 	public void onPriceUpdated(EconomicsEvent.PriceUpdated event) {
+		onPricesUpdated();
+	}
+
+	@SubscribeEvent
+	public void onPricesUpdated(EconomicsEvent.PricesUpdated event) {
+		onPricesUpdated();
+	}
+
+	private void onPricesUpdated() {
 		if (isClientSide()) {
 			return;
 		}

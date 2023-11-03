@@ -24,6 +24,10 @@ public class PriceRange implements DoublePredicate {
 		return Mth.clamp(value, min, max);
 	}
 
+	public double lerp(double value) {
+		return Mth.lerp(value, min, max);
+	}
+
 	public boolean isValid() {
 		return min > 0 && max >= min;
 	}
