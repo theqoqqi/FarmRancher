@@ -5,6 +5,7 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.SharedConstants;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
+import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
@@ -17,6 +18,7 @@ import ru.qoqqi.farmrancher.FarmRancher;
 import ru.qoqqi.farmrancher.common.blocks.entities.TradingBlockEntity;
 import ru.qoqqi.farmrancher.common.events.EconomicsEvent;
 import ru.qoqqi.farmrancher.common.events.TradeWithBlockEntityEvent;
+import ru.qoqqi.farmrancher.common.items.ModItems;
 import ru.qoqqi.farmrancher.common.trading.Sellables;
 import ru.qoqqi.farmrancher.common.trading.util.PriceRange;
 import ru.qoqqi.farmrancher.common.trading.util.Sellable;
@@ -133,6 +135,14 @@ public class Economics {
 		return Math.min(1, factor * PRICE_INCREASE_MULTIPLIER);
 	}
 
+	public int getBoughtAncientSeeds() {
+		return data.getBoughtAncientSeeds();
+	}
+
+	private void increaseBoughtAncientSeeds() {
+		data.setBoughtAncientSeeds(data.getBoughtAncientSeeds() + 1);
+	}
+
 	public static Economics getInstance(ServerLevel level) {
 		return new Economics(level);
 	}
@@ -156,6 +166,12 @@ public class Economics {
 
 			var economics = Economics.getInstance(serverLevel);
 			var offer = event.getMerchantOffer();
+
+			handleSellable(offer, economics);
+			handleAncientSeed(offer, economics);
+		}
+
+		private static void handleSellable(MerchantOffer offer, Economics economics) {
 			var soldStack = offer.getBaseCostA();
 			var item = soldStack.getItem();
 			var optionalSellable = Sellables.get(item);
@@ -163,6 +179,15 @@ public class Economics {
 			optionalSellable.ifPresent(sellable -> {
 				economics.reducePriceForSoldItem(sellable, soldStack.getCount());
 			});
+		}
+
+		private static void handleAncientSeed(MerchantOffer offer, Economics economics) {
+			var boughtStack = offer.getResult();
+			var item = boughtStack.getItem();
+
+			if (item == ModItems.ANCIENT_SEED.get()) {
+				economics.increaseBoughtAncientSeeds();
+			}
 		}
 
 		@SubscribeEvent

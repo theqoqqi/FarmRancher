@@ -29,6 +29,8 @@ public class EconomicsSavedData extends SavedData {
 
 	private final Object2DoubleMap<Item> prices = new Object2DoubleOpenHashMap<>();
 
+	private int boughtAncientSeeds = 0;
+
 	private final ServerLevel level;
 
 	public EconomicsSavedData(ServerLevel level) {
@@ -46,7 +48,14 @@ public class EconomicsSavedData extends SavedData {
 	}
 
 	public void read(@Nonnull CompoundTag nbt) {
+		readCommon(nbt);
 		readPrices(nbt);
+	}
+
+	private void readCommon(CompoundTag nbt) {
+		if (nbt.contains("BoughtAncientSeeds", Tag.TAG_INT)) {
+			boughtAncientSeeds = nbt.getInt("BoughtAncientSeeds");
+		}
 	}
 
 	private void readPrices(@Nonnull CompoundTag nbt) {
@@ -70,10 +79,14 @@ public class EconomicsSavedData extends SavedData {
 	@Nonnull
 	@Override
 	public CompoundTag save(@Nonnull CompoundTag nbt) {
-		LOGGER.info("SAVE PRICES");
+		writeCommon(nbt);
 		writePrices(nbt);
 
 		return nbt;
+	}
+
+	private void writeCommon(CompoundTag nbt) {
+		nbt.putInt("BoughtAncientSeeds", boughtAncientSeeds);
 	}
 
 	private void writePrices(@Nonnull CompoundTag nbt) {
@@ -99,6 +112,15 @@ public class EconomicsSavedData extends SavedData {
 	@NotNull
 	private Registry<Item> getItemRegistry() {
 		return level.registryAccess().registry(Registries.ITEM).orElseThrow();
+	}
+
+	public int getBoughtAncientSeeds() {
+		return boughtAncientSeeds;
+	}
+
+	public void setBoughtAncientSeeds(int count) {
+		boughtAncientSeeds = count;
+		setDirty();
 	}
 
 	public boolean hasPrice(Item item) {
