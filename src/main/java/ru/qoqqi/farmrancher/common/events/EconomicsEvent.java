@@ -53,4 +53,11 @@ public class EconomicsEvent extends LevelEvent {
 			super(level);
 		}
 	}
+
+	public static class PlayerBoughtAncientSeed extends EconomicsEvent {
+
+		public PlayerBoughtAncientSeed(Level level) {
+			super(level);
+		}
+	}
 }

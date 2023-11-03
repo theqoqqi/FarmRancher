@@ -55,6 +55,15 @@ public class TradingBlockEntity extends BaseMerchantBlockEntity implements Merch
 		onPricesUpdated();
 	}
 
+	@SubscribeEvent
+	public void onPlayerBoughtAncientSeed(EconomicsEvent.PlayerBoughtAncientSeed event) {
+		if (offers == null) {
+			return;
+		}
+
+		onPricesUpdated();
+	}
+
 	private void onPricesUpdated() {
 		if (isClientSide()) {
 			return;

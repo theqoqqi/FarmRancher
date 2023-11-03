@@ -141,6 +141,7 @@ public class Economics {
 
 	private void increaseBoughtAncientSeeds() {
 		data.setBoughtAncientSeeds(data.getBoughtAncientSeeds() + 1);
+		MinecraftForge.EVENT_BUS.post(new EconomicsEvent.PlayerBoughtAncientSeed(level));
 	}
 
 	public static Economics getInstance(ServerLevel level) {
