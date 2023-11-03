@@ -1,5 +1,7 @@
 package ru.qoqqi.farmrancher.common.trading;
 
+import net.minecraft.util.Mth;
+
 import java.util.function.DoublePredicate;
 
 public class PriceRange implements DoublePredicate {
@@ -16,6 +18,10 @@ public class PriceRange implements DoublePredicate {
 	@Override
 	public boolean test(double value) {
 		return value >= min && value <= max;
+	}
+
+	public double clamp(double value) {
+		return Mth.clamp(value, min, max);
 	}
 
 	public boolean isValid() {

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import vectorwing.farmersdelight.common.registry.ModItems;
 import vectorwing.farmersdelight.common.registry.ModRecipeTypes;
@@ -39,6 +40,8 @@ public class Sellables {
 	public static final List<Sellable> CONFECTIONERY = new ArrayList<>();
 
 	public static final List<Sellable> RESTAURANT = new ArrayList<>();
+
+	public static final List<Sellable> ALL = new ArrayList<>();
 
 	static {
 		register(
@@ -151,12 +154,22 @@ public class Sellables {
 				ModItems.MELON_JUICE.get()
 		);
 
+		ALL.addAll(FRUITS);
+		ALL.addAll(BUFFET);
+		ALL.addAll(CAFETERIA);
+		ALL.addAll(CONFECTIONERY);
+		ALL.addAll(RESTAURANT);
+
 		// Блочная еда, она не стакается. мб кусочками?
 //				ModItems.ROAST_CHICKEN_BLOCK.get(),
 //				ModItems.STUFFED_PUMPKIN_BLOCK.get(),
 //				ModItems.HONEY_GLAZED_HAM_BLOCK.get(),
 //				ModItems.SHEPHERDS_PIE_BLOCK.get(),
 //				ModItems.RICE_ROLL_MEDLEY_BLOCK.get(),
+	}
+
+	public static Optional<Sellable> get(Item item) {
+		return ALL.stream().filter(sellable -> sellable.item == item).findFirst();
 	}
 
 	private static void register(List<Sellable> registry, double priceBonus, Item... items) {
