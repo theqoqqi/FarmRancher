@@ -1,4 +1,4 @@
-package ru.qoqqi.farmrancher.common.trading;
+package ru.qoqqi.farmrancher.common.trading.economics;
 
 import com.mojang.logging.LogUtils;
 
@@ -17,6 +17,9 @@ import ru.qoqqi.farmrancher.FarmRancher;
 import ru.qoqqi.farmrancher.common.blocks.entities.TradingBlockEntity;
 import ru.qoqqi.farmrancher.common.events.EconomicsEvent;
 import ru.qoqqi.farmrancher.common.events.TradeWithBlockEntityEvent;
+import ru.qoqqi.farmrancher.common.trading.Sellables;
+import ru.qoqqi.farmrancher.common.trading.util.PriceRange;
+import ru.qoqqi.farmrancher.common.trading.util.Sellable;
 
 public class Economics {
 

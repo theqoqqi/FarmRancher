@@ -13,11 +13,10 @@ import net.minecraftforge.fml.common.Mod;
 import org.slf4j.Logger;
 
 import java.util.List;
-import java.util.Map;
 
 import ru.qoqqi.farmrancher.FarmRancher;
-import ru.qoqqi.farmrancher.common.trading.PriceCalculator;
-import ru.qoqqi.farmrancher.common.trading.Sellable;
+import ru.qoqqi.farmrancher.common.trading.util.PriceCalculator;
+import ru.qoqqi.farmrancher.common.trading.util.Sellable;
 import ru.qoqqi.farmrancher.common.trading.Sellables;
 import ru.qoqqi.farmrancher.common.trading.SimpleIngredients;
 

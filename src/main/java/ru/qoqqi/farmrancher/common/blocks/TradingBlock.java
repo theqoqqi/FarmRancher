@@ -6,7 +6,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
@@ -26,7 +25,7 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.Nonnull;
 
 import ru.qoqqi.farmrancher.common.blocks.entities.TradingBlockEntity;
-import ru.qoqqi.farmrancher.common.trading.OfferListFactory;
+import ru.qoqqi.farmrancher.common.trading.util.OfferListFactory;
 
 public class TradingBlock extends BaseEntityBlock {
 

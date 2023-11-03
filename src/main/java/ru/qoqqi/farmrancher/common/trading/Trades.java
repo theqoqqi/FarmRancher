@@ -1,5 +1,7 @@
 package ru.qoqqi.farmrancher.common.trading;
 
+import ru.qoqqi.farmrancher.common.trading.util.OfferListFactory;
+
 public class Trades {
 
 	public static final OfferListFactory EXCHANGER = blockEntity -> {

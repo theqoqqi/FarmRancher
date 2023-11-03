@@ -16,7 +16,7 @@ import ru.qoqqi.farmrancher.FarmRancher;
 import ru.qoqqi.farmrancher.common.gardens.GardenType;
 import ru.qoqqi.farmrancher.common.gardens.GardenTypes;
 import ru.qoqqi.farmrancher.common.items.ModItems;
-import ru.qoqqi.farmrancher.common.trading.OfferListFactory;
+import ru.qoqqi.farmrancher.common.trading.util.OfferListFactory;
 import ru.qoqqi.farmrancher.common.trading.Trades;
 
 public class ModBlocks {

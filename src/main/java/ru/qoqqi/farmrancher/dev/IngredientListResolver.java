@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import ru.qoqqi.farmrancher.common.trading.PriceCalculator;
+import ru.qoqqi.farmrancher.common.trading.util.PriceCalculator;
 
 public class IngredientListResolver {
 

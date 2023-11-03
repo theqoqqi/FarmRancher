@@ -1,9 +1,11 @@
-package ru.qoqqi.farmrancher.common.trading;
+package ru.qoqqi.farmrancher.common.trading.util;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.Item;
 
 import java.util.function.Function;
+
+import ru.qoqqi.farmrancher.common.trading.util.PriceRange;
 
 public class Sellable {
 

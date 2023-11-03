@@ -12,6 +12,9 @@ import net.minecraft.world.item.trading.MerchantOffers;
 import org.slf4j.Logger;
 
 import ru.qoqqi.farmrancher.common.blocks.entities.TradingBlockEntity;
+import ru.qoqqi.farmrancher.common.trading.economics.Economics;
+import ru.qoqqi.farmrancher.common.trading.util.Price;
+import ru.qoqqi.farmrancher.common.trading.util.Sellable;
 
 public class MerchantOffersGenerator {
 

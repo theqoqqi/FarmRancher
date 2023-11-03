@@ -1,4 +1,4 @@
-package ru.qoqqi.farmrancher.common.trading;
+package ru.qoqqi.farmrancher.common.trading.util;
 
 import net.minecraft.world.item.trading.MerchantOffers;
 

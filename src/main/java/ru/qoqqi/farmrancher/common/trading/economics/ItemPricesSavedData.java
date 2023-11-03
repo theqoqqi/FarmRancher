@@ -1,4 +1,4 @@
-package ru.qoqqi.farmrancher.common.trading;
+package ru.qoqqi.farmrancher.common.trading.economics;
 
 import com.mojang.logging.LogUtils;
 

@@ -3,7 +3,7 @@ package ru.qoqqi.farmrancher.common.events;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.level.LevelEvent;
 
-import ru.qoqqi.farmrancher.common.trading.Sellable;
+import ru.qoqqi.farmrancher.common.trading.util.Sellable;
 
 public class EconomicsEvent extends LevelEvent {
 
