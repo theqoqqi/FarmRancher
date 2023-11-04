@@ -1,6 +1,7 @@
 package ru.qoqqi.farmrancher.common.trading;
 
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -39,13 +40,14 @@ class WorkshopTrades {
 	public void addAncientSeedOffer() {
 		var price = getAncientSeedPrice();
 		var stacks = price.asTwoStacks();
+		var experience = 100 + getPriceExperience(price);
 
 		offers.add(new MerchantOffer(
 				stacks.get(0),
 				stacks.get(1),
 				new ItemStack(ModItems.ANCIENT_SEED.get()),
 				INFINITE_MAX_USES,
-				0,
+				experience,
 				1f
 		));
 	}
@@ -87,8 +89,12 @@ class WorkshopTrades {
 				price.asSingleStack(),
 				new ItemStack(tierBlueprintItem),
 				INFINITE_MAX_USES,
-				0,
+				getPriceExperience(price),
 				1f
 		));
+	}
+
+	public static int getPriceExperience(Price price) {
+		return (int) Math.sqrt(price.getValue());
 	}
 }
