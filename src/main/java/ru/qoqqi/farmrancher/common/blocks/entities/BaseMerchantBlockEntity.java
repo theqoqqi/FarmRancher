@@ -7,8 +7,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.trading.Merchant;
 import net.minecraft.world.item.trading.MerchantOffer;
@@ -17,8 +17,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.level.BlockEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -26,7 +24,6 @@ import org.slf4j.Logger;
 import javax.annotation.Nullable;
 
 import ru.qoqqi.farmrancher.client.menus.FixedMerchantMenu;
-import ru.qoqqi.farmrancher.common.events.EconomicsEvent;
 import ru.qoqqi.farmrancher.common.events.TradeWithBlockEntityEvent;
 
 public abstract class BaseMerchantBlockEntity extends BlockEntity implements Merchant {
@@ -74,7 +71,21 @@ public abstract class BaseMerchantBlockEntity extends BlockEntity implements Mer
 
 	@Override
 	public void notifyTrade(@NotNull MerchantOffer offer) {
+		rewardTradeExperience(offer);
 		MinecraftForge.EVENT_BUS.post(new TradeWithBlockEntityEvent(tradingPlayer, offer, this));
+	}
+
+	protected void rewardTradeExperience(MerchantOffer offer) {
+		if (level == null || tradingPlayer == null || !offer.shouldRewardExp()) {
+			return;
+		}
+
+		var experience = offer.getXp();
+		var x = tradingPlayer.getX();
+		var y = tradingPlayer.getY();
+		var z = tradingPlayer.getZ();
+
+		level.addFreshEntity(new ExperienceOrb(level, x, y, z, experience));
 	}
 
 	@Override
