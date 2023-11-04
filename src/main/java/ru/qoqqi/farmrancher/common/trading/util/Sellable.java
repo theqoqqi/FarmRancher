@@ -13,6 +13,8 @@ public class Sellable {
 
 	private final Function<ServerLevel, PriceRange> priceFactory;
 
+	private PriceRange priceRange;
+
 	public Sellable(Item item, Function<ServerLevel, PriceRange> priceFactory) {
 		this.item = item;
 		this.priceFactory = priceFactory;
@@ -23,7 +25,11 @@ public class Sellable {
 	}
 
 	public PriceRange getPrice(ServerLevel level) {
-		return priceFactory.apply(level);
+		if (priceRange == null) {
+			priceRange = priceFactory.apply(level);
+		}
+
+		return priceRange;
 	}
 
 	public boolean hasValidPrice(ServerLevel level) {
