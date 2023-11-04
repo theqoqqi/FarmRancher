@@ -100,7 +100,7 @@ public class Economics {
 	}
 
 	private double getUpdatedPrice(Sellable sellable) {
-		var price = data.getPrice(sellable.item);
+		var price = getPrice(sellable);
 		var priceRange = sellable.getPrice(level);
 
 		price = decreasePrice(price, priceRange);
