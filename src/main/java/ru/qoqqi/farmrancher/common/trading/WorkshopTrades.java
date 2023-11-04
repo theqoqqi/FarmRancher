@@ -18,6 +18,8 @@ class WorkshopTrades {
 
 	private static final WorkshopTrades INSTANCE = new WorkshopTrades();
 
+	private static final Price INITIAL_ANCIENT_SEED_PRICE = new Price(16);
+
 	private static final int INFINITE_MAX_USES = 999;
 
 	private MerchantOffers offers;
@@ -55,7 +57,7 @@ class WorkshopTrades {
 	private Price getAncientSeedPrice() {
 		var economics = Economics.getInstance(level);
 		var boughtAncientSeeds = economics.getBoughtAncientSeeds();
-		var price = CoinItem.Tier.getValueOf(CoinItem.Tier.SILVER, boughtAncientSeeds + 1);
+		var price = (boughtAncientSeeds + 1) * INITIAL_ANCIENT_SEED_PRICE.getValue();
 		var maxPrice = CoinItem.Tier.getValueOf(0, 63, 64);
 
 		return new Price(Math.min(price, maxPrice));
