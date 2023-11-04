@@ -2,6 +2,17 @@
   "replace": false,
   "entries": [
     "farm_rancher:replace_plant_loot",
-    "farm_rancher:add_bonus_chest_loot"
+    "farm_rancher:add_bonus_chest_loot",
+    "farm_rancher:vanilla/abandoned_mineshaft",
+    "farm_rancher:vanilla/bastion_bridge",
+    "farm_rancher:vanilla/bastion_other",
+    "farm_rancher:vanilla/bastion_treasure",
+    "farm_rancher:vanilla/buried_treasure",
+    "farm_rancher:vanilla/desert_pyramid",
+    "farm_rancher:vanilla/end_city_treasure",
+    "farm_rancher:vanilla/nether_bridge",
+    "farm_rancher:vanilla/simple_dungeon",
+    "farm_rancher:vanilla/spawn_bonus_chest",
+    "farm_rancher:vanilla/village_house"
   ]
 }

@@ -1,0 +1,24 @@
+{
+  "pools": [
+    {
+      "name": "some_coins",
+      "rolls": 3,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "farm_rancher:copper_coin"
+        },
+        {
+          "weight": 9,
+          "type": "minecraft:empty"
+        }
+      ]
+    }
+  ]
+}
