@@ -9,6 +9,8 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public abstract class AgedPlantType<T extends Block> implements IPlantType {
 
+	private static final float GROWTH_ALIGNMENT_FACTOR = 0.05f;
+
 	public final T block;
 
 	public AgedPlantType(T block) {
@@ -55,7 +57,7 @@ public abstract class AgedPlantType<T extends Block> implements IPlantType {
 				var otherAge = getNormalizedAge(level, otherPos);
 				var aheadBy = otherAge - ownAge;
 
-				multiplier *= 1 + aheadBy;
+				multiplier *= 1 + aheadBy * GROWTH_ALIGNMENT_FACTOR;
 			}
 		}
 
