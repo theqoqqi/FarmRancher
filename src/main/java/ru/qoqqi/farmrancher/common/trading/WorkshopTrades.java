@@ -68,19 +68,19 @@ class WorkshopTrades {
 		);
 		addOffer(
 				ModItems.STONE_TIER_BLUEPRINT.get(),
-				new Price(CoinItem.Tier.COPPER, 8)
+				new Price(CoinItem.Tier.COPPER, 1)
 		);
 		addOffer(
 				ModItems.IRON_TIER_BLUEPRINT.get(),
-				new Price(CoinItem.Tier.SILVER, 1)
+				new Price(CoinItem.Tier.COPPER, 8)
 		);
 		addOffer(
 				ModItems.DIAMOND_TIER_BLUEPRINT.get(),
-				new Price(CoinItem.Tier.SILVER, 8)
+				new Price(CoinItem.Tier.SILVER, 1)
 		);
 		addOffer(
 				Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE,
-				new Price(CoinItem.Tier.GOLDEN, 1)
+				new Price(CoinItem.Tier.SILVER, 8)
 		);
 	}
 
