@@ -185,7 +185,7 @@ public class Sellables {
 
 	@NotNull
 	private static PriceRange getPriceRange(Item item, ServerLevel level, double priceBonus) {
-		var priceCalculator = new PriceCalculator(level, SimpleIngredients.PRICES, RECIPE_PRICE_BONUSES);
+		var priceCalculator = getPriceCalculator(level);
 		var price = priceCalculator.getPrice(item);
 
 		if (price.isEmpty() || Double.isInfinite(price.getAsDouble())) {
@@ -197,5 +197,9 @@ public class Sellables {
 		var maxPrice = priceWithBonus * (1 + PRICE_RANGE_DEVIATION);
 
 		return PriceRange.of(minPrice, maxPrice);
+	}
+
+	private static PriceCalculator getPriceCalculator(ServerLevel level) {
+		return PriceCalculator.getInstance(level, SimpleIngredients.PRICES, RECIPE_PRICE_BONUSES);
 	}
 }

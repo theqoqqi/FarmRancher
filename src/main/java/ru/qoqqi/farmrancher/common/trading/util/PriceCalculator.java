@@ -24,6 +24,8 @@ public class PriceCalculator {
 
 	private static final Logger LOGGER = LogUtils.getLogger();
 
+	private static final Map<ServerLevel, PriceCalculator> instances = new HashMap<>();
+
 	private final Map<Item, Double> simpleIngredientPrices;
 
 	private final RecipeManager recipeManager;
@@ -157,5 +159,15 @@ public class PriceCalculator {
 				.filter(OptionalDouble::isPresent)
 				.mapToDouble(OptionalDouble::getAsDouble)
 				.min();
+	}
+
+	public static PriceCalculator getInstance(
+			ServerLevel forLevel,
+			Map<Item, Double> simpleIngredientPrices,
+			Map<RecipeType<?>, Double> recipePriceBonuses
+	) {
+		return instances.computeIfAbsent(forLevel, level -> {
+			return new PriceCalculator(level, simpleIngredientPrices, recipePriceBonuses);
+		});
 	}
 }
