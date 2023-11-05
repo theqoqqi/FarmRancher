@@ -6,6 +6,7 @@
   "block.farm_rancher.iron_garden": "Железный сад",
   "block.farm_rancher.netherite_garden": "Незеритовый сад",
   "block.farm_rancher.wooden_garden": "Деревянный сад",
+  "block.farm_rancher.gardens.desc": "Позволяет выращивать растения в области %1$sx%1$s вокруг себя\nСкорость роста: %2$s%%\nУрожайность: %3$s%%",
 
   "block.farm_rancher.exchanger": "Обменник",
   "block.farm_rancher.market": "Рынок",

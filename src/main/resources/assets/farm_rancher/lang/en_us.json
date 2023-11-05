@@ -6,6 +6,7 @@
   "block.farm_rancher.iron_garden": "Iron Garden",
   "block.farm_rancher.netherite_garden": "Netherite Garden",
   "block.farm_rancher.wooden_garden": "Wooden Garden",
+  "block.farm_rancher.gardens.desc": "Allows to grow plants in a %1$sx%1$s area around\nPlant growth speed: %2$s%%\nProfitability: %3$s%%",
 
   "block.farm_rancher.exchanger": "Exchanger",
   "block.farm_rancher.market": "Market",

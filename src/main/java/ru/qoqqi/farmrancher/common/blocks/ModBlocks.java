@@ -18,6 +18,7 @@ import java.util.function.Supplier;
 import ru.qoqqi.farmrancher.FarmRancher;
 import ru.qoqqi.farmrancher.common.gardens.GardenType;
 import ru.qoqqi.farmrancher.common.gardens.GardenTypes;
+import ru.qoqqi.farmrancher.common.items.GardenBlockItem;
 import ru.qoqqi.farmrancher.common.items.ModItems;
 import ru.qoqqi.farmrancher.common.trading.util.OfferListFactory;
 import ru.qoqqi.farmrancher.common.trading.Trades;
@@ -86,8 +87,13 @@ public class ModBlocks {
 				.strength(1.0f, 5.0f)
 				.sound(SoundType.WOOD)
 				.mapColor(MapColor.WOOD);
+		var itemProperties = new Item.Properties();
 
-		return register(name, () -> new GardenBlock(properties, gardenType));
+		return register(
+				name,
+				() -> new GardenBlock(properties, gardenType),
+				block -> new GardenBlockItem(block, itemProperties)
+		);
 	}
 
 	private static <T extends Block> RegistryObject<T> register(
