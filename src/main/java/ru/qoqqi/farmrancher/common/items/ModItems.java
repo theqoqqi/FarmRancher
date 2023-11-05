@@ -46,7 +46,7 @@ public class ModItems {
 		return register(name, () -> new CoinItem(tier, new Item.Properties()));
 	}
 
-	public static void registerBlockItem(String actualName, Supplier<? extends Block> blockSupplier) {
+	public static void registerPlainBlockItem(String actualName, Supplier<? extends Block> blockSupplier) {
 		var properties = new Item.Properties();
 
 		register(actualName, () -> new BlockItem(blockSupplier.get(), properties));

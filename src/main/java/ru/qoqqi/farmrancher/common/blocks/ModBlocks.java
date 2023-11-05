@@ -102,7 +102,7 @@ public class ModBlocks {
 		final RegistryObject<T> block = BLOCKS.register(actualName, blockSupplier);
 
 		if (hasItemBlock) {
-			ModItems.registerBlockItem(actualName, block);
+			ModItems.registerPlainBlockItem(actualName, block);
 		}
 
 		return block;
