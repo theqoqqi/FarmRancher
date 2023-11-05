@@ -32,6 +32,9 @@ public class ModBlocks {
 	public static final RegistryObject<Block> WOODEN_GARDEN = registerGarden("wooden_garden", GardenTypes.WOODEN_GARDEN);
 
 	@SuppressWarnings("unused")
+	public static final RegistryObject<Block> COPPER_GARDEN = registerGarden("copper_garden", GardenTypes.COPPER_GARDEN);
+
+	@SuppressWarnings("unused")
 	public static final RegistryObject<Block> IRON_GARDEN = registerGarden("iron_garden", GardenTypes.IRON_GARDEN);
 
 	@SuppressWarnings("unused")

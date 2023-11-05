@@ -10,6 +10,8 @@ public class GardenTypes {
 
 	public static final GardenType WOODEN_GARDEN = new GardenType(2, 0.8f, 0.8f);
 
+	public static final GardenType COPPER_GARDEN = new GardenType(3, 1f, 1f);
+
 	public static final GardenType IRON_GARDEN = new GardenType(3, 1f, 1f);
 
 	public static final GardenType GOLDEN_GARDEN = new GardenType(4, 1.2f, 1.1f);

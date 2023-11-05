@@ -22,6 +22,7 @@ public class ModBlockEntityTypes {
 			"garden",
 			GardenBlockEntity::new,
 			ModBlocks.WOODEN_GARDEN,
+			ModBlocks.COPPER_GARDEN,
 			ModBlocks.IRON_GARDEN,
 			ModBlocks.GOLDEN_GARDEN,
 			ModBlocks.DIAMOND_GARDEN,
