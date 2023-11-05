@@ -1,5 +1,7 @@
 package ru.qoqqi.farmrancher.common.blocks;
 
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -10,6 +12,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Locale;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 import ru.qoqqi.farmrancher.FarmRancher;
@@ -104,6 +107,20 @@ public class ModBlocks {
 		if (hasItemBlock) {
 			ModItems.registerPlainBlockItem(actualName, block);
 		}
+
+		return block;
+	}
+
+	@SuppressWarnings("SameParameterValue")
+	private static <T extends Block> RegistryObject<T> register(
+			String name,
+			Supplier<T> blockSupplier,
+			Function<T, BlockItem> blockItemSupplier) {
+
+		var actualName = name.toLowerCase(Locale.ROOT);
+		var block = BLOCKS.register(actualName, blockSupplier);
+
+		ModItems.registerBlockItem(actualName, () -> blockItemSupplier.apply(block.get()));
 
 		return block;
 	}

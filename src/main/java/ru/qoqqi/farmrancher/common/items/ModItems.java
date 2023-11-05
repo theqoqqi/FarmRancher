@@ -52,6 +52,10 @@ public class ModItems {
 		register(actualName, () -> new BlockItem(blockSupplier.get(), properties));
 	}
 
+	public static void registerBlockItem(String actualName, Supplier<? extends BlockItem> blockItemSupplier) {
+		register(actualName, blockItemSupplier::get);
+	}
+
 	public static RegistryObject<Item> register(String actualName, Item.Properties properties) {
 		return register(actualName, () -> new Item(properties));
 	}
