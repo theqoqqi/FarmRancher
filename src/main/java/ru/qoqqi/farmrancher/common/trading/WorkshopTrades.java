@@ -73,6 +73,10 @@ class WorkshopTrades {
 				new Price(CoinItem.Tier.COPPER, 1)
 		);
 		addOffer(
+				ModItems.COPPER_TIER_BLUEPRINT.get(),
+				new Price(CoinItem.Tier.COPPER, 1)
+		);
+		addOffer(
 				ModItems.IRON_TIER_BLUEPRINT.get(),
 				new Price(CoinItem.Tier.COPPER, 8)
 		);
