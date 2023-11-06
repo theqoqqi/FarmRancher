@@ -59,7 +59,7 @@ public class ModItems {
 	}
 
 	public static RegistryObject<Item> register(String actualName, Item.Properties properties) {
-		return register(actualName, () -> new Item(properties));
+		return register(actualName, () -> new GenericItem(properties));
 	}
 
 	public static RegistryObject<Item> register(String actualName, Supplier<Item> itemSupplier) {
