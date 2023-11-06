@@ -2,22 +2,25 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "pattern": [
-    "DDD",
+    "###",
     "XYX",
-    "WWW"
+    "UMU"
   ],
   "key": {
-    "D": {
+    "#": {
       "item": "minecraft:diamond"
     },
     "X": {
-      "item": "minecraft:glass_bottle"
-    },
-    "Y": {
       "item": "minecraft:bowl"
     },
-    "W": {
-      "tag": "minecraft:planks"
+    "Y": {
+      "item": "minecraft:glass_bottle"
+    },
+    "M": {
+      "item": "farm_rancher:market"
+    },
+    "U": {
+      "item": "farm_rancher:diamond_tier_blueprint"
     }
   },
   "result": {

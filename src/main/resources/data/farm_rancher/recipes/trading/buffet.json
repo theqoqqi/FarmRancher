@@ -2,19 +2,25 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "pattern": [
-    "WWW",
+    "###",
     "XYX",
-    "WWW"
+    "UMU"
   ],
   "key": {
+    "#": {
+      "tag": "forge:ingots/copper"
+    },
     "X": {
       "item": "minecraft:bowl"
     },
     "Y": {
       "item": "minecraft:glass_bottle"
     },
-    "W": {
-      "tag": "minecraft:planks"
+    "M": {
+      "item": "farm_rancher:market"
+    },
+    "U": {
+      "item": "farm_rancher:copper_tier_blueprint"
     }
   },
   "result": {

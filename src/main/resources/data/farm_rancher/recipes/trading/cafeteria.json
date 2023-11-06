@@ -2,12 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "pattern": [
-    "III",
+    "###",
     "XYX",
-    "WWW"
+    "UMU"
   ],
   "key": {
-    "I": {
+    "#": {
       "tag": "forge:ingots/iron"
     },
     "X": {
@@ -16,8 +16,11 @@
     "Y": {
       "item": "minecraft:glass_bottle"
     },
-    "W": {
-      "tag": "minecraft:planks"
+    "M": {
+      "item": "farm_rancher:market"
+    },
+    "U": {
+      "item": "farm_rancher:iron_tier_blueprint"
     }
   },
   "result": {
