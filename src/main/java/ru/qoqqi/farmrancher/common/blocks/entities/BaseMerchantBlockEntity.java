@@ -39,6 +39,10 @@ public abstract class BaseMerchantBlockEntity extends BlockEntity implements Mer
 		super(pType, pPos, pBlockState);
 	}
 
+	public boolean isTrading() {
+		return tradingPlayer != null;
+	}
+
 	@Override
 	public void setTradingPlayer(@Nullable Player tradingPlayer) {
 		this.tradingPlayer = tradingPlayer;

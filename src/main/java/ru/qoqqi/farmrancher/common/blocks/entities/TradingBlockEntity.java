@@ -88,6 +88,10 @@ public class TradingBlockEntity extends BaseMerchantBlockEntity implements Merch
 			return InteractionResult.PASS;
 		}
 
+		if (isTrading()) {
+			return InteractionResult.PASS;
+		}
+
 		var name = getBlockState().getBlock().getName();
 
 		setTradingPlayer(player);
