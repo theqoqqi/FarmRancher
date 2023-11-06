@@ -18,7 +18,7 @@ class WorkshopTrades {
 
 	private static final WorkshopTrades INSTANCE = new WorkshopTrades();
 
-	private static final Price INITIAL_ANCIENT_SEED_PRICE = new Price(16);
+	private static final Price INITIAL_ANCIENT_SEED_PRICE = new Price(8);
 
 	private static final int INFINITE_MAX_USES = 999;
 
