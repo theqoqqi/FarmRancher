@@ -40,6 +40,7 @@ public class TradingBlockEntity extends BaseMerchantBlockEntity implements Merch
 			return;
 		}
 
+		setTradingPlayer(null);
 		MinecraftForge.EVENT_BUS.unregister(this);
 	}
 
