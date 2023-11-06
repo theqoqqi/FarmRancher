@@ -7,7 +7,9 @@
   "block.farm_rancher.golden_garden": "Golden Garden",
   "block.farm_rancher.diamond_garden": "Diamond Garden",
   "block.farm_rancher.netherite_garden": "Netherite Garden",
-  "block.farm_rancher.gardens.desc": "Allows to grow plants in a %1$sx%1$s area around\nPlant growth speed: %2$s%%\nProfitability: %3$s%%",
+  "block.farm_rancher.gardens.desc1": "Allows to grow plants in a %1$sx%1$s area around",
+  "block.farm_rancher.gardens.desc2": "Plant growth speed: %s%%",
+  "block.farm_rancher.gardens.desc3": "Profitability: %s%%",
 
   "block.farm_rancher.exchanger": "Exchanger",
   "block.farm_rancher.market": "Market",
