@@ -24,6 +24,8 @@
   "item.farm_rancher.golden_coin": "Золотая монета",
 
   "item.farm_rancher.ancient_seed": "Древнее семя",
+  "item.farm_rancher.ancient_seed.desc1": "Посадить его уже не получится, но оно",
+  "item.farm_rancher.ancient_seed.desc2": "может дать жизнь другим растениям",
 
   "item.farm_rancher.stone_tier_blueprint": "Чертеж каменного инструмента",
   "item.farm_rancher.copper_tier_blueprint": "Чертеж медного инструмента",

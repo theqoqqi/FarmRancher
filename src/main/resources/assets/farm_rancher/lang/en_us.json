@@ -24,6 +24,8 @@
   "item.farm_rancher.golden_coin": "Golden Coin",
 
   "item.farm_rancher.ancient_seed": "Ancient Seed",
+  "item.farm_rancher.ancient_seed.desc1": "Can't be planted anymore, but it",
+  "item.farm_rancher.ancient_seed.desc2": "can breathe life into other plants",
 
   "item.farm_rancher.stone_tier_blueprint": "Stone tool blueprint",
   "item.farm_rancher.copper_tier_blueprint": "Copper tool blueprint",
