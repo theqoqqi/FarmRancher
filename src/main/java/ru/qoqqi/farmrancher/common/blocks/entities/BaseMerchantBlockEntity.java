@@ -23,7 +23,7 @@ import org.slf4j.Logger;
 
 import javax.annotation.Nullable;
 
-import ru.qoqqi.farmrancher.client.menus.FixedMerchantMenu;
+import ru.qoqqi.farmrancher.client.menus.ExtendedMerchantMenu;
 import ru.qoqqi.farmrancher.common.events.TradeWithBlockEntityEvent;
 
 public abstract class BaseMerchantBlockEntity extends BlockEntity implements Merchant {
@@ -125,7 +125,7 @@ public abstract class BaseMerchantBlockEntity extends BlockEntity implements Mer
 		// см. подробности в комментарии в FixedMerchantMenu.playTradeSound().
 
 		var menuProvider = new SimpleMenuProvider((containerId, playerInventory, p) -> {
-			return new FixedMerchantMenu(containerId, playerInventory, this);
+			return new ExtendedMerchantMenu(containerId, playerInventory, this);
 		}, displayName);
 
 		var containerId = player.openMenu(menuProvider);

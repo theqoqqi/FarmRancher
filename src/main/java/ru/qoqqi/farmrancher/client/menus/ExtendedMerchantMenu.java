@@ -15,13 +15,13 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
-public class FixedMerchantMenu extends MerchantMenu {
+public class ExtendedMerchantMenu extends MerchantMenu {
 
 	private static final Logger LOGGER = LogUtils.getLogger();
 
 	private int selectedOffer;
 
-	public FixedMerchantMenu(int containerId, Inventory playerInventory, Merchant merchant) {
+	public ExtendedMerchantMenu(int containerId, Inventory playerInventory, Merchant merchant) {
 		super(containerId, playerInventory, merchant);
 	}
 
