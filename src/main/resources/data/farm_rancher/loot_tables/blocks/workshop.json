@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "farm_rancher:buffet"
+          "name": "farm_rancher:workshop"
         }
       ]
     }
