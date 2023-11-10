@@ -14,8 +14,10 @@ import net.minecraft.world.item.crafting.RecipeType;
 import org.slf4j.Logger;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -36,13 +38,17 @@ public class PriceCalculator {
 
 	private final Map<RecipeType<?>, Double> recipePriceBonuses;
 
+	private final float uniqueIngredientsBonus;
+
 	public PriceCalculator(
 			ServerLevel level,
 			Map<Item, Double> simpleIngredientPrices,
-			Map<RecipeType<?>, Double> recipePriceBonuses
+			Map<RecipeType<?>, Double> recipePriceBonuses,
+			float uniqueIngredientsBonus
 	) {
 		this.simpleIngredientPrices = simpleIngredientPrices;
 		this.recipePriceBonuses = recipePriceBonuses;
+		this.uniqueIngredientsBonus = uniqueIngredientsBonus;
 		this.recipeManager = level.getRecipeManager();
 		this.registryAccess = level.registryAccess();
 	}
@@ -103,18 +109,34 @@ public class PriceCalculator {
 				.stream()
 				.map(Ingredient::getItems)
 				.filter(itemStacks -> itemStacks.length > 0)
-				.map(this::getCheapestStack)
+				.map(this::getCheapestStackPrice)
 				.mapToDouble(value -> value.orElse(Double.MAX_VALUE))
 				.sum();
 		var priceOfSingleResult = priceOfIngredients / resultStack.getCount();
 		var recipePriceBonus = getRecipePriceBonus(recipe);
-		var priceWithBonuses = priceOfSingleResult * recipePriceBonus;
+		var uniqueIngredientsBonus = getUniqueIngredientsBonus(recipe);
+		var priceWithBonuses = priceOfSingleResult * recipePriceBonus * uniqueIngredientsBonus;
 
 //		logRecipePrice(recipe, priceWithBonuses, priceOfIngredients, priceOfSingleResult, recipePriceBonus, resultStack);
 
 		recipePrices.put(recipe, OptionalDouble.of(priceWithBonuses));
 
 		return priceWithBonuses;
+	}
+
+	private float getUniqueIngredientsBonus(Recipe<?> recipe) {
+		var uniqueIngredients = recipe.getIngredients()
+				.stream()
+				.map(Ingredient::getItems)
+				.filter(itemStacks -> itemStacks.length > 0)
+				.map(this::getCheapestStack)
+				.filter(Optional::isPresent)
+				.map(Optional::get)
+				.filter(stack -> getPrice(stack).orElse(Double.MAX_VALUE) > 0)
+				.distinct()
+				.count();
+
+		return (float) Math.pow(uniqueIngredientsBonus, uniqueIngredients - 1);
 	}
 
 	private void logRecipePrice(
@@ -142,7 +164,7 @@ public class PriceCalculator {
 						.stream()
 						.map(Ingredient::getItems)
 						.filter(itemStacks -> itemStacks.length > 0)
-						.map(this::getCheapestStack)
+						.map(this::getCheapestStackPrice)
 						.map(value -> value.orElse(Double.MAX_VALUE))
 						.collect(Collectors.toList())
 		);
@@ -152,7 +174,7 @@ public class PriceCalculator {
 		return recipePriceBonuses.getOrDefault(recipe.getType(), 1.0);
 	}
 
-	private OptionalDouble getCheapestStack(ItemStack[] itemStacks) {
+	private OptionalDouble getCheapestStackPrice(ItemStack[] itemStacks) {
 		return Arrays.stream(itemStacks)
 				.map(ItemStack::getItem)
 				.map(this::getPrice)
@@ -161,13 +183,25 @@ public class PriceCalculator {
 				.min();
 	}
 
+	private Optional<Item> getCheapestStack(ItemStack[] itemStacks) {
+		return Arrays.stream(itemStacks)
+				.map(ItemStack::getItem)
+				.min(Comparator.comparingDouble(stack -> getPrice(stack).orElse(Double.MAX_VALUE)));
+	}
+
 	public static PriceCalculator getInstance(
 			ServerLevel forLevel,
 			Map<Item, Double> simpleIngredientPrices,
-			Map<RecipeType<?>, Double> recipePriceBonuses
+			Map<RecipeType<?>, Double> recipePriceBonuses,
+			float uniqueIngredientsBonus
 	) {
 		return instances.computeIfAbsent(forLevel, level -> {
-			return new PriceCalculator(level, simpleIngredientPrices, recipePriceBonuses);
+			return new PriceCalculator(
+					level,
+					simpleIngredientPrices,
+					recipePriceBonuses,
+					uniqueIngredientsBonus
+			);
 		});
 	}
 }

@@ -34,6 +34,8 @@ public class Sellables {
 		}
 	};
 
+	public static final float UNIQUE_INGREDIENTS_BONUS = 1.15f;
+
 	public static final List<Sellable> FRUITS = new ArrayList<>();
 
 	public static final List<Sellable> BUFFET = new ArrayList<>();
@@ -200,6 +202,11 @@ public class Sellables {
 	}
 
 	private static PriceCalculator getPriceCalculator(ServerLevel level) {
-		return PriceCalculator.getInstance(level, SimpleIngredients.PRICES, RECIPE_PRICE_BONUSES);
+		return PriceCalculator.getInstance(
+				level,
+				SimpleIngredients.PRICES,
+				RECIPE_PRICE_BONUSES,
+				UNIQUE_INGREDIENTS_BONUS
+		);
 	}
 }

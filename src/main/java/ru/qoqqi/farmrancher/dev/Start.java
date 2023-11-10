@@ -32,7 +32,12 @@ public class Start {
 		}
 
 		var level = (ServerLevel) player.level();
-		var calculator = new PriceCalculator(level, SimpleIngredients.PRICES, Sellables.RECIPE_PRICE_BONUSES);
+		var calculator = new PriceCalculator(
+				level,
+				SimpleIngredients.PRICES,
+				Sellables.RECIPE_PRICE_BONUSES,
+				Sellables.UNIQUE_INGREDIENTS_BONUS
+		);
 		var resolver = new IngredientListResolver(level, SimpleIngredients.PRICES, calculator);
 
 		logPrices("FRUITS", Sellables.FRUITS, calculator, resolver);
