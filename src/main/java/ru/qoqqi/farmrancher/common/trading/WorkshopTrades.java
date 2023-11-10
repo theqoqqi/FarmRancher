@@ -65,10 +65,6 @@ class WorkshopTrades {
 
 	private void addTierBlueprintOffers() {
 		addOffer(
-				ModItems.GOLDEN_TIER_BLUEPRINT.get(),
-				new Price(CoinItem.Tier.COPPER, 1)
-		);
-		addOffer(
 				ModItems.STONE_TIER_BLUEPRINT.get(),
 				new Price(CoinItem.Tier.COPPER, 1)
 		);
@@ -81,12 +77,16 @@ class WorkshopTrades {
 				new Price(CoinItem.Tier.COPPER, 8)
 		);
 		addOffer(
-				ModItems.DIAMOND_TIER_BLUEPRINT.get(),
+				ModItems.GOLDEN_TIER_BLUEPRINT.get(),
 				new Price(CoinItem.Tier.SILVER, 1)
 		);
 		addOffer(
-				Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE,
+				ModItems.DIAMOND_TIER_BLUEPRINT.get(),
 				new Price(CoinItem.Tier.SILVER, 8)
+		);
+		addOffer(
+				Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE,
+				new Price(CoinItem.Tier.GOLDEN, 1)
 		);
 	}
 
