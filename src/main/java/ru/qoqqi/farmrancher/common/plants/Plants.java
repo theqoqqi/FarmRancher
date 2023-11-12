@@ -35,22 +35,22 @@ public class Plants {
 		registerCropPlant(
 				Blocks.WHEAT,
 				minutesToGrowSpeed(11.5f),
-				new PlantDropTable(Items.WHEAT_SEEDS, 1.1f, Items.WHEAT, 1.5f)
+				new PlantDropTable(Items.WHEAT_SEEDS, 1.1f, Items.WHEAT, 1f)
 		);
 		registerCropPlant(
 				Blocks.CARROTS,
 				minutesToGrowSpeed(18),
-				new PlantDropTable(Items.CARROT, 1.5f)
+				new PlantDropTable(Items.CARROT, 2f)
 		);
 		registerCropPlant(
 				Blocks.POTATOES,
 				minutesToGrowSpeed(20),
-				new PlantDropTable(Items.POTATO, 1.5f, Items.POISONOUS_POTATO, 0.02f)
+				new PlantDropTable(Items.POTATO, 2f, Items.POISONOUS_POTATO, 0.02f)
 		);
 		registerCropPlant(
 				Blocks.BEETROOTS,
 				minutesToGrowSpeed(19f),
-				new PlantDropTable(Items.BEETROOT_SEEDS, 1.2f, Items.BEETROOT, 1.5f)
+				new PlantDropTable(Items.BEETROOT_SEEDS, 1.5f, Items.BEETROOT, 1f)
 		);
 
 		registerStemPlant(
@@ -70,7 +70,7 @@ public class Plants {
 		registerCropPlant(
 				ModBlocks.CABBAGE_CROP.get(),
 				minutesToGrowSpeed(30),
-				new PlantDropTable(ModItems.CABBAGE_SEEDS.get(), 1.2f, ModItems.CABBAGE.get(), 1.5f)
+				new PlantDropTable(ModItems.CABBAGE_SEEDS.get(), 1.5f, ModItems.CABBAGE.get(), 1f)
 		);
 		registerBuddingBushPlant(
 				ModBlocks.BUDDING_TOMATO_CROP.get(),
@@ -86,7 +86,7 @@ public class Plants {
 		registerCropPlant(
 				ModBlocks.ONION_CROP.get(),
 				minutesToGrowSpeed(17),
-				new PlantDropTable(ModItems.ONION.get(), 1.5f)
+				new PlantDropTable(ModItems.ONION.get(), 2f)
 		);
 		registerRicePlant(
 				ModBlocks.RICE_CROP.get(),
@@ -97,7 +97,7 @@ public class Plants {
 		registerCropPlant(
 				ModBlocks.RICE_CROP_PANICLES.get(),
 				minutesToGrowSpeed(18),
-				new PlantDropTable(ModItems.RICE.get(), 1.5f)
+				new PlantDropTable(ModItems.RICE.get(), 2f)
 		);
 	}
 
