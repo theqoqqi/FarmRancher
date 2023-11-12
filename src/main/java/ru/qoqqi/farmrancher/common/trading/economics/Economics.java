@@ -28,7 +28,7 @@ public class Economics {
 	private static final Logger LOGGER = LogUtils.getLogger();
 
 	@SuppressWarnings("FieldCanBeLocal")
-	private final double REDUCTION_PER_64_ITEMS = 0.8;
+	private final double REDUCTION_PER_STACK = 0.8;
 
 	private static final double HIGH_PRICE_THRESHOLD = 0.5;
 
@@ -77,7 +77,7 @@ public class Economics {
 
 	public void reducePriceForSoldItem(Sellable sellable, int soldCount) {
 		var priceRange = sellable.getPrice(level);
-		var reductionFactor = getReductionFactor(soldCount);
+		var reductionFactor = getReductionFactor(sellable, soldCount);
 		var currentPrice = data.getPrice(sellable.item);
 		var reducedPrice = priceRange.clamp(currentPrice * reductionFactor);
 
@@ -85,8 +85,11 @@ public class Economics {
 		MinecraftForge.EVENT_BUS.post(new EconomicsEvent.PriceUpdated(level, sellable, reducedPrice));
 	}
 
-	private double getReductionFactor(int itemCount) {
-		return Math.pow(REDUCTION_PER_64_ITEMS, itemCount / 64.0);
+	private double getReductionFactor(Sellable sellable, int itemCount) {
+		//noinspection deprecation
+		var maxStackSize = sellable.item.getMaxStackSize();
+
+		return Math.pow(REDUCTION_PER_STACK, (float) itemCount / maxStackSize);
 	}
 
 	public void updatePrices() {
