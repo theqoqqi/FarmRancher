@@ -40,15 +40,15 @@ public class SimpleIngredients {
 			put(Items.HONEY_BOTTLE, per16Items(2.5));
 			put(ModItems.MILK_BOTTLE.get(), per16Items(0.75));
 
-			put(Items.CHICKEN, per64Items(3.5));
+			put(Items.CHICKEN, per64Items(7));
 			put(ModItems.CHICKEN_CUTS.get(), get(Items.CHICKEN) / 2);
-			put(Items.BEEF, per64Items(5));
+			put(Items.BEEF, per64Items(5) + get(Items.WHEAT));
 			put(ModItems.MINCED_BEEF.get(), get(Items.BEEF) / 2);
-			put(Items.PORKCHOP, per64Items(4));
+			put(Items.PORKCHOP, per64Items(4) + get(Items.CARROT));
 			put(ModItems.BACON.get(), get(Items.PORKCHOP) / 2);
 			put(ModItems.HAM.get(), get(Items.PORKCHOP) * 2);
-			put(Items.RABBIT, per64Items(6));
-			put(Items.MUTTON, per64Items(4.5));
+			put(Items.RABBIT, per64Items(12) + get(Items.CARROT) * 2);
+			put(Items.MUTTON, per64Items(6.75) + get(Items.WHEAT) * 1.333);
 			put(ModItems.MUTTON_CHOPS.get(), get(Items.MUTTON) / 2);
 			put(Items.TROPICAL_FISH, per64Items(10));
 			put(Items.COD, per64Items(8));
