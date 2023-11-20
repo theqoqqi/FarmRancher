@@ -38,7 +38,7 @@ public abstract class AgedPlantType<T extends Block> implements IPlantType {
 	}
 
 	protected float getVanillaGrowthMultiplier(BlockGetter level, BlockPos pos) {
-		var maxVanillaGrowthSpeed = 10f;
+		var maxVanillaGrowthSpeed = 16f;
 		var vanillaGrowthSpeed = CropBlock.getGrowthSpeed(block, level, pos);
 
 		return vanillaGrowthSpeed / maxVanillaGrowthSpeed;
