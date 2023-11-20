@@ -1,6 +1,7 @@
 package ru.qoqqi.farmrancher.common.plants.types;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -64,5 +65,10 @@ public class RicePlantType extends AgedPlantType<RiceBlock> {
 		}
 
 		return paniclesBlock.defaultBlockState().canSurvive(level, pos);
+	}
+
+	@Override
+	protected float getVanillaGrowthMultiplier(BlockGetter level, BlockPos pos) {
+		return 1;
 	}
 }
