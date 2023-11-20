@@ -51,17 +51,17 @@ public class ReplacePlantLootModifier extends LootModifier {
 			return;
 		}
 
+		var plant = Plants.get(blockState);
+
+		if (!plant.type.isMaxAge(blockState)) {
+			return;
+		}
+
 		var serverLevel = context.getLevel();
 		var blockPos = BlockPos.containing(position);
 		var garden = GardenBlockEntity.getPreferredByProfitability(serverLevel, blockPos);
 
 		if (garden == null) {
-			return;
-		}
-
-		var plant = Plants.get(blockState);
-
-		if (!plant.type.isMaxAge(blockState)) {
 			return;
 		}
 
