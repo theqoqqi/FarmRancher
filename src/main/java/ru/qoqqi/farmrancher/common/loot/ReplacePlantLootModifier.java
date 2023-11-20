@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
@@ -18,6 +19,8 @@ import ru.qoqqi.farmrancher.common.blocks.entities.GardenBlockEntity;
 import ru.qoqqi.farmrancher.common.plants.Plants;
 
 public class ReplacePlantLootModifier extends LootModifier {
+
+	private static final float NULL_GARDEN_PROFITABILITY = 0.5f;
 
 	public static Codec<ReplacePlantLootModifier> CODEC = RecordCodecBuilder.create(
 			instance -> instance
@@ -59,17 +62,22 @@ public class ReplacePlantLootModifier extends LootModifier {
 
 		var serverLevel = context.getLevel();
 		var blockPos = BlockPos.containing(position);
-		var garden = GardenBlockEntity.getPreferredByProfitability(serverLevel, blockPos);
-
-		if (garden == null) {
-			return;
-		}
-
-		var gardenType = garden.getGardenType();
-		var profitability = gardenType.profitability;
+		var profitability = getProfitability(serverLevel, blockPos);
 		var drops = plant.dropTable.getRandomDrops(serverLevel.random, profitability);
 
 		generatedLoot.addAll(drops);
+	}
+
+	private static float getProfitability(ServerLevel serverLevel, BlockPos blockPos) {
+		var garden = GardenBlockEntity.getPreferredByProfitability(serverLevel, blockPos);
+
+		if (garden == null) {
+			return NULL_GARDEN_PROFITABILITY;
+		}
+
+		var gardenType = garden.getGardenType();
+
+		return gardenType.profitability;
 	}
 
 	private static boolean shouldReplaceLoot(LootContext context) {
