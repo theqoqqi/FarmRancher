@@ -80,11 +80,12 @@ public abstract class BaseMerchantBlockEntity extends BlockEntity implements Mer
 	}
 
 	protected void rewardTradeExperience(MerchantOffer offer) {
-		if (level == null || tradingPlayer == null || !offer.shouldRewardExp()) {
+		var experience = offer.getXp();
+
+		if (level == null || tradingPlayer == null || experience == 0 || !offer.shouldRewardExp()) {
 			return;
 		}
 
-		var experience = offer.getXp();
 		var x = tradingPlayer.getX();
 		var y = tradingPlayer.getY();
 		var z = tradingPlayer.getZ();
