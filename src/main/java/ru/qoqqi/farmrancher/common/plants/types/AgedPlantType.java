@@ -31,11 +31,17 @@ public abstract class AgedPlantType<T extends Block> implements IPlantType {
 
 	@Override
 	public float getGrowthSpeed(BlockGetter level, BlockPos pos) {
-		var maxVanillaGrowthSpeed = 10f;
-		var vanillaGrowthSpeed = CropBlock.getGrowthSpeed(block, level, pos);
+		var vanillaGrowthMultiplier = getVanillaGrowthMultiplier(level, pos);
 		var alignmentMultiplier = getGrowthAlignmentMultiplier(level, pos);
 
-		return (vanillaGrowthSpeed / maxVanillaGrowthSpeed) * alignmentMultiplier;
+		return vanillaGrowthMultiplier * alignmentMultiplier;
+	}
+
+	protected float getVanillaGrowthMultiplier(BlockGetter level, BlockPos pos) {
+		var maxVanillaGrowthSpeed = 10f;
+		var vanillaGrowthSpeed = CropBlock.getGrowthSpeed(block, level, pos);
+
+		return vanillaGrowthSpeed / maxVanillaGrowthSpeed;
 	}
 
 	private float getGrowthAlignmentMultiplier(BlockGetter level, BlockPos pos) {
