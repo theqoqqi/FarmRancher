@@ -129,6 +129,7 @@ public class Sellables {
 
 				Items.COOKIE,
 				Items.CAKE,
+				Items.PUMPKIN_PIE,
 
 				// Farmer's Delight
 				ModItems.APPLE_PIE.get(),
