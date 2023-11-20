@@ -12,6 +12,8 @@ import net.minecraft.world.item.trading.MerchantOffers;
 import org.slf4j.Logger;
 
 import ru.qoqqi.farmrancher.common.blocks.entities.TradingBlockEntity;
+import ru.qoqqi.farmrancher.common.items.CoinItem;
+import ru.qoqqi.farmrancher.common.items.ModItems;
 import ru.qoqqi.farmrancher.common.trading.economics.Economics;
 import ru.qoqqi.farmrancher.common.trading.util.Price;
 import ru.qoqqi.farmrancher.common.trading.util.Sellable;
@@ -51,9 +53,15 @@ public class MerchantOffersGenerator {
 
 		var largeOffer = addLargeOffer(item, stackPriceValue);
 
-		if (largeOffer.getResult().getCount() > 1) {
+		if (!isMinimumPrice(largeOffer)) {
 			addSmallOffer(item, stackPriceValue);
 		}
+	}
+
+	private static boolean isMinimumPrice(MerchantOffer largeOffer) {
+		var result = largeOffer.getResult();
+
+		return result.getItem() == ModItems.COPPER_COIN.get() && result.getCount() == 1;
 	}
 
 	private MerchantOffer addLargeOffer(Item item, double stackPriceValue) {
